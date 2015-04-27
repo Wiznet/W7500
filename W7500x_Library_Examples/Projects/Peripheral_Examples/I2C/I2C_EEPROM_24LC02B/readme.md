@@ -1,5 +1,7 @@
+<markdown>
 #I2C and M24CXX EEPROM communication example
 ******************************************************************************
+
 (C) COPYRIGHT 2015 WIZnet Co.,Ltd.
 
   * file    : I2C/I2C_EEPROM_24LC02B/readme.md 
@@ -7,8 +9,11 @@
   * version : V1.0.0
   * date    : 1-May-2015
   * brief   : Description of the I2C and M24CXX EEPROM communication example.
+  * 
 ******************************************************************************
+
 THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE TIME. AS A RESULT, WIZNET SHALL NOT BE HELD LIABLE FOR ANY DIRECT, INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+
 ******************************************************************************
 
 ### Example Description
@@ -49,7 +54,7 @@ ______________________________________________________________________________
    |         |      |          |
     ---------       -----------
 
-
+</markdown>
 EEPROM M24Cxx Pin Configuration
        -----
 --- A0|1   8|VCC---
@@ -57,6 +62,7 @@ EEPROM M24Cxx Pin Configuration
 --- A2|3   6|SCL---
 ---GND|4   5|SDA---
        -----
+<markdown>
 EEPROM M24Cxx Pin Description
 -------------------------------------------------------------------------------
 PIN | SYMBOL | DESCRIPTION
@@ -129,3 +135,4 @@ ______________________________________________________________________________
  - STOP enable
 
 <h3><center>&copy; COPYRIGHT 2015 WIZnet Co.,Ltd.</center></h3>
+</markdown>
