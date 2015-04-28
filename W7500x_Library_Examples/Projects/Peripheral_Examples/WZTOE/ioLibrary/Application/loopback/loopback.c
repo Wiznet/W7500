@@ -23,7 +23,6 @@ int32_t loopback_tcps(uint8_t sn, uint8_t* buf, uint16_t port)
 #ifdef _LOOPBACK_DEBUG_
 			getSn_DIPR(sn, destip);
 			destport = getSn_DPORT(sn);
-
 			printf("%d:Connected - %d.%d.%d.%d : %d\r\n",sn, destip[0], destip[1], destip[2], destip[3], destport);
 #endif
 			setSn_IR(sn,Sn_IR_CON);
