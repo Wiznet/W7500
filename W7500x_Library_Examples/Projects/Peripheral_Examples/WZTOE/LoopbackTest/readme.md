@@ -19,8 +19,9 @@ THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS WITH
 This example shows how to use WZTOE in TCP and UDP mode.
 
 In this example:
+
   - 1) Echo Loopback example in TCP / UDP mode
-  - 2) For more detail, please visit http://wizwiki.net/wiki/doku.php?id=products:w7500:peripherals:toe 
+  - 2) For more detail, please visit [TCP Function description](http://wizwiki.net/wiki/doku.php?id=products:w7500:tcp_function)
 ______________________________________________________________________________
 
 ### Directory contents
