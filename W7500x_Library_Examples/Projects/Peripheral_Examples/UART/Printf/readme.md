@@ -47,14 +47,8 @@ ______________________________________________________________________________
   - This example runs on W7500 Connectivity line Devices.
   
   -  W7500 Set-up
-   --------------            --------------
-  |    UART0     |          |       PC     |
-  |              |          |              |
-  |   (PA_13)TXD |----------|   RXD        |
-  |   (PA_14)RXD |----------|   TXD        |
-  |              |          |              |
-  |              |          |              |
-   --------------            --------------
+
+![](http://wizwiki.net/wiki/lib/exe/fetch.php?media=products:w7500:peripherals:printf.png)
   
 
    - TXD(PA13) and RXD of PC connected.

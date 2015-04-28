@@ -55,16 +55,8 @@ ________________________________________
   - This example runs on W7500 Connectivity line Devices.
   
   -  W7500 Set-up
-   --------------            --------------
-  |    UART0     |          |    UART1     |
-  |              |          |              |
-  |   (PA_13)TXD |----------|   RXD(PB_03) |
-  |   (PA_14)RXD |----------|   TXD(PB_02) |
-  |   (PA_11)CTS |----------|   RTS(PB_01) |
-  |   (PA_12)RTS |----------|   CTS(PB_00) |
-  |              |          |              |
-  |              |          |              |
-   --------------            --------------
+
+![](http://wizwiki.net/wiki/lib/exe/fetch.php?media=products:w7500:peripherals:flowcontrol.png)
   
    - CTS(PA11) and RTS(PB00) connected.
    - RTS(PA12) and CTS(PB01) connected.

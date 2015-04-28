@@ -44,22 +44,11 @@ ______________________________________________________________________________
 
 ### Hardware and Software environment 
 
-
-    --W7500--        --EEPROM--
-   |         |      |          |
-   |     SDA |------| SDA      |
-   |     SCL |------| SCL      |
-   |         |      |          |
-   |         |      |          |
-    ---------       -----------
+![](http://wizwiki.net/wiki/lib/exe/fetch.php?media=products:w7500:peripherals:i2c:eeprom_hardware_and_software.png)
 
 EEPROM M24Cxx Pin Configuration
-       -----
---- A0|1   8|VCC---
---- A1|2   7|WP ---
---- A2|3   6|SCL---
----GND|4   5|SDA---
-       -----
+
+![](http://wizwiki.net/wiki/lib/exe/fetch.php?media=products:w7500:peripherals:i2c:eeprom_pin_configuration.png)
        
 EEPROM M24Cxx Pin Description
 
@@ -78,34 +67,13 @@ PIN | SYMBOL | DESCRIPTION
 
 
 EEPROM M24Cxx Write Protect
---------------|-----------------------------------------------------------------------------------
-              |            Part of the Array Protected
-              |-----------------------------------------------------------------------------------
-WP Pin Status |    24C01A     |     24C02     |     24C04     |     24C08A   |      24C16A
---------------|---------------|---------------|---------------|--------------|--------------------
-    At VCC    | Full(1K)Array | Full(1K)Array | Full(1K)Array | Full(1K)Array|  Full(1K)Array
---------------|---------------|---------------|---------------|--------------|--------------------
-    At GND    |                                Normal Read/Write Operations
---------------|------------------------------------------------------------------------------------
+
+![](http://wizwiki.net/wiki/lib/exe/fetch.php?media=products:w7500:peripherals:i2c:eeprom_m24cxx_write_protect.png)
 
 
 EEPROM M24Cxx Device Address
-         --- --- --- --- --- --- --- ---
-  1K/2K | 1 | 0 | 1 | 0 | A2| A1| A0|R/W|  
-         --- --- --- --- --- --- --- ---
-                                     LSB
-         --- --- --- --- --- --- --- ---
-    4K  | 1 | 0 | 1 | 0 | A2| A1| P0|R/W|  
-         --- --- --- --- --- --- --- ---
-                                     LSB
-         --- --- --- --- --- --- --- ---
-    8K  | 1 | 0 | 1 | 0 | A2| P1| P0|R/W|  
-         --- --- --- --- --- --- --- ---
-                                     LSB
-         --- --- --- --- --- --- --- ---
-   16K  | 1 | 0 | 1 | 0 | P2| P1| P0|R/W|  
-         --- --- --- --- --- --- --- ---
-                                     LSB
+
+![](http://wizwiki.net/wiki/lib/exe/fetch.php?media=products:w7500:peripherals:i2c:eeprom_device_address.png)
 
 
 ______________________________________________________________________________

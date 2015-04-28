@@ -33,23 +33,12 @@ ______________________________________________________________________________
 
 ### Hardware and Software environment 
 
-    --W7500--        --LM75--
-   |         |      |        |
-   |     SDA |------| SDA    |
-   |     SCL |------| SCL    |
-   |         |      |        |
-   |         |      |        |
-    ---------       ---------
-
-
+![](http://wizwiki.net/wiki/lib/exe/fetch.php?media=products:w7500:peripherals:i2c:lm75_hardware_and_software.png)
 
 LM75 Pin Configuration
-       -----
----SDA|1   8|VCC---
----SCL|2   7|A0 ---
----OS |3   6|A1 ---
----GND|4   5|A2 ---
-       -----
+
+![](http://wizwiki.net/wiki/lib/exe/fetch.php?media=products:w7500:peripherals:i2c:lm75_pin_configuration.png)
+
 LM75 Pin Description
 -------------------------------------------------------------------------------
 PIN | SYMBOL | DESCRIPTION
@@ -62,53 +51,18 @@ PIN | SYMBOL | DESCRIPTION
  6  | A1     | Digital input. User-defined address bit1.
  7  | A0     | Digital input. User-defined address bit0.
  8  | VCC    | Power supply.
-----|--------|------------------------------------------------------------------
 
 LM75 register 
-------------------------------------------------------------------------------------------
-REG NAME | Addr   | R/W | RST Value |DESCRIPTION
----------|--------|-----|-----------|--------------------------------------------------
-Temp     | 0x00   | R/W |   0x0000  |   Configuration Register.
-         |        |     |           |   Contains a single 8-bit data byte. 
-         |        |     |           |   To set the device operating condition.
-         |        |     |           |   Default = 0.
----------|--------|-----|-----------|-------------------------------------------------------
-Conf     | 0x01   | R   |    N/A    |   Temperature Register.
-         |        |     |           |   Contains two 8-bit data bytes. 
-         |        |     |           |   To store the measured Temp data.
----------|--------|-----|-----------|-------------------------------------------------------
-Thyrs    | 0x02   | R/W |   0x5000  |   Over-temp Shutdown threshold Register.
-         |        |     |           |   Contains two 8-bit data bytes. 
-         |        |     |           |   To store the over-temp shut-down Tos limit.
-         |        |     |           |   Default = 80 ��C.
----------|--------|-----|-----------|----------------------------------------------------
-Tos      | 0x03   | R/W |   0x4B00  |   Hysteresis Register.
-         |        |     |           |   Contains two 8-bit data bytes. 
-         |        |     |           |   To store the hysteresis Thyst limit.
-         |        |     |           |   Default = 75 ��C.
----------|--------|-----|-----------|--------------------------------------------------
+
+![](http://wizwiki.net/wiki/lib/exe/fetch.php?media=products:w7500:peripherals:i2c:lm75_register.png)
 
 LM75 Device Address
-         --- --- --- --- --- --- --- 
-        | 1 | 0 | 0 | 1 |A2 | A1| A0|
-         --- --- --- --- --- --- --- 
-                                  LSB
+
+![](http://wizwiki.net/wiki/lib/exe/fetch.php?media=products:w7500:peripherals:i2c:lm75_device_address.png)
 
 LM75 Temp register table
------------------------------------------------|-----------------------------------------------
-              Temp MS byte                     |                    Temp LS byte
------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
- MSB |     |     |     |     |     |     | LSB | MSB |     |     |     |     |     |     | LSB |            
------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
-  B7 |  B6 |  B5 |  B4 |  B3 |  B2 |  B1 |  B0 |  B7 |  B6 |  B5 |  B4 |  B3 |  B2 |  B1 |  B0 |
------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
-                         Temp data(11bits)                       |        Not  Used            |            
------------------------------------------------|----------------------------------------------- 
- MSB |                                                     | LSB |
------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
- D10 |  D9 |  D8 |  D7 |  D6 |  D5 |  D4 |  D3 |  D2 |  D1 |  D0 |  X  |  X  |  X  |  X  |  X  |
------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 
+![](http://wizwiki.net/wiki/lib/exe/fetch.php?media=products:w7500:peripherals:i2c:lm75_temp_register_table.png)
 
 ______________________________________________________________________________
 

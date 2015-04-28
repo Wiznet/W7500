@@ -50,15 +50,8 @@ ______________________________________________________________________________
   - This example runs on W7500 Connectivity line Devices.
   
   -  W7500 Set-up
-   --------------            --------------
-  |    UART0     |          |     UART1    |
-  |              |          |              |
-  |   (PA_13)TXD |----------|   RXD(PB_03) |
-  |   (PA_14)RXD |----------|   TXD(PB_03) |
-  |              |          |              |
-  |              |          |              |
-   --------------            --------------
-  
+
+![](http://wizwiki.net/wiki/lib/exe/fetch.php?media=products:w7500:peripherals:polling.png)
 
    - TXD(PA13) and  RXD(PB_03) connected.
    - RXD(PA14) and  TXD(PB_02) connected.
