@@ -9,7 +9,7 @@
   * version : V1.0.0
   * date    : 1-May-2015
   * brief   : Description of the I2C and M24CXX EEPROM communication example.
-  * 
+
 ******************************************************************************
 
 THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE TIME. AS A RESULT, WIZNET SHALL NOT BE HELD LIABLE FOR ANY DIRECT, INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
@@ -30,9 +30,8 @@ will write the buffer have to be selected from the four address available,
 The EEPROM addresses where the progran start the write and the read operations
 is defined in the main.c file
 
-
-
 ______________________________________________________________________________
+
 ### Directory contents
 
   - I2C/I2C_EEPROM_24LC02B/main.c                            		(Main program)
@@ -54,7 +53,6 @@ ______________________________________________________________________________
    |         |      |          |
     ---------       -----------
 
-</markdown>
 EEPROM M24Cxx Pin Configuration
        -----
 --- A0|1   8|VCC---
@@ -62,8 +60,9 @@ EEPROM M24Cxx Pin Configuration
 --- A2|3   6|SCL---
 ---GND|4   5|SDA---
        -----
-<markdown>
+       
 EEPROM M24Cxx Pin Description
+
 -------------------------------------------------------------------------------
 PIN | SYMBOL | DESCRIPTION
 ----|--------|------------------------------------------------------------------
@@ -81,7 +80,7 @@ PIN | SYMBOL | DESCRIPTION
 EEPROM M24Cxx Write Protect
 --------------|-----------------------------------------------------------------------------------
               |            Part of the Array Protected
-              |-----------------------------------------------------------------------------------                
+              |-----------------------------------------------------------------------------------
 WP Pin Status |    24C01A     |     24C02     |     24C04     |     24C08A   |      24C16A
 --------------|---------------|---------------|---------------|--------------|--------------------
     At VCC    | Full(1K)Array | Full(1K)Array | Full(1K)Array | Full(1K)Array|  Full(1K)Array
@@ -118,9 +117,11 @@ In order to make the program work, you must do the following:
  - Open your preferred toolchain 
  - Rebuild all files and load your image into target memory
  - Run the example 
+
 ______________________________________________________________________________
 
 ### Flow Chart
+
  - Master Init
  - Device address send from W7500 to EEPROM
  - START enable
@@ -135,4 +136,3 @@ ______________________________________________________________________________
  - STOP enable
 
 <h3><center>&copy; COPYRIGHT 2015 WIZnet Co.,Ltd.</center></h3>
-</markdown>
