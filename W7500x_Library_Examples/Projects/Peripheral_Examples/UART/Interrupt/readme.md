@@ -7,8 +7,11 @@
   * version : V1.0.0
   * date    : 1-May-2015
   * brief   : Description of the UART Interrupts example.
+
 ******************************************************************************
+
 THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE TIME. AS A RESULT, WIZNET SHALL NOT BE HELD LIABLE FOR ANY DIRECT, INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+
 ******************************************************************************
 
 ### Example Description
@@ -44,14 +47,14 @@ ______________________________________________________________________________
   - This example runs on W7500 Connectivity line Devices.
   
   -  W7500 Set-up
-   --------------            --------------
-  |    UART0     |          |     UART1    |
-  |              |          |              |
-  |   (PA_13)TXD |----------|   RXD(PB_03) |
-  |   (PA_14)RXD |----------|   TXD(PB_02) |
-  |              |          |              |
-  |              |          |              |
-   --------------            --------------
+       --------------            --------------
+      |    UART0     |          |     UART1    |
+      |              |          |              |
+      |   (PA_13)TXD |----------|   RXD(PB_03) |
+      |   (PA_14)RXD |----------|   TXD(PB_02) |
+      |              |          |              |
+      |              |          |              |
+       --------------            --------------
   
 
    - TXD(PA13) and RXD(PB_03) of UART1 connected.

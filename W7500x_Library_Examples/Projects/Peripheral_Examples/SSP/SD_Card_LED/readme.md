@@ -1,28 +1,36 @@
-#SSP Loopback example
+#SSP SDcard_LED example
 ******************************************************************************
 (C) COPYRIGHT 2015 WIZnet Co.,Ltd.
 
-  * file    : SSP/Loopback/readme.md
+  * file    : SSP/SD_Card_LED/readme.md
   * author  : IOP Team
   * version : V1.0.0
   * date    : 1-May-2015
-  * brief   : Description of the SSP Loopback example.
+  * brief   : Description of the SSP SD_Card_LED example.
+
 ******************************************************************************
+
 THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE TIME. AS A RESULT, WIZNET SHALL NOT BE HELD LIABLE FOR ANY DIRECT, INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+
 ******************************************************************************
 
 ### Example Description
 
-This example provides a description of how to set a communication between two SSPs in MO mode and performs a transfer from Master to Slave by Interrnal Loopback.
+This example provides a description of how to set a communication to SDCard.
 
-SSP0 is configured as master and SSP1 as slave both are with 16bit data size.
+SDCard is configured SSP1 as master are with 8bit data size.
 
-After enabling both SSPs, the first data from set value 0x50 followed by the first data send by the master. The same procedure is done for the remaining data to transfer except the last ones.
+After enabling both SSP1, the first single data block to transfer Buffer Block Tx except the last ones.
+block size is 512 and receive Buffer Block Rx read to SDCard except the last ones.
 
-Last data from SSP0 transmit buffer is save to SSP1 receive buffer.
+Once the transfer is completed a comparison is done and TransferStatus1 gives the data transfer status for each data transfer direction where it is PASSED if transmitted and received data are the same otherwise it is FAILED.
+After check of TransferStatus1, if Status is PASSED LED ON BLUE and if Status is FAILED LED ON RED.
 
-Once the transfer is completed a comparison is done and TransferStatus gives the data transfer status for each data transfer direction where it is PASSED if transmitted and received data are the same otherwise it is FAILED.
-After check of TransferStatus, if Status is PASSED LED ON GREEN and if Status is FAILED LED ON RED.
+After single data block test, the second multi block data to transfer Buffer MultiBlock Tx except the last ones.
+block size is 512 * 32 and receive Buffer MultiBlock Rx read to SDCard except the last ones.
+
+Once the transfer is completed a comparison is done and TransferStatus2 gives the data transfer status for each data transfer direction where it is PASSED if transmitted and received data are the same otherwise it is FAILED.
+After check of TransferStatus2, if Status is PASSED LED ON GREEN and if Status is FAILED LED ON RED.
 
 ______________________________________________________________________________
 
@@ -32,7 +40,7 @@ ______________________________________________________________________________
   - SSP/Loopback/W7500x_it.c                              (Interrupt Handlers)
   - SSP/Loopback/W7500x_it.h                              (Interrupt Handlers Header file)
   - SSP/Loopback/W7500x_conf.h                            (Library Configuration file)
-  - SSP/Loopback/MDK/W7500x_SSP_Loopback.uvproj           (MDK Project file)
+  - SSP/Loopback/MDK/W7500x_SSP_SD_Card_LED.uvproj        (MDK Project file)
   - SSP/Loopback/GCC/Makefile                             (GCC Make file)
 ______________________________________________________________________________
 
@@ -42,14 +50,11 @@ ______________________________________________________________________________
   - To select the WIZnet WIZwiki platform used to run the example.
 
   - WIZwiki W7500 Set-up
-    - Set SSP0 is master and datasize is 16bits
-    - Set SSP1 is Slave and datasize is 16bits
-    - Connect SSP0 SSEL (PA.05) pin to SSP1 SSEL (PB.00) Pin
-    - Connect SSP0 SCLK (PA.06) pin to SSP1 SCLK (PB.01) Pin
-    - Connect SSP0 MISO (PA.07) pin to SSP1 MISO (PB.02) Pin
-    - Connect SSP0 MOSI (PA.08) pin to SSP1 MOSI (PB.03) Pin
+    - input micro SD card
+    - Set SSP1 is master and datasize is 8bits
     - Use LED(R) connected to PC_08 pin.
     - Use LED(G) connected to PC_09 pin.
+    - Use LED(B) connected to PC_05 pin.
     - In order to use the LED to be changed from PAD_AF0 to PAD_AF1.
 ______________________________________________________________________________
 
