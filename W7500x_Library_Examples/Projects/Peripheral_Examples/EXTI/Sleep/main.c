@@ -110,6 +110,6 @@ void delay_ms(__IO uint32_t nCount)
 {
     volatile uint32_t delay = nCount * 2500;  // approximate loops per ms at 24 MHz, Debug config
     for(; delay != 0; delay--)
-        __NOP;
+        __NOP();
 }
 
