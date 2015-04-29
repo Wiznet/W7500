@@ -74,10 +74,10 @@
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
           </BeforeMake>
           <AfterMake>
-            <RunUserProg1>1</RunUserProg1>
-            <RunUserProg2>0</RunUserProg2>
+            <RunUserProg1>0</RunUserProg1>
+            <RunUserProg2>1</RunUserProg2>
             <UserProg1Name>$K\ARM\ARMCC\BIN\fromelf.exe #L --vhx --8x1 --output main.hex</UserProg1Name>
-            <UserProg2Name></UserProg2Name>
+            <UserProg2Name>fromelf --bin -o "$L@L.bin" "#L"</UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
           </AfterMake>
@@ -424,11 +424,6 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\Libraries\W7500x_stdPeriph_Driver\src\W7500x_i2c.c</FilePath>
             </File>
-            <File>
-              <FileName>W7500x_uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\Libraries\W7500x_stdPeriph_Driver\src\W7500x_uart.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -453,11 +448,6 @@
               <FileName>W7500x_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\W7500x_it.c</FilePath>
-            </File>
-            <File>
-              <FileName>retarget.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\retarget.c</FilePath>
             </File>
           </Files>
         </Group>

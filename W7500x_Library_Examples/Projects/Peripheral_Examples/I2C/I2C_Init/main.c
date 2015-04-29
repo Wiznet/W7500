@@ -27,7 +27,6 @@
 #define I2C_Debug
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-UART_InitTypeDef UART_InitStructure;
 I2C_ConfigStruct conf;
 
 int8_t I2C_1byte_rw(I2C_TypeDef * I2Cx,uint8_t Prescale,uint16_t Timeout,uint8_t SlaveAddress,uint8_t data);
@@ -46,10 +45,6 @@ int main()
     uint8_t data     =    0xAA;
 	/*System clock configuration*/
 	SystemInit();
-    /* UART0 and UART1 configuration*/
-    UART_StructInit(&UART_InitStructure);
-    /* Configure UART0 */
-    UART_Init(UART1,&UART_InitStructure);
     /* I2C Init */
     /*  I2C confiugred as follow:
      *  - I2C master mode
