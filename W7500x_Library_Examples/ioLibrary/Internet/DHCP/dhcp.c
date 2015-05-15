@@ -353,8 +353,7 @@ void send_DHCP_DISCOVER(void)
 	uint16_t i;
 	uint8_t ip[4];
 	uint16_t k = 0;
-  uint32_t ret;
-   
+    int32_t ret = 0;
    makeDHCPMSG();
 
    k = 4;     // beacaue MAGIC_COOKIE already made by makeDHCPMSG()
