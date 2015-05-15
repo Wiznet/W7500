@@ -361,7 +361,7 @@
               <MiscControls></MiscControls>
               <Define>CORTEX_M0 USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\..\..\..\Libraries\CMSIS\Device\WIZnet\W7500\Source\ARM;..\..\..\..\..\Libraries\CMSIS\Device\WIZnet\W7500\Include;..\..\..\..\..\Libraries\W7500x_stdPeriph_Driver\inc;..\..\..\..\..\Libraries\CMSIS\Include;..\;..\..\ioLibrary\MDIO;..\..\ioLibrary\Ethernet;..\..\ioLibrary\Internet\DHCP;..\..\ioLibrary\Internet\DNS;..\..\ioLibrary\Application\loopback</IncludePath>
+              <IncludePath>..\..\..\..\..\Libraries\CMSIS\Device\WIZnet\W7500\Source\ARM;..\..\..\..\..\Libraries\CMSIS\Device\WIZnet\W7500\Include;..\..\..\..\..\Libraries\W7500x_stdPeriph_Driver\inc;..\..\..\..\..\Libraries\CMSIS\Include;..\;..\..\..\..\..\ioLibrary\MDIO;..\..\..\..\..\ioLibrary\Ethernet;..\..\..\..\..\ioLibrary\Internet\DHCP;..\..\..\..\..\ioLibrary\Internet\DNS;..\..\..\..\..\ioLibrary\Application\loopback</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -472,27 +472,27 @@
             <File>
               <FileName>socket.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\ioLibrary\Ethernet\socket.c</FilePath>
+              <FilePath>..\..\..\..\..\ioLibrary\Ethernet\socket.c</FilePath>
             </File>
             <File>
               <FileName>wizchip_conf.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\ioLibrary\Ethernet\wizchip_conf.c</FilePath>
+              <FilePath>..\..\..\..\..\ioLibrary\Ethernet\wizchip_conf.c</FilePath>
             </File>
             <File>
               <FileName>dhcp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\ioLibrary\Internet\DHCP\dhcp.c</FilePath>
-            </File>
-            <File>
-              <FileName>W7500x_miim.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\ioLibrary\MDIO\W7500x_miim.c</FilePath>
+              <FilePath>..\..\..\..\..\ioLibrary\Internet\DHCP\dhcp.c</FilePath>
             </File>
             <File>
               <FileName>dns.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\ioLibrary\Internet\DNS\dns.c</FilePath>
+              <FilePath>..\..\..\..\..\ioLibrary\Internet\DNS\dns.c</FilePath>
+            </File>
+            <File>
+              <FileName>W7500x_miim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\ioLibrary\MDIO\W7500x_miim.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -502,7 +502,7 @@
             <File>
               <FileName>loopback.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\ioLibrary\Application\loopback\loopback.c</FilePath>
+              <FilePath>..\..\..\..\..\ioLibrary\Application\loopback\loopback.c</FilePath>
             </File>
           </Files>
         </Group>

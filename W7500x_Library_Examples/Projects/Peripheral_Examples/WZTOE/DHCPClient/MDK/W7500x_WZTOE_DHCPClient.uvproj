@@ -223,7 +223,7 @@
             <useUlib>0</useUlib>
             <EndSel>1</EndSel>
             <uLtcg>0</uLtcg>
-            <RoSelD>0</RoSelD>
+            <RoSelD>3</RoSelD>
             <RwSelD>0</RwSelD>
             <CodeSel>0</CodeSel>
             <OptFeed>0</OptFeed>
@@ -235,12 +235,12 @@
             <Ro1Chk>0</Ro1Chk>
             <Ro2Chk>0</Ro2Chk>
             <Ro3Chk>0</Ro3Chk>
-            <Ir1Chk>0</Ir1Chk>
+            <Ir1Chk>1</Ir1Chk>
             <Ir2Chk>0</Ir2Chk>
             <Ra1Chk>0</Ra1Chk>
             <Ra2Chk>0</Ra2Chk>
             <Ra3Chk>0</Ra3Chk>
-            <Im1Chk>0</Im1Chk>
+            <Im1Chk>1</Im1Chk>
             <Im2Chk>0</Im2Chk>
             <OnChipMemories>
               <Ocm1>
@@ -361,7 +361,7 @@
               <MiscControls></MiscControls>
               <Define>CORTEX_M0 USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\..\..\..\Libraries\CMSIS\Device\WIZnet\W7500\Source\ARM;..\..\..\..\..\Libraries\CMSIS\Device\WIZnet\W7500\Include;..\..\..\..\..\Libraries\W7500x_stdPeriph_Driver\inc;..\..\..\..\..\Libraries\CMSIS\Include;..\;..\..\ioLibrary\MDIO;..\..\ioLibrary\Ethernet;..\..\ioLibrary\Internet\DHCP;..\..\ioLibrary\Internet\DNS;..\..\ioLibrary\Application\loopback</IncludePath>
+              <IncludePath>..\..\..\..\..\Libraries\CMSIS\Device\WIZnet\W7500\Source\ARM;..\..\..\..\..\Libraries\CMSIS\Device\WIZnet\W7500\Include;..\..\..\..\..\Libraries\W7500x_stdPeriph_Driver\inc;..\..\..\..\..\Libraries\CMSIS\Include;..\;..\..\..\..\..\ioLibrary\MDIO;..\..\..\..\..\ioLibrary\Ethernet;..\..\..\..\..\ioLibrary\Internet\DHCP;..\..\..\..\..\ioLibrary\Internet\DNS;..\..\..\..\..\ioLibrary\Application\loopback</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -472,22 +472,22 @@
             <File>
               <FileName>socket.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\ioLibrary\Ethernet\socket.c</FilePath>
+              <FilePath>..\..\..\..\..\ioLibrary\Ethernet\socket.c</FilePath>
             </File>
             <File>
               <FileName>wizchip_conf.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\ioLibrary\Ethernet\wizchip_conf.c</FilePath>
+              <FilePath>..\..\..\..\..\ioLibrary\Ethernet\wizchip_conf.c</FilePath>
             </File>
             <File>
               <FileName>dhcp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\ioLibrary\Internet\DHCP\dhcp.c</FilePath>
+              <FilePath>..\..\..\..\..\ioLibrary\Internet\DHCP\dhcp.c</FilePath>
             </File>
             <File>
               <FileName>W7500x_miim.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\ioLibrary\MDIO\W7500x_miim.c</FilePath>
+              <FilePath>..\..\..\..\..\ioLibrary\MDIO\W7500x_miim.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -497,7 +497,7 @@
             <File>
               <FileName>loopback.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\ioLibrary\Application\loopback\loopback.c</FilePath>
+              <FilePath>..\..\..\..\..\ioLibrary\Application\loopback\loopback.c</FilePath>
             </File>
           </Files>
         </Group>

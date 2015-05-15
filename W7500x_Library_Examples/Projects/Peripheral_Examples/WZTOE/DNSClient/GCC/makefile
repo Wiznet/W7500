@@ -24,7 +24,7 @@ GNU_CC_FLAGS = -g -O3 -mthumb $(CPU_TYPE)
 
 TESTNAME		= W7500x_WZTOE_DNS
 
-IO_LIBRARY_DIR = ../../ioLibrary/
+IO_LIBRARY_DIR = ../../../../../ioLibrary/
 
 MDIO_DIR = $(IO_LIBRARY_DIR)/MDIO
 ETHERNET_DIR = $(IO_LIBRARY_DIR)/Ethernet

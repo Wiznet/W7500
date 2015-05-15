@@ -25,9 +25,9 @@
 
 /* Includes ------------------------------------------------------------------*/
 /* Uncomment/Comment the line below to enable/disable peripheral header file inclusion */
+#include "W7500x_gpio.h"	/* Use MDIO over GPIO */
 #include "W7500x_adc.h"
 #include "W7500x_crg.h"
-#include "W7500x_gpio.h"	/* Use MDIO over GPIO */
 #include "W7500x_exti.h"
 #include "W7500x_dualtimer.h"
 #include "W7500x_i2c.h"
