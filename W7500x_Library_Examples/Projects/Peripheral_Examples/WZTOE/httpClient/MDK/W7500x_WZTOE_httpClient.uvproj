@@ -45,7 +45,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\Obj\</OutputDirectory>
-          <OutputName>W7500x_WZTOE_Webclient</OutputName>
+          <OutputName>W7500x_WZTOE_httpClient</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>0</CreateHexFile>
