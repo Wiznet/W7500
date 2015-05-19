@@ -1,13 +1,20 @@
 /*
  *********************************************************************
  * @file    : wztoe.h
- * @version : 0.0.1
+ * @version : 1.0.1
  * @author  : WIZnet
- * @data    
- * @brief   : wztoe dirver for W7500
+ * @data    19-May-2015
+ * @brief   : WZTOE dirver for W7500
  *********************************************************************
  * @attention
+ * @par Revision history
+ *    <2015/05/19> V1.0.1 by justinKim
+ *      1. getSn_DIPR - IP Address Bug fix
+ *      2. getSn_DHAR - SHAR -> DHAR  Bug fix
+ *    <2015/05/01> 1st Release
  */
+ 
+
 
 #ifndef __WZTOE_H
 #define __WZTOE_H
@@ -939,13 +946,14 @@ uipr[3] = WIZCHIP_READ((UIPR));
  * @param (uint8_t*)dhar Pointer variable to get socket n destination hardware address. It should be allocated 6 bytes.
  * @sa setSn_DHAR()
  */
+ //15.05.19 by justinKim
 #define getSn_DHAR(sn, dhar) \
     dhar[0] = WIZCHIP_READ((Sn_DHAR(sn)+3)); \
-    dhar[1] = WIZCHIP_READ((Sn_SHAR(sn)+2)); \
-    dhar[2] = WIZCHIP_READ((Sn_SHAR(sn)+1)); \
-    dhar[3] = WIZCHIP_READ((Sn_SHAR(sn)+0)); \
-    dhar[4] = WIZCHIP_READ((Sn_SHAR(sn)+7)); \
-    dhar[5] = WIZCHIP_READ((Sn_SHAR(sn)+6)); 
+    dhar[1] = WIZCHIP_READ((Sn_DHAR(sn)+2)); \
+    dhar[2] = WIZCHIP_READ((Sn_DHAR(sn)+1)); \
+    dhar[3] = WIZCHIP_READ((Sn_DHAR(sn)+0)); \
+    dhar[4] = WIZCHIP_READ((Sn_DHAR(sn)+7)); \
+    dhar[5] = WIZCHIP_READ((Sn_DHAR(sn)+6)); 
 
 /**
  * @ingroup Socket_register_access_function
@@ -972,10 +980,11 @@ uipr[3] = WIZCHIP_READ((UIPR));
  * @param (uint8_t*)dipr Pointer variable to set socket n destination IP address. It should be allocated 4 bytes.
  * @sa getSn_DIPR()
  */
+//15.05.19 by justinKim
 #define setSn_DIPR(sn, dipr) { \
-    WIZCHIP_WRITE((Sn_DIPR(sn)+3), dipr[0]); \
-    WIZCHIP_WRITE((Sn_DIPR(sn)+2), dipr[1]); \
-    WIZCHIP_WRITE((Sn_DIPR(sn)+1), dipr[2]); \
+    WIZCHIP_WRITE((Sn_DIPR3(sn)), dipr[0]); \
+    WIZCHIP_WRITE((Sn_DIPR2(sn)), dipr[1]); \
+    WIZCHIP_WRITE((Sn_DIPR1(sn)), dipr[2]); \
     WIZCHIP_WRITE((Sn_DIPR(sn)),   dipr[3]); \
 }
 //#define setSn_DIPR(sn, dipr) \
@@ -988,11 +997,12 @@ uipr[3] = WIZCHIP_READ((UIPR));
  * @sa SetSn_DIPR()
  */
 //#define getSn_DIPR(sn, dipr) (*(volatile uint32_t *)(dipr) = htole32(*(volatile uint32_t *)(Sn_DIPR(sn))))
+//15.05.19 by justinKim
 #define getSn_DIPR(sn, dipr) \
-    (dipr)[0] = WIZCHIP_READ((Sn_DIPR3(sn)+3)); \
-    (dipr)[1] = WIZCHIP_READ((Sn_DIPR2(sn)+2)); \
-    (dipr)[2] = WIZCHIP_READ((Sn_DIPR1(sn)+1)); \
-    (dipr)[3] = WIZCHIP_READ((Sn_DIPR(sn)));
+    (dipr)[0] = WIZCHIP_READ(Sn_DIPR3(sn)); \
+    (dipr)[1] = WIZCHIP_READ(Sn_DIPR2(sn)); \
+    (dipr)[2] = WIZCHIP_READ(Sn_DIPR1(sn)); \
+    (dipr)[3] = WIZCHIP_READ(Sn_DIPR(sn)); 
 
 /**
  * @ingroup Socket_register_access_function

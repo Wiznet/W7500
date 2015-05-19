@@ -2,11 +2,15 @@
   ******************************************************************************
   * @file    WZTOE/Loopback/main.c 
   * @author  IOP Team
-  * @version V1.0.0
-  * @date    01-May-2015
+  * @version V1.0.1
+  * @date    19-May-2015
   * @brief   Main program body
   ******************************************************************************
   * @attention
+  * @par Revision history
+  *    <2015/05/19> V1.0.1 by justinKim
+  *      1. Print Address %.3d -> %d 
+  *    <2015/05/01> 1st Release
   *
   * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
   * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
@@ -105,12 +109,12 @@ int main()
     getSHAR(tmp);
     printf(" MAC ADDRESS : %.2X:%.2X:%.2X:%.2X:%.2X:%.2X\r\n",tmp[0],tmp[1],tmp[2],tmp[3],tmp[4],tmp[5]); 
     getSIPR(tmp);
-    printf("IP ADDRESS : %.3d.%.3d.%.3d.%.3d\r\n",tmp[0],tmp[1],tmp[2],tmp[3]); 
+    printf("IP ADDRESS : %d.%d.%d.%d\r\n",tmp[0],tmp[1],tmp[2],tmp[3]); 
     getGAR(tmp);
-    printf("GW ADDRESS : %.3d.%.3d.%.3d.%.3d\r\n",tmp[0],tmp[1],tmp[2],tmp[3]); 
+    printf("GW ADDRESS : %d.%d.%d.%d\r\n",tmp[0],tmp[1],tmp[2],tmp[3]); 
     getSUBR(tmp);
-    printf("SN MASK: %.3d.%.3d.%.3d.%.3d\r\n",tmp[0],tmp[1],tmp[2],tmp[3]); 
-
+    printf("SN MASK: %d.%d.%d.%d\r\n",tmp[0],tmp[1],tmp[2],tmp[3]); 
+   
     /* Set Network Configuration */
     //wizchip_init(tx_size, rx_size);
 
