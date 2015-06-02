@@ -212,7 +212,7 @@ int8_t ctlwizchip(ctlwizchip_type cwtype, void* arg)
       case CW_GET_INTRMASK:
          *((intr_kind*)arg) = wizchip_getinterruptmask();
          break;
-   #if _WIZCHIP_ > 5100
+   #if _WIZCHIP_ < 5500
       case CW_SET_INTRTIME:
          setINTLEVEL(*(uint16_t*)arg);
          break;
