@@ -2,11 +2,11 @@
  * @file     W7500x.h
  * @brief    CMSIS Cortex-M0 Core Peripheral Access Layer Header File for
  *           Device W7500x
- * @version  V3.01
- * @date     06. March 2012
+ * @version  V1.0.4
+ * @date     04. June 2015
  *
  * @note
- * Copyright (C) 2010-2012 ARM Limited. All rights reserved.
+ * Copyright (C) 2015 ARM Limited. All rights reserved.
  *
  * @par
  * ARM Limited (ARM) is supplying this software for use with Cortex-M
@@ -19,6 +19,12 @@
  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
  * ARM SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL, OR
  * CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
+ *
+ * @attention
+ * @par Revision history
+ *    <2015/06/04> V1.0.4 by justinKim
+ *      1. GPIO_DS register 3->2 address fix.
+ *    <2015/05/01> 1st Release
  *
  ******************************************************************************/
 
@@ -986,7 +992,7 @@ typedef struct
 /****************   Bit definition for Px_PCR   **************************/
 #define Px_PCR_PUPD_DOWN    (0x01ul << 0)       // Pull Down 
 #define Px_PCR_PUPD_UP      (0x01ul << 1)       // Pull Up
-#define Px_PCR_DS_HIGH      (0x01ul << 3)       // High Driving 
+#define Px_PCR_DS_HIGH      (0x01ul << 2)       // High Driving 
 #define Px_PCR_IE           (0x01ul << 5)       // Input Buffer Enable
 #define Px_PCR_CS_SUMMIT    (0x01ul << 6)       // Use Summit Trigger Input Buffer
 

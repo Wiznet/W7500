@@ -2,11 +2,16 @@
   ******************************************************************************
   * @file    W7500x_stdPeriph_Driver/inc/W7500x_gpio.h
   * @author  IOP Team
-  * @version V1.0.0
-  * @date    01-May-2015
+  * @version V1.0.4
+  * @date    04-June-2015
   * @brief   This file contains all the functions prototypes for the GPIO 
   *          firmware library.
   ******************************************************************************
+  * @attention
+  * @par Revision history
+  *    <2015/06/04> V1.0.4 by justinKim
+  *      1. GPIO_ReadInputData Function unused parameter delete.
+  *    <2015/05/01> 1st Release
   *
   ******************************************************************************
   */
@@ -122,7 +127,7 @@ void GPIO_DeInit(GPIO_TypeDef* GPIOx);
 void GPIO_Init(GPIO_TypeDef* GPIOx, GPIO_InitTypeDef* GPIO_InitStruct);
 void GPIO_StructInit(GPIO_InitTypeDef* GPIO_InitStruct);
 uint8_t GPIO_ReadInputDataBit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
-uint8_t GPIO_ReadInputData(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+uint8_t GPIO_ReadInputData(GPIO_TypeDef* GPIOx);
 uint8_t GPIO_ReadOutputDataBit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 uint16_t GPIO_ReadOutputData(GPIO_TypeDef* GPIOx);
 void GPIO_SetBits(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
