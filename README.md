@@ -29,7 +29,7 @@ Only source files are provided for each example and user can tailor the provided
            This is the only file that needs to be included in the user application to interface with the library.
   - Projects
     - peripheral_Examples
-      - The W7500 standard Peripherals library provides a rich set of examples covering the main features of eash peripheral. 
+      - The W7500 standard Peripherals library provides a rich set of examples covering the main features of each peripheral. 
   - Utilities
     - w7500_flash_algo_mdk
       - The W7500 standard library provides W7500 128KB flash algorithm project to debug WIZwiki-W7500 with using ULINK debugger and CMSIS-DAP debugger. 
