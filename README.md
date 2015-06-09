@@ -1,4 +1,4 @@
-#Library and Periphral Example
+#Library and Peripheral Example
 
 ##Overview
 The W7500 provides the CMSIS, driver and Peripheral Example.
