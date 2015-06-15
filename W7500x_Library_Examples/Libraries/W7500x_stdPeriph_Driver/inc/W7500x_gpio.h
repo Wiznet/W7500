@@ -2,16 +2,25 @@
   ******************************************************************************
   * @file    W7500x_stdPeriph_Driver/inc/W7500x_gpio.h
   * @author  IOP Team
-  * @version V1.0.4
-  * @date    04-June-2015
+  * @version V1.0.5
+  * @date    05-June-2015
   * @brief   This file contains all the functions prototypes for the GPIO 
   *          firmware library.
   ******************************************************************************
-  * @attention
   * @par Revision history
-  *    <2015/06/04> V1.0.4 by justinKim
-  *      1. GPIO_ReadInputData Function unused parameter delete.
+  *    <2015/06/03> Update about Interrupt (add Interrupt Function)
+  *                         - Add GPIOPol_TypeDef
+  *                         - Add GPIOSet_TypeDef
+  *                         - Add GPIO_INT_Enable_Bits Function
+  *                         - Add GPIO_INT_Enable Function
+  *                         - Add GPIO_INT_Polarity_Bits Function
+  *                         - Add GPIO_INT_Polarity Function
+  *                         - Add GPIO_INT_Clear Function
+  *                         - Add GPIO_Read_INTstatus Function
+  *                         - Add GPIO_INT_Configuration Function
+  *                         Add GPIO_Configuration Function
   *    <2015/05/01> 1st Release
+  *
   *
   ******************************************************************************
   */
@@ -65,7 +74,7 @@ typedef enum
 {
     GPIO_Mode_IN    = 0x00, /*!< GPIO Input Mode                 */
     GPIO_Mode_OUT   = 0x01, /*!< GPIO Output Mode                */
-    GPIO_Mode_AF    = 0x02 /*!< GPIO Alternate function Mode    */
+    GPIO_Mode_AF    = 0x02, /*!< GPIO Alternate function Mode    */
 }GPIOMode_TypeDef;
 
 typedef enum
@@ -86,6 +95,18 @@ typedef struct
     GPIOMode_TypeDef GPIO_Mode;
     GPIOPad_TypeDef GPIO_Pad;
 }GPIO_InitTypeDef;
+
+typedef enum
+{
+    Falling = 0,
+    Rising = 1
+}GPIOPol_TypeDef;
+
+typedef enum
+{
+    Reset = 0,
+    Set = 1
+}GPIOSet_TypeDef;
 
 typedef enum
 {
@@ -134,7 +155,15 @@ void GPIO_SetBits(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 void GPIO_ResetBits(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 void GPIO_WriteBit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, BitAction BitVal);
 void GPIO_Write(GPIO_TypeDef* GPIOx, uint16_t PortVal);
+void GPIO_INT_Enable_Bits(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIOSet_TypeDef SetValue);
+void GPIO_INT_Enable(GPIO_TypeDef* GPIOx, GPIOSet_TypeDef SetValue);
+void GPIO_INT_Polarity_Bits(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIOPol_TypeDef Polarity);
+void GPIO_INT_Polarity(GPIO_TypeDef* GPIOx, GPIOPol_TypeDef Polarity);
+void GPIO_INT_Clear(GPIO_TypeDef* GPIOx);
+uint8_t GPIO_Read_INTstatus(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 void PAD_AFConfig(PAD_Type Px, uint16_t Pnum, PAD_AF_TypeDef P_AF);
+void GPIO_Configuration(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIOMode_TypeDef GPIO_Mode, PAD_AF_TypeDef P_AF);
+void GPIO_INT_Configuration(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIOPol_TypeDef Polarity);
 
 
 #ifdef __cplusplus

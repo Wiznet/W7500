@@ -26,12 +26,8 @@ typedef enum
 {
     I2C_WRITE_SA7=0,
     I2C_READ_SA7,
-    //I2C_WRITE_SA10,
-    //I2C_READ_SA10,
     I2C_CTRWRITE_SA7,
     I2C_CTRREAD_SA7,
-    //I2C_CTRWRITE_SA10,
-    //I2C_CTRREAD_SA10,
 } I2C_CTR;
 
 typedef enum
@@ -217,6 +213,16 @@ void I2C_SendSlaveAddress   (I2C_TypeDef* I2Cx, uint8_t SlaveAddress,I2C_CTR Ctr
 
 int8_t I2C_Restart_Structure(I2C_TypeDef * I2Cx,uint32_t SlaveAddress,I2C_CTR Ctr);
 uint16_t I2C_ReadRegister   (I2C_TypeDef* I2Cx, uint8_t I2C_Register);
+
+void I2C_GPIO(void);
+void GPIO_I2C(void );
+
+void WriteByte(uint8_t val);
+
+void digitalWrite(GPIO_TypeDef* GPIOx,uint16_t pin, uint16_t val);
+uint16_t digitalRead(GPIO_TypeDef* GPIOx,uint16_t pin);
+void delay_us(int us);
+void delay_ms(int count) ;
 
 /**
   * @}

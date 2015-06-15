@@ -72,7 +72,6 @@ void EXTI_DeInit(void);
 void EXTI_Init(PAD_Type Px, EXTI_InitTypeDef* EXTI_InitStruct);
 void EXTI_Polarity_Set(PAD_Type Px, uint16_t GPIO_Pin, uint16_t Polarity );
 void EXTI_StructInit(EXTI_InitTypeDef* EXTI_InitStruct);
-uint32_t EXTI_GetEXTIConfig(PAD_Type Px, uint16_t GPIO_Pin);
 uint16_t EXTI_Px_GetEXTEN(PAD_Type Px);
 uint16_t EXTI_Px_GetEXTINTPOL(PAD_Type Px);
 

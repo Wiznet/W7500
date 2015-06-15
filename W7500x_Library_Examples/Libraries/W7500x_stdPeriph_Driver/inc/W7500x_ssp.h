@@ -327,7 +327,6 @@ void SSP_DMACmd(SSP_TypeDef* SSPx, uint32_t SSP_DMAReq, FunctionalState NewState
 void SSP_SendData(SSP_TypeDef* SSPx, uint16_t Data);
 uint16_t SSP_ReceiveData(SSP_TypeDef* SSPx);
 FlagStatus SSP_GetFlagStatus(SSP_TypeDef* SSPx, uint32_t SSP_FLAG);
-void SSP_ClearFlag(SSP_TypeDef* SSPx, uint16_t SSP_FLAG);
 ITStatus SSP_GetITStatus(SSP_TypeDef* SSPx, uint32_t SSP_IT);
 void SSP_ClearIT_Bit(SSP_TypeDef* SSPx, uint32_t SSP_CLEAR_IT);
 
