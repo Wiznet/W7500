@@ -31,7 +31,7 @@ uint32_t PrescalerValue = 0;
 uint32_t CaptureValue = 0;
 
 /* Private function prototypes -----------------------------------------------*/
-void GPIO_Configuration(void);
+void GPIO_Setting(void);
 void NVIC_Configuration(void);
 /* Private functions ---------------------------------------------------------*/
 
@@ -49,7 +49,7 @@ int main(void)
     NVIC_Configuration();
 
     /* CPIO configuration */
-    GPIO_Configuration();
+    GPIO_Setting();
 
     /* Time base configuration */
     PrescalerValue = (SystemCoreClock / 1000000) / 10; // Prescale is 2 for 10MHz
@@ -77,7 +77,7 @@ int main(void)
   * @param  None
   * @retval None
   */
-void GPIO_Configuration(void)
+void GPIO_Setting(void)
 {
     GPIO_InitTypeDef GPIO_InitStruct;
 

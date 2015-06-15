@@ -11,13 +11,11 @@
   ******************************************************************************
   */
 
-/* Define to prevent recursive inclusion -------------------------------------*/
-#define     __I     volatile const       /*!< Defines 'read only' permissions                 */
-#define     __O     volatile             /*!< Defines 'write only' permissions                */
-#define     __IO    volatile             /*!< Defines 'read / write' permissions              */
-
 /*include -------------------------------------*/
 #include "W7500x.h"
+
+#ifndef __W7500X_I2C_H
+#define __W7500X_I2C_H
 
 /**
 *   @defgroup I2C_Public_Types I2X Public Types
@@ -27,8 +25,8 @@ typedef enum
     I2C_WRITE_SA7=0,
     I2C_READ_SA7,
     I2C_CTRWRITE_SA7,
-    I2C_CTRREAD_SA7,
-} I2C_CTR;
+    I2C_CTRREAD_SA7
+}I2C_CTR;
 
 typedef enum
 {
@@ -36,7 +34,7 @@ typedef enum
     I2C_ACKT,
     I2C_OACKR,
     I2C_SACKR,
-    I2C_BT,
+    I2C_BT
 } I2C_SR;
 
 
@@ -46,7 +44,7 @@ typedef enum
     INT_ACKT=-2,
     INT_NACKR=-3,
     INT_NACKT=-4,
-    INT_BT=-5,
+    INT_BT=-5
 } I2C_ERROR;
     
     
@@ -144,7 +142,7 @@ typedef enum
 
 
 typedef enum
- {
+{
     I2C_Master = I2C_MASTER_MODE,
     I2C_Slave = I2C_SLAVE_MODE
  }I2C_MODE;
@@ -221,10 +219,10 @@ void WriteByte(uint8_t val);
 
 void digitalWrite(GPIO_TypeDef* GPIOx,uint16_t pin, uint16_t val);
 uint16_t digitalRead(GPIO_TypeDef* GPIOx,uint16_t pin);
-void delay_us(int us);
-void delay_ms(int count) ;
 
 /**
   * @}
  */
+ 
+ #endif //__W7500X_I2C_H
 

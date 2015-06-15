@@ -1,11 +1,14 @@
 /**
   ******************************************************************************
-  * @file    PWM/DeadZoneGeneration/main.c 
+  * @file    GPIO/Interrupt/main.c 
   * @author  IOP Team
-  * @version V1.0.0
-  * @date    01-May-2015
+  * @version V1.0.5
+  * @date    05-June-2015
   * @brief   Main program body
   ******************************************************************************
+  * @par Revision history
+  *    <2015/06/05> 1st Release
+  *
   * @attention
   *
   * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
@@ -19,63 +22,41 @@
   ******************************************************************************
   */ 
 
-
 /* Includes ------------------------------------------------------------------*/
 #include "W7500x.h"
 
 /* Private typedef -----------------------------------------------------------*/
+
 /* Private define ------------------------------------------------------------*/
+
 /* Private macro -------------------------------------------------------------*/
+
 /* Private variables ---------------------------------------------------------*/
-PWM_DeadzoneModeInitTypDef DeadzoneModeStructure;
-uint32_t PrescalerValue = 0;
 
 /* Private function prototypes -----------------------------------------------*/
-void GPIO_Setting(void);
+
 /* Private functions ---------------------------------------------------------*/
 
 /**
-  * @brief   Main program
-  * @param  None
-  * @retval None
+  * @brief  Main program.
   */
-int main(void)
+int main()
 {
-    /*System clock configuration*/
+    /* set system */
     SystemInit();
-
-    /* CPIO configuration */
-    GPIO_Setting();
-
-    /* Timer mode configuration */
-    PrescalerValue = (SystemCoreClock / 1000000) / 10; // Prescale is 2 for 10MHz
-    DeadzoneModeStructure.PWM_CHn_PR = PrescalerValue - 1;
-    DeadzoneModeStructure.PWM_CHn_MR = 60000;
-    DeadzoneModeStructure.PWM_CHn_LR = 120000;
-    DeadzoneModeStructure.PWM_CHn_UDMR = PWM_CHn_UDMR_UpCount;
-    DeadzoneModeStructure.PWM_CHn_PDMR = PWM_CHn_PDMR_Periodic;
-    DeadzoneModeStructure.PWM_CHn_DZCR = 100;
+	
+    /* GPIO Configuration */
+    GPIO_Configuration(GPIOC, GPIO_Pin_8, GPIO_Mode_OUT,PAD_AF1); // LED_R
+    GPIO_Configuration(GPIOC, GPIO_Pin_9, GPIO_Mode_OUT,PAD_AF1); // LED_G
+    GPIO_ResetBits(GPIOC, GPIO_Pin_8); // LED_R off
+    GPIO_ResetBits(GPIOC, GPIO_Pin_9); // LED_G off
     
-    PWM_DeadzoneModeInit(PWM_CH0, &DeadzoneModeStructure); 
-
-    /* PWM0 output enable */
-    PWM_CtrlPWMOutputEnable(PWM_CH0); 
-    /* PWM1 output disable for inverted PWM0 output signal */
-    PWM_CtrlPWMOutputDisable(PWM_CH1); 
-
-    /* PWM channel 0 start */
-    PWM_CHn_Start(PWM_CH0);
-
-    while(1);
-}
-
-/**
-  * @brief  Configure the GPIO Pins.
-  * @param  None
-  * @retval None
-  */
-void GPIO_Setting(void)
-{
-    PAD_AFConfig(PAD_PC, GPIO_Pin_0, PAD_AF2); ///< PAD Configuration for PWM0 output
-    PAD_AFConfig(PAD_PC, GPIO_Pin_1, PAD_AF2); ///< PAD Configuration for PWM1 output
+    /* GPIO Interrupt Configuration */
+    GPIO_INT_Configuration(GPIOA, GPIO_Pin_0, Rising);
+	NVIC_EnableIRQ(PORT0_IRQn); // GPIOA IRQ enable
+    
+    while(1)
+    {
+        ; // wait for GPIO Interrupt!!    
+	}
 }

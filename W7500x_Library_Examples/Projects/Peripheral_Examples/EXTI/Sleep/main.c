@@ -32,7 +32,7 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-void GPIO_Configuration(void);
+void GPIO_Setting(void);
 void NVIC_Configuration(void);
 void delay_ms(__IO uint32_t nCount);
 
@@ -47,7 +47,7 @@ int main()
     SystemInit();
 
     /* CPIO configuration */
-    GPIO_Configuration();
+    GPIO_Setting();
 
     /* NVIC Configuration */
     NVIC_Configuration();
@@ -69,7 +69,7 @@ int main()
 /**
   * @brief GPIO Configuration function 
   */
-void GPIO_Configuration(void)
+void GPIO_Setting(void)
 {
     GPIO_InitTypeDef GPIO_InitDef;
     EXTI_InitTypeDef EXTI_InitDef;

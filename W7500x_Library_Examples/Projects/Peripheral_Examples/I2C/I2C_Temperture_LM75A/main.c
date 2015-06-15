@@ -36,8 +36,9 @@
 UART_InitTypeDef UART_InitStructure;
 I2C_ConfigStruct conf;
 /* Private function prototypes -----------------------------------------------*/
+void delay_us(int us);
+void delay_ms(int count);
 /* Private functions ---------------------------------------------------------*/
-void Delay_for(uint32_t delay);
 /**
   * @brief   Main program
   * @param  None
@@ -100,13 +101,18 @@ int main()
         result = recv_data *0.125;
         printf("Read Temp Hex= %x\t,Read Temp Dec = %d\t, Temp = %d\r\n",recv_data,recv_data,result);
 
-       Delay_for(0x0000010);
+       delay_ms(10);
     }
  } 
+void delay_us(int us)
+{
+        volatile uint32_t delay = us; // approximate loops per ms at 24 MHz, Debug config
+    for(; delay != 0; delay--)
+        __NOP();
+}
+void delay_ms(int count) {
+        delay_us(count*1000);
+}
 
 
- void Delay_for(uint32_t delay)
-  {
-         int i =0;
-                  for( i=0;i<delay;i++);
-  }
+

@@ -10,7 +10,8 @@
   *
   ******************************************************************************
   */
-
+extern void delay_us(int us);
+extern void delay_ms(int count);
 /*include -------------------------------------*/
 #include "W7500x.h"
      //GPIO_InitTypeDef GPIO_InitDef;
@@ -19,8 +20,6 @@
   */
 
 GPIO_InitTypeDef GPIO_InitDef;
-void delay_us(int us);
-
 #define SCL GPIO_Pin_9
 #define SDA GPIO_Pin_10
 uint16_t buf[] ={0x00,0x01};
@@ -468,7 +467,6 @@ void I2C_SendSlaveAddress(I2C_TypeDef* I2Cx, uint8_t SlaveAddress,I2C_CTR Ctr)
  
         case(I2C_CTRWRITE_SA7):
         case(I2C_CTRREAD_SA7):
-:
              I2C_SendData(I2Cx,SlaveAddress);
         break;
         
@@ -606,14 +604,4 @@ void WriteByte(uint8_t val)
     digitalWrite(GPIOx,SCL, Bit_RESET);
 }
 
-
-void delay_us(int us)
-{
-        volatile uint32_t delay = us; // approximate loops per ms at 24 MHz, Debug config
-    for(; delay != 0; delay--)
-        __NOP();
-}
-void delay_ms(int count) {
-        delay_us(count*1000);
-}
 

@@ -30,7 +30,7 @@ PWM_TimerModeInitTypeDef TimerModeStructure;
 uint32_t PrescalerValue = 0;
 
 /* Private function prototypes -----------------------------------------------*/
-void GPIO_Configuration(void);
+void GPIO_Setting(void);
 /* Private functions ---------------------------------------------------------*/
 
 /**
@@ -44,7 +44,7 @@ int main(void)
     SystemInit();
 
     /* CPIO configuration */
-    GPIO_Configuration();
+    GPIO_Setting();
 
     /* Timer mode configuration for PWM3*/
     PrescalerValue = (SystemCoreClock / 1000000) / 10; // Prescale is 2 for 10MHz
@@ -93,7 +93,7 @@ int main(void)
   * @param  None
   * @retval None
   */
-void GPIO_Configuration(void)
+void GPIO_Setting(void)
 {
     PAD_AFConfig(PAD_PA, GPIO_Pin_6, PAD_AF3); ///< PAD Configuration for PWM3 output
     PAD_AFConfig(PAD_PA, GPIO_Pin_7, PAD_AF3); ///< PAD Configuration for PWM4 output

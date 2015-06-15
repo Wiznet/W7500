@@ -29,7 +29,7 @@
 PWM_CounterModeInitTypeDef CounterModeStruct;
 
 /* Private function prototypes -----------------------------------------------*/
-void GPIO_Configuration(void);
+void GPIO_Setting(void);
 void NVIC_Configuration(void);
 /* Private functions ---------------------------------------------------------*/
 
@@ -47,7 +47,7 @@ int main(void)
     NVIC_Configuration();
 
     /* CPIO configuration */
-    GPIO_Configuration();
+    GPIO_Setting();
 
     /* Time base configuration */
     CounterModeStruct.PWM_CHn_MR = 10;
@@ -73,7 +73,7 @@ int main(void)
   * @param  None
   * @retval None
   */
-void GPIO_Configuration(void)
+void GPIO_Setting(void)
 {
     GPIO_InitTypeDef GPIO_InitStructure;
 

@@ -46,7 +46,7 @@ int rst_info = 0;
 
 
 /* Private function prototypes -----------------------------------------------*/
-void GPIO_Configuration(void);
+void GPIO_Setting(void);
 void NVIC_Configuration(void);
 
 /* Private functions ---------------------------------------------------------*/
@@ -62,7 +62,7 @@ int main()
     SystemInit();
 
     /* CPIO configuration */
-    GPIO_Configuration();
+    GPIO_Setting();
     
     /* NVIC Configuration */
     NVIC_Configuration();
@@ -109,7 +109,7 @@ int main()
   * @param  None
   * @retval None
   */
-void GPIO_Configuration(void)
+void GPIO_Setting(void)
 {
     GPIO_InitTypeDef GPIO_InitStructure;
     EXTI_InitTypeDef EXTI_InitStructure;

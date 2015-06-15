@@ -30,7 +30,7 @@
 DULATIMER_InitTypDef Dualtimer_InitStructure;
 
 /* Private function prototypes -----------------------------------------------*/
-void GPIO_Configuration(void);
+void GPIO_Setting(void);
 void NVIC_Configuration(void);
 
 /* Private functions ---------------------------------------------------------*/
@@ -49,7 +49,7 @@ int main()
     NVIC_Configuration();
 
     /* CPIO configuration */
-    GPIO_Configuration();
+    GPIO_Setting();
 
     /* Dualtimer 0_0 clock enable */
     DUALTIMER_ClockEnable(DUALTIMER0_0);
@@ -77,7 +77,7 @@ int main()
   * @param  None
   * @retval None
   */
-void GPIO_Configuration(void)
+void GPIO_Setting(void)
 {
     GPIO_InitTypeDef GPIO_InitStructure;
     

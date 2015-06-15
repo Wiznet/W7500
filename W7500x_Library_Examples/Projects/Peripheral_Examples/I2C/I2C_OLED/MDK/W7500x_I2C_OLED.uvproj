@@ -44,14 +44,14 @@
             <NotGenerated>0</NotGenerated>
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
-          <OutputDirectory>.\Obj\</OutputDirectory>
-          <OutputName>W7500x_I2C_EEPROM_24LC02B</OutputName>
+          <OutputDirectory>.\</OutputDirectory>
+          <OutputName>W7500x_I2C_OLED</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>0</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
-          <ListingPath>.\List\</ListingPath>
+          <ListingPath>.\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>
           <CreateBatchFile>0</CreateBatchFile>
@@ -66,18 +66,18 @@
             <nStopU2X>0</nStopU2X>
           </BeforeCompile>
           <BeforeMake>
-            <RunUserProg1>0</RunUserProg1>
+            <RunUserProg1>1</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name></UserProg1Name>
+            <UserProg1Name>fromelf --bin -o "$L@L.bin" "#L"</UserProg1Name>
             <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
           </BeforeMake>
           <AfterMake>
-            <RunUserProg1>1</RunUserProg1>
-            <RunUserProg2>1</RunUserProg2>
+            <RunUserProg1>0</RunUserProg1>
+            <RunUserProg2>0</RunUserProg2>
             <UserProg1Name>$K\ARM\ARMCC\BIN\fromelf.exe #L --vhx --8x1 --output main.hex</UserProg1Name>
-            <UserProg2Name>fromelf --bin -o "$L@L.bin" "#L"</UserProg2Name>
+            <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
           </AfterMake>
@@ -143,7 +143,7 @@
             <RestoreTracepoints>1</RestoreTracepoints>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>1</TargetSelection>
+          <TargetSelection>12</TargetSelection>
           <SimDlls>
             <CpuDll></CpuDll>
             <CpuDllArguments></CpuDllArguments>
@@ -157,7 +157,7 @@
             <PeripheralDll></PeripheralDll>
             <PeripheralDllArguments></PeripheralDllArguments>
             <InitializationFile></InitializationFile>
-            <Driver>BIN\UL2CM3.DLL</Driver>
+            <Driver>BIN\CMSIS_AGDI.dll</Driver>
           </TargetDlls>
         </DebugOption>
         <Utilities>
@@ -167,10 +167,10 @@
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>0</UpdateFlashBeforeDebugging>
             <Capability>1</Capability>
-            <DriverSelection>4096</DriverSelection>
+            <DriverSelection>4104</DriverSelection>
           </Flash1>
           <bUseTDR>0</bUseTDR>
-          <Flash2>BIN\UL2CM3.DLL</Flash2>
+          <Flash2>BIN\CMSIS_AGDI.dll</Flash2>
           <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
@@ -361,7 +361,7 @@
               <MiscControls></MiscControls>
               <Define>CORTEX_M0 USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\..\..\..\Libraries\CMSIS\Device\WIZnet\W7500\Include;..\..\..\..\..\Libraries\W7500x_stdPeriph_Driver\inc;..\..\..\..\..\Libraries\CMSIS\Include;..\;..\..\I2C_EEPROM_24LC02B</IncludePath>
+              <IncludePath>..\..\..\..\..\Libraries\CMSIS\Device\WIZnet\W7500\Include;..\..\..\..\..\Libraries\W7500x_stdPeriph_Driver\inc;..\..\..\..\..\Libraries\CMSIS\Include;..\;..\..\..\..\..\ioLibrary\MDIO;..\..\..\..\..\ioLibrary\Ethernet;..\..\..\..\..\ioLibrary\Application\loopback;..\..\..\..\..\Libraries\CMSIS\Device\WIZnet\W7500\Source\ARM</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -402,7 +402,7 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>MDK-ARM</GroupName>
+          <GroupName>Startup</GroupName>
           <Files>
             <File>
               <FileName>startup_W7500x.s</FileName>
@@ -412,27 +412,7 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>W7500_Periph</GroupName>
-          <Files>
-            <File>
-              <FileName>W7500x_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\Libraries\W7500x_stdPeriph_Driver\src\W7500x_i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>W7500x_uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\Libraries\W7500x_stdPeriph_Driver\src\W7500x_uart.c</FilePath>
-            </File>
-            <File>
-              <FileName>W7500x_gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\Libraries\W7500x_stdPeriph_Driver\src\W7500x_gpio.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>CMSIS</GroupName>
+          <GroupName>System</GroupName>
           <Files>
             <File>
               <FileName>system_W7500x.c</FileName>
@@ -445,19 +425,29 @@
           <GroupName>User</GroupName>
           <Files>
             <File>
-              <FileName>W7500x_it.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\W7500x_it.c</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\main.c</FilePath>
             </File>
             <File>
-              <FileName>retarget.c</FileName>
+              <FileName>OLED_I2C.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\retarget.c</FilePath>
+              <FilePath>..\OLED_I2C.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>W7500x_Periph</GroupName>
+          <Files>
+            <File>
+              <FileName>W7500x_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\Libraries\W7500x_stdPeriph_Driver\src\W7500x_gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>W7500x_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\Libraries\W7500x_stdPeriph_Driver\src\W7500x_i2c.c</FilePath>
             </File>
           </Files>
         </Group>

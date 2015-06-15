@@ -31,7 +31,7 @@ static __IO uint32_t TimingDelay;
 uint32_t sysclock;
 
 /* Private function prototypes -----------------------------------------------*/
-void GPIO_Configuration(void);
+void GPIO_Setting(void);
 void delay(__IO uint32_t milliseconds);
 void TimingDelay_Decrement(void);
 
@@ -57,7 +57,7 @@ int main()
     SystemInit();
 
     /* CPIO configuration */
-    GPIO_Configuration();
+    GPIO_Setting();
 
     /* Get System Clock */
     sysclock = GetSystemClock();     
@@ -107,7 +107,7 @@ void TimingDelay_Decrement(void)
   * @param  None
   * @retval None
   */
-void GPIO_Configuration(void)
+void GPIO_Setting(void)
 {
     GPIO_InitTypeDef GPIO_InitStructure;
     

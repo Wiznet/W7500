@@ -31,11 +31,11 @@ int color = 1;
 char on = 0;
 	
 /* Private function prototypes -----------------------------------------------*/
-void GPIO_Configuration(void);
 void UART_Configuration(void);
 void delay_ms(__IO uint32_t nCount);
 void on_off_rgb(unsigned int color);
 int ADC_Read(ADC_CH num);
+void GPIO_Setting(void);
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -52,7 +52,7 @@ int main()
     SystemInit();
 
     /* GPIO configuration */
-    GPIO_Configuration();
+    GPIO_Setting();
 
     /* UART configuration */
     UART_Configuration();
@@ -75,7 +75,7 @@ void delay_ms(__IO uint32_t nCount)
 {
     volatile uint32_t delay = nCount * 2500; // approximate loops per ms at 24 MHz, Debug config
     for(; delay != 0; delay--)
-        __NOP;
+        __NOP();
 }
 
 void on_off_rgb(unsigned int color)
@@ -94,7 +94,7 @@ int ADC_Read(ADC_CH num)
     return (ADC_ReadData()); ///< read ADC Data
 }
 
-void GPIO_Configuration(void)
+void GPIO_Setting(void)
 {
     GPIO_InitTypeDef GPIO_InitStructure;
 
