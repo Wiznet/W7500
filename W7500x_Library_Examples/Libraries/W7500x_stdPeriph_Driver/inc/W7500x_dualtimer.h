@@ -87,5 +87,8 @@ void DUALTIMER_SetTimerBGLoad(DUALTIMER_TypeDef* DUALTIMERn, uint32_t TimerBGLoa
 //void DUALTIMER0_Handler();
 //void DUALTIMER1_Handler();
 
+#ifdef __cplusplus
+} 
+#endif
 
 #endif //__W7500X_DUALTIMER_H
