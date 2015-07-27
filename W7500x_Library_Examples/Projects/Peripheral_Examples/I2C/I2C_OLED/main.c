@@ -25,17 +25,11 @@
 #include "OLED_I2C.h"
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
-#define MAX_SIZE 9
 #define OLED_ADDRESS	0x78
-#define SCL GPIO_Pin_9
-#define SDA GPIO_Pin_10
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 I2C_ConfigStruct conf;
-GPIO_InitTypeDef GPIO_Def;
 ///                   memaddress,data0,data1 data2,data3,data4,data5,data6,data7
-uint8_t Transmit_Data[MAX_SIZE]={0x00, 0xa1,0xa2,0xa3,0xa4,0xa5,0xa6,0xa7,0xa8};
-uint8_t Recv_Data[MAX_SIZE];
 /* Private function prototypes -----------------------------------------------*/
 void delay_us(int us);
 void delay_ms(int count);
@@ -43,15 +37,18 @@ void delay_ms(int count);
 
 int main()
 {
+    UART_InitTypeDef UART_InitStructure;
 
 	SystemInit();
-
-    conf.mode = I2C_Master;
-    conf.slave_address = 0x78;
-    conf.master.prescale = 0x61;
-    conf.master.timeout = 0x006F;
+     /* UART0 and UART1 configuration*/
+    UART_StructInit(&UART_InitStructure);
+    /* Configure UART1 */
+    UART_Init(UART1,&UART_InitStructure);
     
-    I2C_Init(I2C0, conf);
+    conf.scl = I2C_PA_9;
+    conf.sda = I2C_PA_10;
+
+    I2C_Init(&conf);
     OLED_Init();
 	
 	
@@ -64,13 +61,4 @@ int main()
 	OLED_ShowStr(0,4,"WIznet Academy^^",2);	
 
   } 
-void delay_us(int us)
-{
-        volatile uint32_t delay = us; // approximate loops per ms at 24 MHz, Debug config
-    for(; delay != 0; delay--)
-        __NOP();
-}
-void delay_ms(int count) {
-        delay_us(count*1000);
-}
 

@@ -43,28 +43,27 @@
 #include "OLED_I2C.h"
 #include "codetab.h"
 
-
-
-void I2C_WriteByte(uint8_t addr,uint8_t data)
-{
-    I2C_Start(I2C0,0x78,I2C_WRITE_SA7);
-    I2C_SendDataAck(I2C0,addr);
-    I2C_SendDataAck(I2C0,data);
-    I2C_Stop(I2C0);
-   I2C_Reset(I2C0);
-}
-
+extern I2C_ConfigStruct conf;
 
 void WriteCmd(unsigned char I2C_Command)//Ð´ÃüÁî
 {
-	I2C_WriteByte(0x00, I2C_Command);
+    uint8_t data[2];
+    data[0] = 0x00;
+    data[1] = I2C_Command;
+	I2C_Write(&conf, OLED_ADDRESS, &data[0], 2);
+    
+    delay_us(1);
  }
 
 void WriteDat(unsigned char I2C_Data)//Ð´Êý¾Ý
 {
-	I2C_WriteByte(0x40, I2C_Data);
-  
-
+    uint8_t data[2];
+    data[0] = 0x40;
+    data[1] = I2C_Data;
+    
+    I2C_Write(&conf, OLED_ADDRESS, &data[0], 2);
+    
+    delay_us(1);
 }
 
 void OLED_Init(void)
@@ -252,5 +251,15 @@ void OLED_DrawBMP(unsigned char x0,unsigned char y0,unsigned char x1,unsigned ch
 			WriteDat(BMP[j++]);
 		}
 	}
+}
+
+void delay_us(int us)
+{
+        volatile uint32_t delay = us; // approximate loops per ms at 24 MHz, Debug config
+    for(; delay != 0; delay--)
+        __NOP();
+}
+void delay_ms(int count) {
+        delay_us(count*1000);
 }
 

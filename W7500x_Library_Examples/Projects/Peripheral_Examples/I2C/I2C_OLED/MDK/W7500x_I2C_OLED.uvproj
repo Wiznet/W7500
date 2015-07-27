@@ -44,14 +44,14 @@
             <NotGenerated>0</NotGenerated>
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
-          <OutputDirectory>.\</OutputDirectory>
+          <OutputDirectory>.\obj\</OutputDirectory>
           <OutputName>W7500x_I2C_OLED</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>0</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
-          <ListingPath>.\</ListingPath>
+          <ListingPath>.\List\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>
           <CreateBatchFile>0</CreateBatchFile>
@@ -434,11 +434,21 @@
               <FileType>1</FileType>
               <FilePath>..\OLED_I2C.c</FilePath>
             </File>
+            <File>
+              <FileName>retarget.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\retarget.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
           <GroupName>W7500x_Periph</GroupName>
           <Files>
+            <File>
+              <FileName>W7500x_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\Libraries\W7500x_stdPeriph_Driver\src\W7500x_uart.c</FilePath>
+            </File>
             <File>
               <FileName>W7500x_gpio.c</FileName>
               <FileType>1</FileType>
