@@ -35,23 +35,23 @@ uint32_t I2C_Init(I2C_ConfigStruct* conf)
 
     if(scl_port_num == 0)
     {
-        HAL_GPIO_Init(GPIOA, &GPIO_InitDef);
-        HAL_GPIO_SetBits(GPIOA, scl_pin_index);
+        GPIO_Init(GPIOA, &GPIO_InitDef);
+        GPIO_SetBits(GPIOA, scl_pin_index);
     }
     else if(scl_port_num == 1)
     {
-        HAL_GPIO_Init(GPIOB, &GPIO_InitDef);
-        HAL_GPIO_SetBits(GPIOB, scl_pin_index);
+        GPIO_Init(GPIOB, &GPIO_InitDef);
+        GPIO_SetBits(GPIOB, scl_pin_index);
     }
     else if(scl_port_num == 2)
     {
-        HAL_GPIO_Init(GPIOC, &GPIO_InitDef);
-        HAL_GPIO_SetBits(GPIOC, scl_pin_index);
+        GPIO_Init(GPIOC, &GPIO_InitDef);
+        GPIO_SetBits(GPIOC, scl_pin_index);
     }
     else if(scl_port_num == 3)
     {
-        HAL_GPIO_Init(GPIOD, &GPIO_InitDef);
-        HAL_GPIO_SetBits(GPIOD, scl_pin_index);
+        GPIO_Init(GPIOD, &GPIO_InitDef);
+        GPIO_SetBits(GPIOD, scl_pin_index);
     }
     else
     {
@@ -64,23 +64,23 @@ uint32_t I2C_Init(I2C_ConfigStruct* conf)
     GPIO_InitDef.GPIO_Mode = GPIO_Mode_IN;
     if(sda_port_num == 0)
     {
-        HAL_GPIO_Init(GPIOA, &GPIO_InitDef);
-        HAL_GPIO_ResetBits(GPIOA, sda_pin_index);
+        GPIO_Init(GPIOA, &GPIO_InitDef);
+        GPIO_ResetBits(GPIOA, sda_pin_index);
     }
     else if(sda_port_num == 1)
     {
-        HAL_GPIO_Init(GPIOB, &GPIO_InitDef);
-        HAL_GPIO_ResetBits(GPIOB, sda_pin_index);
+        GPIO_Init(GPIOB, &GPIO_InitDef);
+        GPIO_ResetBits(GPIOB, sda_pin_index);
     }
     else if(sda_port_num == 2)
     {
-        HAL_GPIO_Init(GPIOC, &GPIO_InitDef);
-        HAL_GPIO_ResetBits(GPIOC, sda_pin_index);
+        GPIO_Init(GPIOC, &GPIO_InitDef);
+        GPIO_ResetBits(GPIOC, sda_pin_index);
     }
     else if(sda_port_num == 3)
     {
-        HAL_GPIO_Init(GPIOD, &GPIO_InitDef);
-        HAL_GPIO_ResetBits(GPIOD, sda_pin_index);
+        GPIO_Init(GPIOD, &GPIO_InitDef);
+        GPIO_ResetBits(GPIOD, sda_pin_index);
     }
     else
     {
@@ -88,8 +88,8 @@ uint32_t I2C_Init(I2C_ConfigStruct* conf)
         return 1;
     }
     
-    HAL_PAD_AFConfig(scl_port_num, scl_pin_index, PAD_AF1);
-    HAL_PAD_AFConfig(sda_port_num, sda_pin_index, PAD_AF1);
+    PAD_AFConfig(scl_port_num, scl_pin_index, PAD_AF1);
+    PAD_AFConfig(sda_port_num, sda_pin_index, PAD_AF1);
 
     return 0;
 }
@@ -102,30 +102,30 @@ void I2C_WriteBitSCL(I2C_ConfigStruct* conf, uint8_t data)
     if(scl_port_num == 0)
     {
         if(data == 1)
-            HAL_GPIO_SetBits(GPIOA, scl_pin_index);
+            GPIO_SetBits(GPIOA, scl_pin_index);
         else
-            HAL_GPIO_ResetBits(GPIOA, scl_pin_index);
+            GPIO_ResetBits(GPIOA, scl_pin_index);
     }
     else if(scl_port_num == 1)
     {
         if(data == 1)
-            HAL_GPIO_SetBits(GPIOB, scl_pin_index);
+            GPIO_SetBits(GPIOB, scl_pin_index);
         else
-            HAL_GPIO_ResetBits(GPIOB, scl_pin_index);
+            GPIO_ResetBits(GPIOB, scl_pin_index);
     } 
     else if(scl_port_num == 2)
     {
         if(data == 1)
-            HAL_GPIO_SetBits(GPIOC, scl_pin_index);
+            GPIO_SetBits(GPIOC, scl_pin_index);
         else
-            HAL_GPIO_ResetBits(GPIOC, scl_pin_index);
+            GPIO_ResetBits(GPIOC, scl_pin_index);
     }
     else if(scl_port_num == 3)
     {
         if(data == 1)
-            HAL_GPIO_SetBits(GPIOD, scl_pin_index);
+            GPIO_SetBits(GPIOD, scl_pin_index);
         else
-            HAL_GPIO_ResetBits(GPIOD, scl_pin_index);
+            GPIO_ResetBits(GPIOD, scl_pin_index);
     }
 }
 
@@ -305,6 +305,29 @@ int I2C_Write(I2C_ConfigStruct* conf, uint8_t addr, uint8_t* data, uint32_t len)
     return 0;//success
 }
 
+int I2C_WriteRepeated(I2C_ConfigStruct* conf, uint8_t addr, uint8_t* data, uint32_t len)
+{
+    int i;
+    
+    I2C_Start(conf);
+    
+    //Write addr
+    if(I2C_WriteByte(conf, addr) != 0)
+    {
+        printf("Address is wrong!!\r\n");
+        return -1;
+    }
+
+    //Write data
+    for(i=0; i<len; i++)
+    {
+        if(I2C_WriteByte(conf, data[i]))
+            return -1;
+    }
+    
+    return 0;//success
+}
+
 int I2C_Read(I2C_ConfigStruct* conf, uint8_t addr, uint8_t* data, uint32_t len)
 {
     int i;
@@ -331,6 +354,33 @@ int I2C_Read(I2C_ConfigStruct* conf, uint8_t addr, uint8_t* data, uint32_t len)
     
     I2C_Stop(conf);
     
+    return 0;//success
+}
+
+int I2C_ReadRepeated(I2C_ConfigStruct* conf, uint8_t addr, uint8_t* data, uint32_t len)
+{
+    int i;
+    
+    I2C_Start(conf);
+    
+    //Write addr | read command
+    if(I2C_WriteByte(conf, (addr | 1)) != 0)
+    {
+        printf("Address is wrong!!\r\n");
+        return -1;
+    }
+    
+    //Read data
+    for(i=0; i<len; i++)
+    {
+        data[i] = I2C_ReadByte(conf);
+        
+        if( i == (len - 1) )
+            I2C_SendNACK(conf);
+        else
+            I2C_SendACK(conf);
+    }
+        
     return 0;//success
 }
 
