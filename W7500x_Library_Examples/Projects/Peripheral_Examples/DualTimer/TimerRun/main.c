@@ -27,7 +27,7 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-DULATIMER_InitTypDef Dualtimer_InitStructure;
+DUALTIMER_InitTypDef Dualtimer_InitStructure;
 
 /* Private function prototypes -----------------------------------------------*/
 void GPIO_Setting(void);
