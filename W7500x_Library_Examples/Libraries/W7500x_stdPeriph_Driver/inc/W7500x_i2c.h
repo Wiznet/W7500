@@ -18,10 +18,6 @@
 #define __W7500X_I2C_H
 
 
-#define I2C0    0
-#define I2C1    1
-
-
 typedef enum {
     I2C_PA_5    = 0x05,
     I2C_PA_6    = 0x06,
@@ -49,14 +45,18 @@ uint32_t I2C_Init(I2C_ConfigStruct* conf);
 void I2C_WriteBitSDA(I2C_ConfigStruct* conf, uint8_t data);
 void I2C_WriteBitSCL(I2C_ConfigStruct* conf, uint8_t data);
 uint8_t I2C_ReadBitSDA(I2C_ConfigStruct* conf);
+
 void I2C_SendACK(I2C_ConfigStruct* conf);
 void I2C_SendNACK(I2C_ConfigStruct* conf);
-void I2C_WriteByte(I2C_ConfigStruct* conf, uint8_t data);
+
+uint8_t I2C_WriteByte(I2C_ConfigStruct* conf, uint8_t data);
 uint8_t I2C_ReadByte(I2C_ConfigStruct* conf);
+
 void I2C_Start(I2C_ConfigStruct* conf);
 void I2C_Stop(I2C_ConfigStruct* conf);
-void I2C_Write(I2C_ConfigStruct* conf, uint8_t addr, uint8_t* data, uint32_t len);
-void I2C_Read(I2C_ConfigStruct* conf, uint8_t addr, uint8_t* data, uint32_t len);
+
+int I2C_Write(I2C_ConfigStruct* conf, uint8_t addr, uint8_t* data, uint32_t len);
+int I2C_Read(I2C_ConfigStruct* conf, uint8_t addr, uint8_t* data, uint32_t len);
 
 
  #endif //__W7500X_I2C_H
