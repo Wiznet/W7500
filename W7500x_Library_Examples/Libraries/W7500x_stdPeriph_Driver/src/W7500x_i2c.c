@@ -88,8 +88,8 @@ uint32_t I2C_Init(I2C_ConfigStruct* conf)
         return 1;
     }
     
-    PAD_AFConfig(scl_port_num, scl_pin_index, PAD_AF1);
-    PAD_AFConfig(sda_port_num, sda_pin_index, PAD_AF1);
+    PAD_AFConfig((PAD_Type) scl_port_num, scl_pin_index, (PAD_AF_TypeDef) PAD_AF1);
+    PAD_AFConfig((PAD_Type) sda_port_num, sda_pin_index, (PAD_AF_TypeDef) PAD_AF1);
 
     return 0;
 }

@@ -12,6 +12,7 @@
   */
 
 /*include ------------------------------------------------*/
+#include <stdio.h>
 #include "W7500x.h"
 
 #define HW32_REG(ADDRESS)  (*((volatile unsigned long  *)(ADDRESS)))

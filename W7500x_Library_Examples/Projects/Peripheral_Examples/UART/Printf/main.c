@@ -40,11 +40,12 @@ UART_InitTypeDef UART_InitStructure;
 
 int main()
 {
-    uint32_t i=0;
-    
-
     /*System clock configuration*/
-	SystemInit();
+	SystemInit();    
+//    *(volatile uint32_t *)(0x41001014) = 0x0060100; //clock setting 48MHz
+    
+    /* CLK OUT Set */
+//    PAD_AFConfig(PAD_PA,GPIO_Pin_2, PAD_AF2); // PAD Config - CLKOUT used 3nd Function    
     /* UART0 and UART1 configuration*/
     UART_StructInit(&UART_InitStructure);
     /* Configure UART0 */

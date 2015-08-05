@@ -57,7 +57,10 @@ int main()
 
     /* Set Systme init */
     SystemInit();
-
+//    *(volatile uint32_t *)(0x41001014) = 0x0060100; //clock setting 48MHz
+    
+    /* CLK OUT Set */
+//    PAD_AFConfig(PAD_PA,GPIO_Pin_2, PAD_AF2); // PAD Config - CLKOUT used 3nd Function
     /* < SSP_StructInit default values
        SSP_InitStructure.SSP_SerialClockRate   = 0x00;
        SSP_InitStructure.SSP_FrameFormat       = SSP_FrameFormat_MO; 
@@ -159,5 +162,5 @@ void delay_ms(__IO uint32_t nCount)
 {
     volatile uint32_t delay = nCount * 2500;  // approximate loops per ms at 24 MHz, Debug config
     for(; delay != 0; delay--)
-        __NOP;
+        __NOP();
 }
