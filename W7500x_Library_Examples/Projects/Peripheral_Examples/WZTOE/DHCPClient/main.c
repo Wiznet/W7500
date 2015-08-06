@@ -63,6 +63,9 @@ int main()
 
     /* Set Systme init */
     SystemInit();
+		
+		/* set internal fequency */
+	  //*(volatile uint32_t *) (0x41001014) = (00060100); // Change clock setting 20MHz to 48MHz for CLK Test
 
     /* UART Init */
     UART_StructInit(&UART_InitStructure);
@@ -173,7 +176,6 @@ int main()
             default:
                 break;
         }	
-
 
     }
 
