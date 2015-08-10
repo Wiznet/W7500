@@ -44,7 +44,11 @@ int main()
 {
     /* set system */
     SystemInit();
-	
+//    *(volatile uint32_t *)(0x41001014) = 0x0060100; //clock setting 48MHz
+    
+    /* CLK OUT Set */
+//    PAD_AFConfig(PAD_PA,GPIO_Pin_2, PAD_AF2); // PAD Config - CLKOUT used 3nd Function
+
     /* GPIO Configuration */
     GPIO_Configuration(GPIOC, GPIO_Pin_8, GPIO_Mode_OUT,PAD_AF1); // LED_R
     GPIO_Configuration(GPIOC, GPIO_Pin_9, GPIO_Mode_OUT,PAD_AF1); // LED_G

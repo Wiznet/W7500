@@ -40,10 +40,15 @@ void delay_ms(__IO uint32_t nCount);
   * @brief  Main Function
   */
 int main()
-{	
+{
     /* Set Systme init */
     SystemInit();
-		
+    
+//    *(volatile uint32_t *)(0x41001014) = 0x0060100; //clock setting 48MHz
+    
+    /* CLK OUT Set */
+//    PAD_AFConfig(PAD_PA,GPIO_Pin_2, PAD_AF2); // PAD Config - CLKOUT used 3nd Function
+    
     /* GPIO LED(R) Set */
     GPIO_InitDef.GPIO_Pin = GPIO_Pin_8; // Set to Pin_5 (LED(R))
     GPIO_InitDef.GPIO_Mode = GPIO_Mode_OUT; // Set to Mode Output
@@ -131,4 +136,3 @@ void delay_ms(__IO uint32_t nCount)
     for(; delay != 0; delay--)
         __NOP();
 }
-

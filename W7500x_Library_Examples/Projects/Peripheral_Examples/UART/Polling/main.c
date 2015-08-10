@@ -51,10 +51,12 @@ TestStatus Buffercmp(uint8_t* pBuffer1, uint8_t* pBuffer2, uint16_t BufferLength
 
 int main()
 {
-    uint32_t i;
-
 	 /*System clock configuration*/
 	SystemInit();
+//    *(volatile uint32_t *)(0x41001014) = 0x0060100; //clock setting 48MHz
+    
+    /* CLK OUT Set */
+//    PAD_AFConfig(PAD_PA,GPIO_Pin_2, PAD_AF2); // PAD Config - CLKOUT used 3nd Function
     /* UART0 and UART1 configuration*/
     UART_StructInit(&UART_InitStructure);
     /* Configure UART0 */
