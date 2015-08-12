@@ -31,7 +31,7 @@ PWM_DeadzoneModeInitTypDef DeadzoneModeStructure;
 uint32_t PrescalerValue = 0;
 
 /* Private function prototypes -----------------------------------------------*/
-void GPIO_Configuration(void);
+void GPIO_Setting(void);
 /* Private functions ---------------------------------------------------------*/
 
 /**
@@ -43,9 +43,12 @@ int main(void)
 {
     /*System clock configuration*/
     SystemInit();
-
+//    *(volatile uint32_t *)(0x41001014) = 0x0060100; //clock setting 48MHz
+    
+    /* CLK OUT Set */
+//    PAD_AFConfig(PAD_PA,GPIO_Pin_2, PAD_AF2); // PAD Config - CLKOUT used 3nd Function
     /* CPIO configuration */
-    GPIO_Configuration();
+    GPIO_Setting();
 
     /* Timer mode configuration */
     PrescalerValue = (SystemCoreClock / 1000000) / 10; // Prescale is 2 for 10MHz
@@ -74,7 +77,7 @@ int main(void)
   * @param  None
   * @retval None
   */
-void GPIO_Configuration(void)
+void GPIO_Setting(void)
 {
     PAD_AFConfig(PAD_PC, GPIO_Pin_0, PAD_AF2); ///< PAD Configuration for PWM0 output
     PAD_AFConfig(PAD_PC, GPIO_Pin_1, PAD_AF2); ///< PAD Configuration for PWM1 output

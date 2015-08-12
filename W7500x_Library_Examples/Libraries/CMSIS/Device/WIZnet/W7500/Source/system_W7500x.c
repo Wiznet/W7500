@@ -1,27 +1,20 @@
-/**************************************************************************//**
- * @file     system_CMSDK_CM0.c
- * @brief    CMSIS Cortex-M0 Device Peripheral Access Layer Source File for
- *           Device CMSDK
- * @version  V3.01
- * @date     06. March 2012
+/**************************************************************************/
+/**
+ * @file    system_W7500x.c 
+ * @author  IOP Team
+ * @version V1.0.0
+ * @date    01-May-2015
+ * @brief   CMSIS Cortex-M0 Core Peripheral Access Layer Source File for
+ *          Device W7500x
+ ******************************************************************************
  *
- * @note
- * Copyright (C) 2010-2012 ARM Limited. All rights reserved.
+ * @attention
+ * @par Revision history
+ *    <2015/05/01> 1st Release
  *
- * @par
- * ARM Limited (ARM) is supplying this software for use with Cortex-M
- * processor based microcontrollers.  This file can be freely distributed
- * within development tools that are supporting such ARM based processors.
- *
- * @par
- * THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
- * OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
- * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
- * ARM SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL, OR
- * CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
- *
- ******************************************************************************/
-
+ * <h2><center>&copy; COPYRIGHT 2015 WIZnet Co.,Ltd.</center></h2>
+ ******************************************************************************
+ */
 
 #include "system_W7500x.h"
 

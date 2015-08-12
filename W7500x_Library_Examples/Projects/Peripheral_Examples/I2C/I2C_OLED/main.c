@@ -1,9 +1,9 @@
 /**
   ******************************************************************************
-  * @file    I2C/I2C_Init/main.c 
+  * @file    I2C/I2C_OLED/main.c 
   * @author  IOP Team
   * @version V1.0.0
-  * @date    01-May-2015
+  * @date    15-JUN-2015
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -18,63 +18,51 @@
   * <h2><center>&copy; COPYRIGHT 2015 WIZnet Co.,Ltd.</center></h2>
   ******************************************************************************
   */ 
+
 /* Includes ------------------------------------------------------------------*/
-#include "W7500x.h"
 #include <stdio.h>
+#include "W7500x.h"
+#include "OLED_I2C.h"
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
-#define Slave_address   0xA0
-#define I2C_Debug
+#define OLED_ADDRESS	0x78
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 I2C_ConfigStruct conf;
-
-int8_t I2C_1byte_rw(I2C_TypeDef * I2Cx,uint8_t Prescale,uint16_t Timeout,uint8_t SlaveAddress,uint8_t data);
-void Delay_for(uint32_t nCount);
+///                   memaddress,data0,data1 data2,data3,data4,data5,data6,data7
 /* Private function prototypes -----------------------------------------------*/
+void delay_us(int us);
+void delay_ms(int count);
 /* Private functions ---------------------------------------------------------*/
 
-/**
-  * @brief   Main program
-  * @param  None
-  * @retval None
-  */
-//This example send 2byte from master(I2c0) to slave(must have slave address )
 int main()
 {
-    uint8_t data     =    0xAA;
-	/*System clock configuration*/
+    UART_InitTypeDef UART_InitStructure;
+
 	SystemInit();
-    /* I2C Init */
-    /*  I2C confiugred as follow:
-     *  - I2C master mode
-     *  - I2C slave address : 0xA0
-     *  - I2C Prescale : 0x61
-     *      If main clock is 20MHz,  SCL operate as 100KHz
-     *  - I2C Timeout : 0xFFFF
-     */
-    conf.mode = I2C_Master;
-    conf.slave_address = Slave_address;
-    conf.master.prescale = 0x61;
-    conf.master.timeout = 0xFFFF;
-     /* Cofigure I2C0 */
-    I2C_Init(I2C0, conf);
-    /* I2C Start condition*/
-    I2C_Start(I2C0,conf.slave_address,I2C_WRITE_SA7);
-    /*Send data(0xAA) and it wait the ack*/
-    I2C_SendDataAck(I2C0,data);
-    /*Send data(0xAB) and it wait the ack*/
-    I2C_SendDataAck(I2C0,data+1);
-    /*Send Stop condition*/
-    I2C_Stop(I2C0);
+//    *(volatile uint32_t *)(0x41001014) = 0x0060100; //clock setting 48MHz
+    
+    /* CLK OUT Set */
+//    PAD_AFConfig(PAD_PA,GPIO_Pin_2, PAD_AF2); // PAD Config - CLKOUT used 3nd Function
+     /* UART0 and UART1 configuration*/
+    UART_StructInit(&UART_InitStructure);
+    /* Configure UART1 */
+    UART_Init(UART1,&UART_InitStructure);
+    
+    conf.scl = I2C_PA_9;
+    conf.sda = I2C_PA_10;
+
+    I2C_Init(&conf);
+    OLED_Init();
+	
+	
+	OLED_Fill(0xFF);
+	delay_ms(20);
+	OLED_Fill(0x00);
+	delay_ms(10);
+    
+	OLED_ShowStr(0,3,"Welcome to",1);
+	OLED_ShowStr(0,4,"WIznet Academy^^",2);	
 
   } 
-
-
-void Delay_for(uint32_t nCount)
-{
-
-for(; nCount != 0; nCount--);
-    
-}
 

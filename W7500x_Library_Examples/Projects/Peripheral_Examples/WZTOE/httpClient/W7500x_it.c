@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    I2C/I2C_Init/W7500x_it.c
+  * @file    WZTOE/Loopback/W7500x_it.c
   * @author  IOP Team
   * @version V1.0.0
   * @date    01-May-2015
@@ -22,11 +22,13 @@
 /* Includes ------------------------------------------------------------------*/
 #include "W7500x.h"
 
+
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
+extern void TimingDelay_Decrement(void);
 /* Private functions ---------------------------------------------------------*/
 
 /******************************************************************************/
@@ -71,7 +73,9 @@ void PendSV_Handler(void)
   * @retval None
   */
 void SysTick_Handler(void)
-{}
+{
+	TimingDelay_Decrement();
+}
 
 
 /******************************************************************************/
@@ -184,6 +188,7 @@ void PORT3_Handler(void)
   */
 void DMA_Handler(void)
 {}
+
 
 /**
   * @brief  This function handles DUALTIMER0 Handler.

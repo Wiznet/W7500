@@ -46,7 +46,7 @@
 void delay(__IO uint32_t milliseconds); //Notice: used ioLibray
 void TimingDelay_Decrement(void);
 void UART_Configuration(void);
-void GPIO_Configuration(void);
+void GPIO_Setting(void);
 
 /* Private variables ---------------------------------------------------------*/
 static __IO uint32_t TimingDelay;
@@ -89,7 +89,7 @@ int main()
     SysTick_Config((GetSystemClock()/1000));
 		
 		/* LED configuration */
-		GPIO_Configuration();
+		GPIO_Setting();
 		
 
     /* Set WZ_100US Register */
@@ -220,7 +220,7 @@ void UART_Configuration(void)
 }
 
 
-void GPIO_Configuration(void)
+void GPIO_Setting(void)
 {
     GPIO_InitTypeDef GPIO_InitStructure;
 

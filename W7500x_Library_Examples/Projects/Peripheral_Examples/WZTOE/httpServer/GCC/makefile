@@ -22,7 +22,7 @@ GNU_CC_FLAGS = -g -O3 -mthumb $(CPU_TYPE)
 #GNU_CC_FLAGS = -O3 -mthumb $(CPU_TYPE) -nostdlib
 
 
-TESTNAME		= W7500x_WZTOE_DNS
+TESTNAME		= W7500x_WZTOE_httpServer
 
 IO_LIBRARY_DIR = ../../../../../ioLibrary/
 

@@ -20,6 +20,7 @@
   */ 
 
 /* Includes ------------------------------------------------------------------*/
+#include <stdio.h>
 #include "W7500x.h"
 
 /* Private typedef -----------------------------------------------------------*/
@@ -31,11 +32,11 @@ int color = 1;
 char on = 0;
 	
 /* Private function prototypes -----------------------------------------------*/
-void GPIO_Configuration(void);
 void UART_Configuration(void);
 void delay_ms(__IO uint32_t nCount);
 void on_off_rgb(unsigned int color);
 int ADC_Read(ADC_CH num);
+void GPIO_Setting(void);
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -50,20 +51,23 @@ int main()
 {
     /*System clock configuration*/
     SystemInit();
-
+//    *(volatile uint32_t *)(0x41001014) = 0x0060100; //clock setting 48MHz
+    
+    /* CLK OUT Set */
+//    PAD_AFConfig(PAD_PA,GPIO_Pin_2, PAD_AF2); // PAD Config - CLKOUT used 3nd Function
     /* GPIO configuration */
-    GPIO_Configuration();
+    GPIO_Setting();
 
     /* UART configuration */
     UART_Configuration();
     
-    UartPuts(UART1,"*****  Illumination sensor & rgb led  *****\r\n");
-    UartPuts(UART1,"***********         WIZnet         ***********\r\n");
+    printf("*****  Illumination sensor & rgb led  *****\r\n");
+    printf("***********         WIZnet         ***********\r\n");
 
     // ADC initialize
     ADC_Init();
     while(1) {
-        sensorValue = ADC_Read(0); 
+    sensorValue = ADC_Read(ADC_CH0); 
 	printf("Sensor value = %d\r\n",sensorValue);
 	if (sensorValue < 3000) { on_off_rgb(0); if (on == 1) color ++; on = 0; if (color == 8) color = 1; }
 	else {on_off_rgb(color); on = 1; }
@@ -75,7 +79,7 @@ void delay_ms(__IO uint32_t nCount)
 {
     volatile uint32_t delay = nCount * 2500; // approximate loops per ms at 24 MHz, Debug config
     for(; delay != 0; delay--)
-        __NOP;
+        __NOP();
 }
 
 void on_off_rgb(unsigned int color)
@@ -91,10 +95,10 @@ int ADC_Read(ADC_CH num)
     ADC_ChannelSelect (num); ///< Select ADC channel to CH0
     ADC_Start(); ///< Start ADC
     while(ADC_IsEOC()); ///< Wait until End of Conversion
-    return (ADC_ReadData()); ///< read ADC Data
+    return ((uint16_t)ADC_ReadData()); ///< read ADC Data
 }
 
-void GPIO_Configuration(void)
+void GPIO_Setting(void)
 {
     GPIO_InitTypeDef GPIO_InitStructure;
 

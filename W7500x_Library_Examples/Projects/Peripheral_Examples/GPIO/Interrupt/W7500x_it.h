@@ -1,9 +1,9 @@
 /**
   ******************************************************************************
-  * @file    I2C/I2C_Init/W7500x_it.h 
+  * @file    GPIO/Interrupt/W7500x_it.h 
   * @author  IOP Team
-  * @version V1.0.0
-  * @date    01-May-2015
+  * @version V1.0.6
+  * @date    05-June-2015
   * @brief   This file contains the headers of the interrupt handlers.
   ******************************************************************************
   * @attention

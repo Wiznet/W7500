@@ -32,7 +32,7 @@ void RNG_Run (FunctionalState NewState);
 void RNG_SetSeedvalue (uint32_t value);
 void RNG_SetClockSource (RNG_CLK_SOURCE src);
 void RNG_ManualRunEn (FunctionalState NewState);
-uint32_t RNG_ReadRandomnumber (void);
+uint32_t RNG_ReadRandomNumber (void);
 void RNG_SetPolynomial (uint32_t value);
 
 #ifdef __cplusplus

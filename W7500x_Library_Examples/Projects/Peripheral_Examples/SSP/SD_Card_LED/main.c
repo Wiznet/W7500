@@ -28,7 +28,7 @@
 typedef enum {FAILED = 0, PASSED = !FAILED} TestStatus;
 
 /* Private define ------------------------------------------------------------*/
-#define BLOCK_SIZE            512 /* Block Size in Bytes */
+#define BLOCK_SIZE            511 /* Block Size in Bytes */
 
 #define NUMBER_OF_BLOCKS      8  /* For Multi Blocks operation (Read/Write) */
 #define MULTI_BUFFER_SIZE    (BLOCK_SIZE * NUMBER_OF_BLOCKS)
@@ -60,7 +60,10 @@ int main()
 {
     /* Set Systme init */
     SystemInit();
-
+//    *(volatile uint32_t *)(0x41001014) = 0x0060100; //clock setting 48MHz
+    
+    /* CLK OUT Set */
+//    PAD_AFConfig(PAD_PA,GPIO_Pin_2, PAD_AF2); // PAD Config - CLKOUT used 3nd Function
     /*SD_GPIO_Initailization*/
     bsp_sd_gpio_init();
 
@@ -192,5 +195,5 @@ void delay_ms(__IO uint32_t nCount)
 {
     volatile uint32_t delay = nCount * 2500; // approximate loops per ms at 24 MHz, Debug config
     for(; delay != 0; delay--)
-        __NOP;
+        __NOP();
 }

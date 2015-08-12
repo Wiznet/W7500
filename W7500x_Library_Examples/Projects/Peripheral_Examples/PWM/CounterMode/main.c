@@ -29,7 +29,7 @@
 PWM_CounterModeInitTypeDef CounterModeStruct;
 
 /* Private function prototypes -----------------------------------------------*/
-void GPIO_Configuration(void);
+void GPIO_Setting(void);
 void NVIC_Configuration(void);
 /* Private functions ---------------------------------------------------------*/
 
@@ -42,12 +42,15 @@ int main(void)
 {
     /*System clock configuration*/
     SystemInit();
-
+//    *(volatile uint32_t *)(0x41001014) = 0x0060100; //clock setting 48MHz
+    
+    /* CLK OUT Set */
+//    PAD_AFConfig(PAD_PA,GPIO_Pin_2, PAD_AF2); // PAD Config - CLKOUT used 3nd Function
     /* NVIC configuration */
     NVIC_Configuration();
 
     /* CPIO configuration */
-    GPIO_Configuration();
+    GPIO_Setting();
 
     /* Time base configuration */
     CounterModeStruct.PWM_CHn_MR = 10;
@@ -73,7 +76,7 @@ int main(void)
   * @param  None
   * @retval None
   */
-void GPIO_Configuration(void)
+void GPIO_Setting(void)
 {
     GPIO_InitTypeDef GPIO_InitStructure;
 

@@ -2,11 +2,23 @@
   ******************************************************************************
   * @file    W7500x_stdPeriph_Driver/src/W7500x_gpio.c    
   * @author  IOP Team
-  * @version v1.0.0
-  * @date    01-May-2015
+  * @version V1.0.5
+  * @date    05-June-2015
   * @brief   This file contains all the functions prototypes for the gpio 
   *          firmware library.
   ******************************************************************************
+  * @par Revision history
+  *    <2015/06/03> Update about Interrupt (add Interrupt Function)
+  *                         - Add GPIO_INT_Enable_Bits Function
+  *                         - Add GPIO_INT_Enable Function
+  *                         - Add GPIO_INT_Polarity_Bits Function
+  *                         - Add GPIO_INT_Polarity Function
+  *                         - Add GPIO_INT_Clear Function
+  *                         - Add GPIO_Read_INTstatus Function
+  *                         - Add GPIO_INT_Configuration Function
+  *                         Add GPIO_Configuration Function
+  *    <2015/05/01> 1st Release
+  *
   *
   ******************************************************************************
   */
@@ -31,8 +43,8 @@ void GPIO_DeInit(GPIO_TypeDef* GPIOx)
     GPIOx->OUTENCLR = 0xFFFF;    
     //GPIOx->INTENSET = 0x0000;    
     GPIOx->INTENCLR = 0xFFFF;    
-    //GPIOx->INTTYPESET = 0x0000;  
-    GPIOx->INTTYPECLR = 0xFFFF;  
+    GPIOx->INTTYPESET = 0x0000;  
+    //GPIOx->INTTYPECLR = 0xFFFF;  
     //GPIOx->intpolset = 0x0000;   
     GPIOx->INTPOLCLR = 0xFFFF;   
 
@@ -179,7 +191,7 @@ uint8_t GPIO_ReadInputDataBit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
     return bitstatus;
 }
 
-uint8_t GPIO_ReadInputData(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
+uint8_t GPIO_ReadInputData(GPIO_TypeDef* GPIOx)
 {
     assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
     return ((uint16_t)GPIOx->DATA);
@@ -188,8 +200,6 @@ uint8_t GPIO_ReadInputData(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
 uint8_t GPIO_ReadOutputDataBit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
 {
     uint8_t bitstatus = 0x00;
-
-
 
     assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
     assert_param(IS_GET_GPIO_PIN(GPIO_Pin));
@@ -251,6 +261,83 @@ void GPIO_Write(GPIO_TypeDef* GPIOx, uint16_t PortVal)
     GPIOx->DATAOUT = PortVal;
 }
 
+void GPIO_INT_Enable_Bits(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIOSet_TypeDef SetValue)
+{
+    /* Check the parameters */
+    assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
+    assert_param(IS_GET_GPIO_PIN(GPIO_Pin));
+    
+    GPIOx->INTTYPESET = 1;
+
+    if(SetValue == Set)
+        GPIOx->INTENSET  |= GPIO_Pin;
+    else //SetValue == Reset
+        GPIOx->INTENCLR |= GPIO_Pin;
+}
+
+void GPIO_INT_Enable(GPIO_TypeDef* GPIOx, GPIOSet_TypeDef SetValue)
+{
+    /* Check the parameters */
+    assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
+    
+    GPIOx->INTTYPESET = 1;
+
+    if(SetValue == Set)
+        GPIOx->INTENSET = 1;
+    else //SetValue == Reset
+        GPIOx->INTENCLR = 1;
+}
+
+void GPIO_INT_Polarity_Bits(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIOPol_TypeDef Polarity)
+{
+    /* Check the parameters */
+    assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
+    assert_param(IS_GET_GPIO_PIN(GPIO_Pin));
+
+    if(Polarity == Rising)
+        GPIOx->INTPOLSET  |= GPIO_Pin;
+    else //Polarity == Falling
+        GPIOx->INTPOLCLR |= GPIO_Pin;
+}
+
+void GPIO_INT_Polarity(GPIO_TypeDef* GPIOx, GPIOPol_TypeDef Polarity)
+{
+    /* Check the parameters */
+    assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
+
+    if(Polarity == Rising)
+        GPIOx->INTPOLSET = 1;
+    else //Polarity == Falling
+        GPIOx->INTPOLCLR = 1;
+}
+
+void GPIO_INT_Clear(GPIO_TypeDef* GPIOx)
+{
+    /* Check the parameters */
+    assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
+
+    GPIOx->Interrupt.INTCLEAR = 1;
+}
+
+uint8_t GPIO_Read_INTstatus(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
+{
+    uint8_t status = 0x00;
+
+    assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
+    assert_param(IS_GET_GPIO_PIN(GPIO_Pin));
+
+    if((GPIOx->Interrupt.INTSTATUS & GPIO_Pin) != (uint32_t)Bit_RESET)
+    {
+        status = (uint8_t)Bit_SET;
+    }
+    else
+    {
+        status = (uint8_t)Bit_RESET;
+    }
+
+    return status;
+}
+
 void PAD_AFConfig(PAD_Type Px, uint16_t GPIO_Pin, PAD_AF_TypeDef P_AF)
 {
     int i;
@@ -289,3 +376,78 @@ void PAD_AFConfig(PAD_Type Px, uint16_t GPIO_Pin, PAD_AF_TypeDef P_AF)
     }
 }
 
+/**
+  * @brief GPIO Configuration Function
+  */
+void GPIO_Configuration(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIOMode_TypeDef GPIO_Mode, PAD_AF_TypeDef P_AF)
+{
+    GPIO_InitTypeDef GPIO_InitStructure;
+    PAD_Type PADx;
+    GPIO_StructInit(&GPIO_InitStructure);
+    
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode;
+    GPIO_Init(GPIOx, &GPIO_InitStructure);
+	
+    if(GPIOx == GPIOA)
+    {       
+        PADx = PAD_PA;
+        PAD_AFConfig(PADx,GPIO_Pin, P_AF);
+    }
+    else if(GPIOx == GPIOB)
+    {
+        PADx = PAD_PB;
+        PAD_AFConfig(PADx,GPIO_Pin, P_AF);
+    }
+    else if(GPIOx == GPIOC)
+    {
+        PADx = PAD_PC;
+        PAD_AFConfig(PADx,GPIO_Pin, P_AF);
+    }
+    else
+    {
+        PADx = PAD_PD;
+        PAD_AFConfig(PADx,GPIO_Pin, P_AF);
+    }
+}
+
+
+void GPIO_INT_Configuration(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIOPol_TypeDef Polarity)
+{
+    GPIO_InitTypeDef GPIO_InitStructure;
+    PAD_Type PADx;
+    GPIO_StructInit(&GPIO_InitStructure);
+    
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
+    GPIO_Init(GPIOx, &GPIO_InitStructure);
+
+    assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
+    assert_param(IS_GPIO_PIN(GPIO_InitStruct->GPIO_Pin));
+
+    GPIOx->INTENSET  |= GPIO_Pin;
+    GPIOx->INTTYPESET |= GPIO_Pin;
+    
+    GPIO_INT_Polarity_Bits(GPIOx, GPIO_Pin, Polarity);
+	
+    if(GPIOx == GPIOA)
+    {       
+        PADx = PAD_PA;
+        PAD_AFConfig(PADx,GPIO_Pin, PAD_AF1);
+    }
+    else if(GPIOx == GPIOB)
+    {
+        PADx = PAD_PB;
+        PAD_AFConfig(PADx,GPIO_Pin, PAD_AF1);
+    }
+    else if(GPIOx == GPIOC)
+    {
+        PADx = PAD_PC;
+        PAD_AFConfig(PADx,GPIO_Pin, PAD_AF1);
+    }
+    else
+    {
+        PADx = PAD_PD;
+        PAD_AFConfig(PADx,GPIO_Pin, PAD_AF1);
+    }
+}

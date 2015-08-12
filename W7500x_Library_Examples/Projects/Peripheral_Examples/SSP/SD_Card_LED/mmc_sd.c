@@ -59,7 +59,6 @@ uint8_t SD_Init (void)
 	uint8_t r1; // return value of SD card storage
 	uint16_t retry; // used to count out
 	uint8_t buff[6] = {0,0,0,0,0};
-	uint8_t ret;
 
 	MSD_CS_DISABLE();
 
@@ -82,9 +81,6 @@ uint8_t SD_Init (void)
 	//SPI_Cmd(SPI1, ENABLE);
 	
 	bsp_set_spi1_speed(SPI_SPEED_256);
-
-	// start transmission
-	ret = bsp_readwritebyte_spi1(0xff);
 
 	if (SD_Idle_Sta())
 		return 1; 	// 1 set out to return to the idle mode failed

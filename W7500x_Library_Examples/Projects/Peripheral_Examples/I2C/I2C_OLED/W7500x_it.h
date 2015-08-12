@@ -1,10 +1,10 @@
 /**
   ******************************************************************************
-  * @file    I2C/I2C_init/W7500x_conf.h 
+  * @file    DualTimer/TimerRun/W7500x_it.h 
   * @author  IOP Team
   * @version V1.0.0
-  * @date    01-May-2015
-  * @brief   Library configuration file.
+  * @date    16-May-2015
+  * @brief   This file contains the headers of the interrupt handlers.
   ******************************************************************************
   * @attention
   *
@@ -20,39 +20,60 @@
   */ 
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __W7500X_CONF_H
-#define __W7500X_CONF_H
+#ifndef __W7500X_IT_H
+#define __W7500X_IT_H
+
+#ifdef __cplusplus
+ extern "C" {
+#endif 
 
 /* Includes ------------------------------------------------------------------*/
-/* Uncomment/Comment the line below to enable/disable peripheral header file inclusion */
-
-#include "W7500x_gpio.h"
-#include "W7500x_adc.h"
-#include "W7500x_crg.h"
-#include "W7500x_dualtimer.h"
-#include "W7500x_exti.h"
-#include "W7500x_i2c.h"
-#include "W7500x_pwm.h"
-#include "W7500x_rng.h"
-#include "W7500x_ssp.h"
-#include "W7500x_uart.h"
-#include "W7500x_wdt.h"
+#include "W7500x.h"
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
-/* Uncomment the line below to expanse the "assert_param" macro in the 
-   Standard Peripheral Library drivers code */
-/* #define USE_FULL_ASSERT    1 */
-
 /* Exported macro ------------------------------------------------------------*/
+/* Exported functions ------------------------------------------------------- */
 
-#ifdef USE_FULL_ASSERT
-    #define assert_param(expr)  ((expr) ? (void)0 : assert_failed((uint8_t *)__FILE__,__LINE__))
-#else
-    #define assert_param(expr)   ((void)0)
-#endif /* USE_FULL_ASSERT */
+void NMI_Handler(void);
+void HardFault_Handler(void);
+void SVC_Handler(void);
+void PendSV_Handler(void);
+void SysTick_Handler(void);
 
-#endif /* __W7500X_CONF_H */
+void SSP0_Handler(void);
+void SSP1_Handler(void);
+void UART0_Handler(void);
+void UART0_Handler(void);
+void UART1_Handler(void);
+void UART2_Handler(void);
+void I2C0_Handler(void);
+void I2C1_Handler(void);
+void PORT0_Handler(void);
+void PORT1_Handler(void);
+void PORT2_Handler(void);
+void DMA_Handler(void);
+void DUALTIMER0_Handler(void);
+void DUALTIMER1_Handler(void);
+void PWM0_Handler(void);
+void PWM1_Handler(void);
+void PWM2_Handler(void);
+void PWM3_Handler(void);
+void PWM4_Handler(void);
+void PWM5_Handler(void);
+void PWM6_Handler(void);
+void PWM7_Handler(void);
+void RTC_Handler(void);
+void ADC_Handler(void);
+void WZTOE_Handler(void);
+void EXTI_Handler(void);
 
+
+
+
+
+
+					 
+#endif /* __W7500X_IT_H */
 
 /******************* (C) COPYRIGHT 2015 WIZnet Co.,Ltd. *****END OF FILE****/

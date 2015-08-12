@@ -1,26 +1,22 @@
-/**************************************************************************//**
- * @file     W7500x.h
- * @brief    CMSIS Cortex-M0 Core Peripheral Access Layer Header File for
- *           Device W7500x
- * @version  V3.01
- * @date     06. March 2012
+/**************************************************************************/
+/**
+ * @file    W7500x.h 
+ * @author  IOP Team
+ * @version V1.0.4
+ * @date    04-June-2015
+ * @brief   CMSIS Cortex-M0 Core Peripheral Access Layer Header File for
+ *          Device W7500x
+ ******************************************************************************
  *
- * @note
- * Copyright (C) 2010-2012 ARM Limited. All rights reserved.
+ * @attention
+ * @par Revision history
+ *    <2015/06/04> V1.0.4 by justinKim
+ *      1. GPIO_DS register 3->2 address fix.
+ *    <2015/05/01> 1st Release
  *
- * @par
- * ARM Limited (ARM) is supplying this software for use with Cortex-M
- * processor based microcontrollers.  This file can be freely distributed
- * within development tools that are supporting such ARM based processors.
- *
- * @par
- * THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
- * OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
- * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
- * ARM SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL, OR
- * CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
- *
- ******************************************************************************/
+ * <h2><center>&copy; COPYRIGHT 2015 WIZnet Co.,Ltd.</center></h2>
+ ******************************************************************************
+ */
 
 
 #ifndef W7500x_H
@@ -345,23 +341,6 @@ typedef struct
                             /* Port_04,      offset : 0x10 */
 } P_Port_D_Def;
 
-/** 
-  * @brief  I2C Register structure definition  
-  */
-typedef struct
-{
-    __IO uint32_t PRER;              //0x00
-    __IO uint32_t CTR;              //0x04
-    __IO uint32_t CMDR;              //0x08
-    __I  uint32_t SR;               //0x0C
-    __IO uint32_t TSR;               //0x10
-    __IO uint32_t SADDR;            //0x14
-    __IO uint32_t TXR;               //0x18
-    __I  uint32_t RXR;               //0x1C
-    __I  uint32_t ISR;              //0x20
-    __IO uint32_t ISCR;             //0x24
-    __IO uint32_t ISMR;             //0x28
-}I2C_TypeDef;
 
 /**
  * @brief PWM Register structure definition
@@ -603,8 +582,8 @@ typedef struct
 #define PC_PCR  ((P_Port_Def *)   (P_PCR_BASE + 0x00000080UL))   /* PC_XX Pad Control Register */
 #define PD_PCR  ((P_Port_D_Def *) (P_PCR_BASE + 0x000000C0UL))   /* PD_XX Pad Control Register */
 
-#define I2C0    ((I2C_TypeDef      *)  I2C0_BASE)
-#define I2C1    ((I2C_TypeDef      *)  I2C1_BASE)
+//#define I2C0    ((I2C_TypeDef      *)  I2C0_BASE)
+//#define I2C1    ((I2C_TypeDef      *)  I2C1_BASE)
 
 #define PWM                             ((PWM_TypeDef *)         (W7500x_PWM_BASE + 0x800UL ))   
 #define PWM_CH0                         ((PWM_CHn_TypeDef *)     (W7500x_PWM_BASE))   
@@ -986,7 +965,7 @@ typedef struct
 /****************   Bit definition for Px_PCR   **************************/
 #define Px_PCR_PUPD_DOWN    (0x01ul << 0)       // Pull Down 
 #define Px_PCR_PUPD_UP      (0x01ul << 1)       // Pull Up
-#define Px_PCR_DS_HIGH      (0x01ul << 3)       // High Driving 
+#define Px_PCR_DS_HIGH      (0x01ul << 2)       // High Driving 
 #define Px_PCR_IE           (0x01ul << 5)       // Input Buffer Enable
 #define Px_PCR_CS_SUMMIT    (0x01ul << 6)       // Use Summit Trigger Input Buffer
 

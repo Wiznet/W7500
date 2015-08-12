@@ -82,6 +82,7 @@ void turnaround_MDIO( GPIO_TypeDef* GPIOx)
 
     GPIOx->OUTENCLR = MDIO ;
 
+    delay(1);
     GPIO_SetBits(GPIOx, MDC); 
     delay(1);
     GPIO_ResetBits(GPIOx, MDC);
