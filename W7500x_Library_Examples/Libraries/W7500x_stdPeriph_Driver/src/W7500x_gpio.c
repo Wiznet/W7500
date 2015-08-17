@@ -24,8 +24,7 @@
   */
 
 /*includes -------------------------------------------*/
-#include "W7500x.h"
-
+#include "W7500x_gpio.h"
 
 void GPIO_DeInit(GPIO_TypeDef* GPIOx)
 {

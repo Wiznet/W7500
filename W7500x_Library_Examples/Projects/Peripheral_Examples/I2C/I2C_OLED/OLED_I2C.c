@@ -41,6 +41,7 @@
 *************************************************************************************/
 
 #include "OLED_I2C.h"
+#include "W7500x_i2c.h"
 #include "codetab.h"
 
 extern I2C_ConfigStruct conf;

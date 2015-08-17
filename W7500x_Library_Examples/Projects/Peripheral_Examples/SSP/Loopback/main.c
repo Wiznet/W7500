@@ -20,8 +20,8 @@
   */ 
 
 /* Includes ------------------------------------------------------------------*/
-#include "W7500x.h"
-
+#include "W7500x_gpio.h"
+#include "W7500x_ssp.h"
 
 /* Private typedef -----------------------------------------------------------*/
 typedef enum {FAILED = 0, PASSED = !FAILED} TestStatus;

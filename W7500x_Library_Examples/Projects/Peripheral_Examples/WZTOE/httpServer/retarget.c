@@ -19,7 +19,7 @@
  ******************************************************************************
  */ 
 #include <stdio.h>
-#include "W7500x.h"
+#include "W7500x_uart.h"
 
 #define USING_UART1
 
