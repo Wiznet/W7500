@@ -266,7 +266,7 @@ void GPIO_INT_Enable_Bits(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIOSet_TypeDe
     assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
     assert_param(IS_GET_GPIO_PIN(GPIO_Pin));
     
-    GPIOx->INTTYPESET = 1;
+    GPIOx->INTTYPESET |= GPIO_Pin;
 
     if(SetValue == Set)
         GPIOx->INTENSET  |= GPIO_Pin;
@@ -279,12 +279,12 @@ void GPIO_INT_Enable(GPIO_TypeDef* GPIOx, GPIOSet_TypeDef SetValue)
     /* Check the parameters */
     assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
     
-    GPIOx->INTTYPESET = 1;
+    GPIOx->INTTYPESET = 0xffff;
 
     if(SetValue == Set)
-        GPIOx->INTENSET = 1;
+        GPIOx->INTENSET = 0xffff;
     else //SetValue == Reset
-        GPIOx->INTENCLR = 1;
+        GPIOx->INTENCLR = 0xffff;
 }
 
 void GPIO_INT_Polarity_Bits(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIOPol_TypeDef Polarity)
@@ -305,9 +305,9 @@ void GPIO_INT_Polarity(GPIO_TypeDef* GPIOx, GPIOPol_TypeDef Polarity)
     assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
 
     if(Polarity == Rising)
-        GPIOx->INTPOLSET = 1;
+        GPIOx->INTPOLSET = 0xffff;
     else //Polarity == Falling
-        GPIOx->INTPOLCLR = 1;
+        GPIOx->INTPOLCLR = 0xffff;
 }
 
 void GPIO_INT_Clear(GPIO_TypeDef* GPIOx)
@@ -315,12 +315,12 @@ void GPIO_INT_Clear(GPIO_TypeDef* GPIOx)
     /* Check the parameters */
     assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
 
-    GPIOx->Interrupt.INTCLEAR = 1;
+    GPIOx->Interrupt.INTCLEAR = 0xffff;
 }
 
 uint8_t GPIO_Read_INTstatus(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
 {
-    uint8_t status = 0x00;
+    uint8_t status = 0x0000;
 
     assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
     assert_param(IS_GET_GPIO_PIN(GPIO_Pin));
@@ -433,20 +433,24 @@ void GPIO_INT_Configuration(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIOPol_Type
     {       
         PADx = PAD_PA;
         PAD_AFConfig(PADx,GPIO_Pin, PAD_AF1);
+        NVIC_EnableIRQ(PORT0_IRQn);
     }
     else if(GPIOx == GPIOB)
     {
         PADx = PAD_PB;
         PAD_AFConfig(PADx,GPIO_Pin, PAD_AF1);
+        NVIC_EnableIRQ(PORT1_IRQn);
     }
     else if(GPIOx == GPIOC)
     {
         PADx = PAD_PC;
         PAD_AFConfig(PADx,GPIO_Pin, PAD_AF1);
+        NVIC_EnableIRQ(PORT2_IRQn);
     }
     else
     {
         PADx = PAD_PD;
         PAD_AFConfig(PADx,GPIO_Pin, PAD_AF1);
+        NVIC_EnableIRQ(PORT3_IRQn);
     }
 }
