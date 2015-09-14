@@ -1,27 +1,26 @@
 /**
- ******************************************************************************
- * @file    WZTOE/DHCPClient/retarget.c 
- * @author  IOP Team
- * @version V1.0.0
- * @date    01-May-2015
- * @brief   Using for printf function
- ******************************************************************************
- * @attention
- *
- * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
- * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
- * TIME. AS A RESULT, WIZnet SHALL NOT BE HELD LIABLE FOR ANY
- * DIRECT, INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
- * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
- * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
- *
- * <h2><center>&copy; COPYRIGHT 2015 WIZnet Co.,Ltd.</center></h2>
- ******************************************************************************
- */
+  ******************************************************************************
+  * @file    /ADC/Illumination_RGBLED/retarget.c 
+  * @author  IOP Team
+  * @version V1.0.0
+  * @date    01-May-2015
+  * @brief   Using for printf function
+  ******************************************************************************
+  * @attention
+  *
+  * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+  * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
+  * TIME. AS A RESULT, WIZnet SHALL NOT BE HELD LIABLE FOR ANY
+  * DIRECT, INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
+  * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
+  * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+  *
+  * <h2><center>&copy; COPYRIGHT 2015 WIZnet Co.,Ltd.</center></h2>
+  ******************************************************************************
+  */ 
 
-/*Includes ---------------------------------------------------*/
 #include <stdio.h>
-#include "W7500x.h"
+#include "W7500x_uart.h"
 
 #define USING_UART1
 
@@ -70,7 +69,7 @@ void _sys_exit(int return_code) {
    label:  goto label;  /* endless loop */
 }
 
-#else
+#elif (TOOLCHAIN_GCC)
 /******************************************************************************/
 /* Retarget functions for GNU Tools for ARM Embedded Processors               */
 /******************************************************************************/
@@ -84,4 +83,16 @@ __attribute__ ((used))  int _write (int fd, char *ptr, int len)
     }
   return len;
 }
+#else //using TOOLCHAIN_IAR
+
+int putchar(int ch)
+{
+    return (UART_SEND_BYTE(ch));
+}
+
+int getchar(void)
+{
+    return (UART_SEND_BYTE(UART_RECV_BYTE()));
+}
+
 #endif

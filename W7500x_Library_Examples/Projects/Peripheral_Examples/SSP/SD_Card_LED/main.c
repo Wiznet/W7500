@@ -21,14 +21,16 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include <stdio.h>
-#include "W7500x.h"
+#include "W7500x_gpio.h"
+#include "W7500x_ssp.h"
+#include "W7500x_uart.h"
 #include "mmc_sd.h"
 
 /* Private typedef -----------------------------------------------------------*/
 typedef enum {FAILED = 0, PASSED = !FAILED} TestStatus;
 
 /* Private define ------------------------------------------------------------*/
-#define BLOCK_SIZE            511 /* Block Size in Bytes */
+#define BLOCK_SIZE            511 /* Can not be used 512 Block */
 
 #define NUMBER_OF_BLOCKS      8  /* For Multi Blocks operation (Read/Write) */
 #define MULTI_BUFFER_SIZE    (BLOCK_SIZE * NUMBER_OF_BLOCKS)

@@ -88,7 +88,7 @@ int main()
     // Step 1 DATA0 Erase, Read, Write Test
     DO_IAP(IAP_ERAS_DAT0,0,0,0);
     DO_IAP(IAP_PROG,DAT0_START_ADDR,save_buff,SECT_SIZE);
-    result = Buffercmp((uint8_t*)save_buff,((volatile uint8_t *)(DAT0_START_ADDR)),SECT_SIZE);
+    result = Buffercmp((uint8_t*)save_buff,((uint8_t *)(DAT0_START_ADDR)),SECT_SIZE);
 #ifdef __DEBUG
     if(result == PASSED)
         UartPuts(USING_UART,"Step1 Test Passed\r\n");
@@ -100,7 +100,7 @@ int main()
     // Step 2 DATA1 Erase, Read, Write Test
     DO_IAP(IAP_ERAS_DAT1,0,0,0);
     DO_IAP(IAP_PROG,DAT1_START_ADDR,save_buff,SECT_SIZE);
-    result = Buffercmp((uint8_t*)save_buff,((volatile uint8_t *)(DAT1_START_ADDR)),SECT_SIZE);
+    result = Buffercmp((uint8_t*)save_buff,((uint8_t *)(DAT1_START_ADDR)),SECT_SIZE);
 #ifdef __DEBUG
     if(result == PASSED)
         UartPuts(USING_UART,"Step2 Test Passed\r\n");
@@ -116,7 +116,7 @@ int main()
 
     DO_IAP(IAP_ERAS_BLCK,CODE_TEST_ADDR,0,0);
     DO_IAP(IAP_PROG, CODE_TEST_ADDR,save_buff,BLOCK_SIZE);
-    result = Buffercmp((uint8_t*)save_buff,((volatile uint8_t *)(CODE_TEST_ADDR)),BLOCK_SIZE);
+    result = Buffercmp((uint8_t*)save_buff,((uint8_t *)(CODE_TEST_ADDR)),BLOCK_SIZE);
 #ifdef __DEBUG
     if(result == PASSED)
         UartPuts(USING_UART,"Step3 Test Passed\r\n");

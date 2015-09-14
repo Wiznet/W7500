@@ -12,10 +12,10 @@
   */
 
 /*include -------------------------------------*/
-#include "W7500x.h"
-
 #ifndef __W7500X_I2C_H
 #define __W7500X_I2C_H
+
+#include "W7500x.h"
 
 
 typedef enum {

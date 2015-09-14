@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "W7500x.h"
+#include "W7500x_miim.h"
 
 #define __DEF_DBG_LEVEL1__
 

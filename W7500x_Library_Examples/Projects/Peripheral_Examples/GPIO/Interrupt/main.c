@@ -23,7 +23,7 @@
   */ 
 
 /* Includes ------------------------------------------------------------------*/
-#include "W7500x.h"
+#include "W7500x_gpio.h"
 
 /* Private typedef -----------------------------------------------------------*/
 
@@ -57,7 +57,6 @@ int main()
     
     /* GPIO Interrupt Configuration */
     GPIO_INT_Configuration(GPIOA, GPIO_Pin_0, Rising);
-	NVIC_EnableIRQ(PORT0_IRQn); // GPIOA IRQ enable
     
     while(1)
     {
