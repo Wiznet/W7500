@@ -69,7 +69,7 @@ void _sys_exit(int return_code) {
    label:  goto label;  /* endless loop */
 }
 
-#elif (TOOLCHAIN_GCC)
+#elif defined (__GNUC__)
 /******************************************************************************/
 /* Retarget functions for GNU Tools for ARM Embedded Processors               */
 /******************************************************************************/
@@ -84,7 +84,6 @@ __attribute__ ((used))  int _write (int fd, char *ptr, int len)
   return len;
 }
 #else //using TOOLCHAIN_IAR
-
 int putchar(int ch)
 {
     return (UART_SEND_BYTE(ch));

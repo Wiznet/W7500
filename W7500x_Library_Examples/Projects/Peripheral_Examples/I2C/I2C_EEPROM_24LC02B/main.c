@@ -20,7 +20,7 @@
   */ 
 
 /* Includes ------------------------------------------------------------------*/
-#include "W7500x_gpio.h"
+//#include "W7500x_gpio.h"
 #include "W7500x_uart.h"
 #include "W7500x_i2c.h"
 #include <stdio.h>

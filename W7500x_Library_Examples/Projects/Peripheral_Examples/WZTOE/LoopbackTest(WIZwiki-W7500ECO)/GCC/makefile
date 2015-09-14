@@ -69,6 +69,7 @@ all_gcc:
         $(STD_PERIPH_SRC)/W7500x_crg.c \
         $(STD_PERIPH_SRC)/W7500x_gpio.c \
         $(STD_PERIPH_SRC)/W7500x_wztoe.c \
+        $(STD_PERIPH_SRC)/W7500x_ssp.c \
         $(DEVICE_SRC)/system_W7500x.c \
         $(MDIO_DIR)/*.c \
 		$(ETHERNET_DIR)/*.c \

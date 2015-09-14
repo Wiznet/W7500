@@ -68,8 +68,8 @@ void _ttywrch(int ch) {
 void _sys_exit(int return_code) {
    label:  goto label;  /* endless loop */
 }
+#elif defined (__GNUC__)
 
-#elif (TOOLCHAIN_GCC)
 /******************************************************************************/
 /* Retarget functions for GNU Tools for ARM Embedded Processors               */
 /******************************************************************************/

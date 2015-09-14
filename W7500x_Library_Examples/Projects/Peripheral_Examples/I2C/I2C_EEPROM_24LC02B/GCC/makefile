@@ -22,7 +22,7 @@ GNU_CC_FLAGS = -g -O3 -mthumb $(CPU_TYPE)
 #GNU_CC_FLAGS = -O3 -mthumb $(CPU_TYPE) -nostdlib
 
 
-TESTNAME		= W7500x_I2C_EEPROM_24LC02B
+TESTNAME		= I2C_EEPROM_24LC02B
 
 SOFTWARE_DIR = ../../../../../Libraries/
 CMSIS_DIR    = $(SOFTWARE_DIR)/CMSIS
@@ -58,6 +58,7 @@ all_gcc:
 	$(GNU_CC) $(GNU_CC_FLAGS)\
 		$(STARTUP_FILE) \
 		../*.c \
+        $(STD_PERIPH_SRC)/W7500x_gpio.c \
         $(STD_PERIPH_SRC)/W7500x_uart.c \
 		$(STD_PERIPH_SRC)/W7500x_i2c.c \
         $(DEVICE_SRC)/system_W7500x.c \

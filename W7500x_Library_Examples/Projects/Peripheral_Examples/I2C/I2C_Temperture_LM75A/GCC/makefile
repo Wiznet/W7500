@@ -58,7 +58,8 @@ all_gcc:
 	$(GNU_CC) $(GNU_CC_FLAGS)\
 		$(STARTUP_FILE) \
 		../*.c \
-        $(STD_PERIPH_SRC)/W7500x_uart.c \
+        $(STD_PERIPH_SRC)/W7500x_gpio.c \
+		$(STD_PERIPH_SRC)/W7500x_uart.c \
         $(STD_PERIPH_SRC)/W7500x_i2c.c \
         $(DEVICE_SRC)/system_W7500x.c \
 		-I $(CORE_INC) -I $(DEVICE_INC) -I $(STD_PERIPH_INC) -I ../ \
