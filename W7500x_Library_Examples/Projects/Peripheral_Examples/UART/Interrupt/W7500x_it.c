@@ -111,6 +111,7 @@ void UART0_Handler(void)
     
     if(UART_GetITStatus(UART0,UART_IT_FLAG_RXI))
     {
+        UART_ClearITPendingBit(UART0,UART_IT_FLAG_RXI);
         ch = UART_ReceiveData(UART0);
         uart0_rx_cnt++;
     }
@@ -135,6 +136,7 @@ void UART1_Handler(void)
     
     if(UART_GetITStatus(UART1,UART_IT_FLAG_RXI))
     {
+        UART_ClearITPendingBit(UART1,UART_IT_FLAG_RXI);
         ch = UART_ReceiveData(UART1);
         uart1_rx_cnt++;
     }
