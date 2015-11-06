@@ -318,6 +318,12 @@
           <state>$PROJ_DIR$\..\..\..\..\..\Libraries\CMSIS\Device\WIZnet\W7500\Include</state>
           <state>$PROJ_DIR$\..\..\..\..\..\Libraries\W7500x_stdPeriph_Driver\inc</state>
           <state>$PROJ_DIR$\..</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\ioLibrary\Application\loopback</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\ioLibrary\Ethernet</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\ioLibrary\Internet\DHCP</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\ioLibrary\Internet\DNS</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\ioLibrary\Internet\httpServer</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\ioLibrary\MDIO</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -609,7 +615,7 @@
         </option>
         <option>
           <name>OOCOutputFile</name>
-          <state>UART_Printf.bin</state>
+          <state>WZTOE_httpServer.bin</state>
         </option>
         <option>
           <name>OOCCommandLineProducer</name>
@@ -1916,6 +1922,12 @@
     </settings>
   </configuration>
   <group>
+    <name>Applications</name>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\..\ioLibrary\Application\loopback\loopback.c</name>
+    </file>
+  </group>
+  <group>
     <name>CMSIS</name>
     <file>
       <name>$PROJ_DIR$\..\..\..\..\..\Libraries\CMSIS\Device\WIZnet\W7500\Source\system_W7500x.c</name>
@@ -1925,6 +1937,30 @@
     <name>IAR-ARM</name>
     <file>
       <name>$PROJ_DIR$\..\..\..\..\..\Libraries\CMSIS\Device\WIZnet\W7500\Source\IAR\startup_W7500.s</name>
+    </file>
+  </group>
+  <group>
+    <name>ioLibrary</name>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\..\ioLibrary\Internet\httpServer\httpParser.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\..\ioLibrary\Internet\httpServer\httpServer.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\..\ioLibrary\Internet\httpServer\httpUtil.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\..\ioLibrary\Ethernet\socket.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\..\ioLibrary\MDIO\W7500x_miim.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\..\ioLibrary\Internet\httpServer\webpage.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\..\ioLibrary\Ethernet\wizchip_conf.c</name>
     </file>
   </group>
   <group>
@@ -1942,10 +1978,16 @@
   <group>
     <name>W7500_Periph</name>
     <file>
+      <name>$PROJ_DIR$\..\..\..\..\..\Libraries\W7500x_stdPeriph_Driver\src\W7500x_crg.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\..\..\..\..\Libraries\W7500x_stdPeriph_Driver\src\W7500x_gpio.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\..\..\..\Libraries\W7500x_stdPeriph_Driver\src\W7500x_uart.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\..\Libraries\W7500x_stdPeriph_Driver\src\W7500x_wztoe.c</name>
     </file>
   </group>
 </project>

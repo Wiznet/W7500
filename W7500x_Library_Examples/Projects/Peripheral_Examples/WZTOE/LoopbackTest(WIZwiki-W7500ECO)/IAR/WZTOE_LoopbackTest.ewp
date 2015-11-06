@@ -1957,6 +1957,9 @@
       <name>$PROJ_DIR$\..\main.c</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\..\mmc_sd.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\retarget.c</name>
     </file>
     <file>
@@ -1970,6 +1973,9 @@
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\..\..\..\Libraries\W7500x_stdPeriph_Driver\src\W7500x_gpio.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\..\Libraries\W7500x_stdPeriph_Driver\src\W7500x_ssp.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\..\..\..\Libraries\W7500x_stdPeriph_Driver\src\W7500x_uart.c</name>
