@@ -126,7 +126,7 @@ void UART2_Handler(void)
 {    
     uint8_t ch;
     
-    ch = S_UartGetc()+1;
+    ch = S_UartGetc();
     
     S_UartPutc(ch);
 }
