@@ -75,6 +75,20 @@ uint32_t UART_Init(UART_TypeDef *UARTx, UART_InitTypeDef* UART_InitStruct)
 }
 
 
+// rx_fifo_level(0=1/8 full, 1=1/4 full, 2=1/2 full, 3=3/4 full, 4=7/8 full)
+// tx_fifo_level(0=1/8 full, 1=1/4 full, 2=1/2 full, 3=3/4 full, 4=7/8 full)
+void UART_FIFO_Enable(UART_TypeDef *UARTx, uint16_t rx_fifo_level, uint16_t tx_fifo_level)
+{
+    UARTx->LCR_H |= UART_LCR_H_FEN;
+    UARTx->IFLS = (UART_IFLS_RXIFLSEL(rx_fifo_level) | UART_IFLS_TXIFLSEL(tx_fifo_level));
+}
+
+void UART_FIFO_Disable(UART_TypeDef *UARTx)
+{
+    UARTx->LCR_H &= ~(UART_LCR_H_FEN);
+}
+
+
 void UART_SendData(UART_TypeDef* UARTx, uint16_t Data)
 {
     assert_param(IS_UART_01_PERIPH(UARTx));

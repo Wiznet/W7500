@@ -273,6 +273,8 @@ typedef struct
 void        UART_StructInit         (UART_InitTypeDef* UART_InitStruct);
 
 uint32_t    UART_Init               (UART_TypeDef *UARTx, UART_InitTypeDef* UART_InitStruct);
+void        UART_FIFO_Enable        (UART_TypeDef *UARTx, uint16_t rx_fifo_level, uint16_t tx_fifo_level);
+void        UART_FIFO_Disable       (UART_TypeDef *UARTx);
 void        UART_SendData           (UART_TypeDef* UARTx, uint16_t Data);
 uint16_t    UART_ReceiveData        (UART_TypeDef* UARTx);
 void        UART_SendBreak          (UART_TypeDef* UARTx);
