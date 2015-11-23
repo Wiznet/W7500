@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    Uart/Interrupt/W7500x_it.c
+  * @file    DualTimer/TimerRun/W7500x_it.c
   * @author  IOP Team
   * @version V1.0.0
   * @date    01-May-2015
@@ -22,14 +22,13 @@
 /* Includes ------------------------------------------------------------------*/
 #include "W7500x_it.h"
 #include "W7500x_uart.h"
-#include "stdio.h"
+#include "common.h"
 
-/* Private typedef -----------------------------------------------------------*/
-/* Private define ------------------------------------------------------------*/
-/* Private macro -------------------------------------------------------------*/
-/* Private variables ---------------------------------------------------------*/
-/* Private function prototypes -----------------------------------------------*/
-/* Private functions ---------------------------------------------------------*/
+BUFFER_DECLARATION(u0rx);
+BUFFER_DECLARATION(u0tx);
+BUFFER_DECLARATION(u1rx);
+BUFFER_DECLARATION(u1tx);
+
 
 /******************************************************************************/
 /*            Cortex-M0 Processor Exceptions Handlers                         */
@@ -105,30 +104,81 @@ void SSP1_Handler(void)
   * @retval None
   */
 void UART0_Handler(void)
-{}
+{
+    if(UART_GetITStatus(UART0,UART_IT_FLAG_RXI))
+    {
+        if( IS_BUFFER_FULL(u0rx) ){
+            BUFFER_CLEAR(u0rx);
+            UART_ReceiveData(UART0);
+        }
+        else {
+            BUFFER_IN(u0rx) = UART_ReceiveData(UART0);
+            BUFFER_IN_MOVE(u0rx, 1);
+        }
+    }
+	if(UART_GetITStatus(UART0, UART_IT_FLAG_TXI)) 
+    {
+		if(IS_BUFFER_EMPTY(u0tx)) {
+			UART_ITConfig(UART0, UART_IT_FLAG_TXI, DISABLE);
+		} else {
+			UART_SendData(UART0, BUFFER_OUT(u1tx));
+			BUFFER_OUT_MOVE(u0tx, 1);
+            UART_ClearITPendingBit(UART0,UART_IT_FLAG_TXI);
+		}
+	}
+}
 
-    
+
 /**
   * @brief  This function handles UART1 Handler.
   * @param  None
   * @retval None
   */
+uint32_t u1rx_cnt = 0;
 void UART1_Handler(void)
-{}
+{
+    if(UART_GetITStatus(UART1,UART_IT_FLAG_RXI))
+    {
+        if( IS_BUFFER_FULL(u1rx) ){
+            BUFFER_CLEAR(u1rx);
+            //UART_ReceiveData(UART1);
+        }
+        
+        while(UART_GetFlagStatus(UART1, UART_FLAG_RXFE) != SET)
+        {
+            BUFFER_IN(u1rx) = UART_ReceiveData(UART1);
+            BUFFER_IN_MOVE(u1rx, 1);
+            u1rx_cnt++;
+        }
+    }
 
-    
+	if(UART_GetITStatus(UART1, UART_IT_FLAG_TXI)) 
+    {
+		if(IS_BUFFER_EMPTY(u1tx)) {
+			UART_ITConfig(UART1, UART_IT_FLAG_TXI, DISABLE);
+		} else {
+			UART_SendData(UART1, BUFFER_OUT(u1tx));
+			BUFFER_OUT_MOVE(u1tx, 1);
+            UART_ClearITPendingBit(UART1,UART_IT_FLAG_TXI);
+		}
+	}
+}
+
+
 /**
   * @brief  This function handles UART2 Handler.
   * @param  None
   * @retval None
   */
 void UART2_Handler(void)
-{    
+{
     uint8_t ch;
-    
-    ch = S_UartGetc();
-    
-    S_UartPutc(ch);
+
+    if( S_UART_GetITStatus(S_UART_INTSTATUS_RXI) != RESET ) {
+            S_UART_ClearITPendingBit(S_UART_INTSTATUS_RXI);
+            ch = S_UartGetc();
+            S_UartPutc(ch);
+        }    
 }
 
 
