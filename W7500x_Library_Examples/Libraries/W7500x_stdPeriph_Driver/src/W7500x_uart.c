@@ -22,7 +22,7 @@ void UART_StructInit(UART_InitTypeDef* UART_InitStruct)
   UART_InitStruct->UART_StopBits = UART_StopBits_1;
   UART_InitStruct->UART_Parity = UART_Parity_No ;
   UART_InitStruct->UART_Mode = UART_Mode_Rx | UART_Mode_Tx;
-  UART_InitStruct->UART_HardwareFlowControl = UART_HardwareFlowControl_None ;  
+  UART_InitStruct->UART_HardwareFlowControl = UART_HardwareFlowControl_None ;
 }
 
 void UART_DeInit(UART_TypeDef *UARTx)
@@ -68,6 +68,10 @@ uint32_t UART_Init(UART_TypeDef *UARTx, UART_InitTypeDef* UART_InitStruct)
     tmpreg &= ~(UART_CR_CTSEn | UART_CR_RTSEn | UART_CR_RXE | UART_CR_TXE | UART_CR_UARTEN);
     tmpreg |= (UART_InitStruct->UART_Mode | UART_InitStruct->UART_HardwareFlowControl);
     UARTx->CR |= tmpreg;
+
+ ////debug
+     UARTx->LCR_H |= 0x10;
+     UARTx->IFLS |= 0x01;
 
     UARTx->CR |= UART_CR_UARTEN;
 
@@ -196,6 +200,14 @@ void UART_ClearITPendingBit(UART_TypeDef* UARTx, uint16_t UART_IT)
     assert_param(IS_UART_IT_FLAG(UART_IT));
 
     UARTx->ICR |= UART_IT;
+}
+
+void UART_DMA_Config(UART_TypeDef* UARTx, uint16_t UART_DMA_CONTROL)
+{
+    assert_param(IS_UART_01_PERIPH(UARTx));
+    assert_param(IS_UART_DMA_CONTROL(UART_DMA_CONTROL));
+    
+     UARTx->DMACR |= UART_DMA_CONTROL;
 }
 
 

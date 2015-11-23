@@ -133,6 +133,22 @@ typedef struct
   */
 
 
+/** @addtogroup UART_DMA_Control
+  * @{
+  */
+
+#define UART_DMAControl_DMAONERR       ((uint16_t)UART_DMACR_DMAONERR)
+#define UART_DMAControl_RXDMAE            ((uint16_t)UART_DMACR_TXDMAE)
+#define UART_DMAControl_TXDMAE            ((uint16_t)UART_DMACR_RXDMAE)
+#define IS_UART_DMA_CONTROL(CONTROL) \
+                                    (((CONTROL) == UART_DMAControl_DMAONERR) || \
+                                     ((CONTROL) == UART_DMAControl_TXDMAE)  || \
+                                     ((CONTROL) == UART_DMAControl_RXDMAE))
+/**
+  * @}
+  */
+
+
 /** @addtogroup UART_Receive Status
   * @{
   */
@@ -281,6 +297,7 @@ FlagStatus  UART_GetFlagStatus      (UART_TypeDef* UARTx, uint16_t UART_FLAG);
 void        UART_ITConfig           (UART_TypeDef* UARTx, uint16_t UART_IT, FunctionalState NewState);
 ITStatus    UART_GetITStatus        (UART_TypeDef* UARTx, uint16_t UART_IT);
 void        UART_ClearITPendingBit  (UART_TypeDef* UARTx, uint16_t UART_IT);
+void        UART_DMA_Config(UART_TypeDef* UARTx, uint16_t UART_DMA_CONTROL);
 
 uint8_t     UartPutc                (UART_TypeDef* UARTx, uint8_t ch);
 void        UartPuts                (UART_TypeDef* UARTx, uint8_t *str);
