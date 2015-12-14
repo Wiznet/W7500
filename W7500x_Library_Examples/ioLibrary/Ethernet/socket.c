@@ -220,7 +220,7 @@ int8_t connect(uint8_t sn, uint8_t * addr, uint16_t port)
 #endif
             return SOCKERR_TIMEOUT;
         }
-        if(getSn_SR(sn)) == SOCK_CLOSED)
+        if(getSn_SR(sn) == SOCK_CLOSED)
         {
             return SOCKERR_SOCKCLOSED;
         }
