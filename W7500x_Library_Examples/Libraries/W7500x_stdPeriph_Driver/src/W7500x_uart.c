@@ -70,8 +70,8 @@ uint32_t UART_Init(UART_TypeDef *UARTx, UART_InitTypeDef* UART_InitStruct)
     UARTx->CR |= tmpreg;
 
  ////debug
-     UARTx->LCR_H |= 0x10;
-     UARTx->IFLS |= 0x01;
+     //UARTx->LCR_H |= 0x10;
+     //UARTx->IFLS |= 0x00;
 
     UARTx->CR |= UART_CR_UARTEN;
 
