@@ -931,7 +931,7 @@ uipr[3] = WIZCHIP_READ((WZTOE_UIPR));
  * @brief Set @ref Sn_DHAR register
  * @param (uint8_t)sn Socket number. It should be <b>0 ~ 7</b>.
  * @param (uint8_t*)dhar Pointer variable to set socket n destination hardware address. It should be allocated 6 bytes.
- * @sa getSn_DHAR()
+ * @sa setSn_DHAR()
  */
 #define setSn_DHAR(sn, dhar) \
     WIZCHIP_WRITE((WZTOE_Sn_DHAR(sn)+3), dhar[0]); \
@@ -943,10 +943,10 @@ uipr[3] = WIZCHIP_READ((WZTOE_UIPR));
 
 /**
  * @ingroup Socket_register_access_function
- * @brief Get @ref Sn_MR register
+ * @brief Get @ref Sn_DHAR register
  * @param (uint8_t)sn Socket number. It should be <b>0 ~ 7</b>.
  * @param (uint8_t*)dhar Pointer variable to get socket n destination hardware address. It should be allocated 6 bytes.
- * @sa setSn_DHAR()
+ * @sa getSn_DHAR()
  */
  //15.05.19 by justinKim
 #define getSn_DHAR(sn, dhar) \
@@ -1110,18 +1110,18 @@ uipr[3] = WIZCHIP_READ((WZTOE_UIPR));
 
 /**
  * @ingroup Socket_register_access_function
- * @brief Get @ref Sn_RX_RD register
+ * @brief Set @ref Sn_RX_RD register
  * @param (uint8_t)sn Socket number. It should be <b>0 ~ 7</b>.
- * @regurn uint16_t. Value of @ref Sn_RX_RD.
+ * @param (uint16_t)rxrd Value to set @ref Sn_RX_RD
  * @sa setSn_RX_RD()
  */
 #define setSn_RX_RD(sn, rxrd) (*(volatile uint32_t *)(WZTOE_Sn_RX_RD(sn)) = rxrd)
 
 /**
  * @ingroup Socket_register_access_function
- * @brief Set @ref Sn_RX_RD register
+ * @brief Get @ref Sn_RX_RD register
  * @param (uint8_t)sn Socket number. It should be <b>0 ~ 7</b>.
- * @param (uint16_t)rxrd Value to set @ref Sn_RX_RD
+ * @return uint16_t. Value of @ref Sn_RX_RD.
  * @sa getSn_RX_RD()
  */
 #define getSn_RX_RD(sn)  ((uint16_t)(*(volatile uint32_t *)(WZTOE_Sn_RX_RD(sn))))

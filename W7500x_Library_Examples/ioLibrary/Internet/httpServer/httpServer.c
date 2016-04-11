@@ -21,7 +21,7 @@
 /*****************************************************************************
  * Private types/enumerations/variables
  ****************************************************************************/
-static uint8_t HTTPSock_Num[_WIZCHIP_SOCK_NUM_] = {0, };
+static uint8_t HTTPSock_Num[_WIZCHIP_SOCK_NUM_];
 static st_http_request * http_request;				/**< Pointer to received HTTP request */
 static st_http_request * parsed_http_request;		/**< Pointer to parsed HTTP request */
 static uint8_t * http_response;						/**< Pointer to HTTP response */
@@ -30,15 +30,15 @@ static uint8_t * http_response;						/**< Pointer to HTTP response */
 //static uint8_t uri_buf[128];
 
 // Number of registered web content in code flash memory
-static uint16_t total_content_cnt = 0;
+static uint16_t total_content_cnt;
 /*****************************************************************************
  * Public types/enumerations/variables
  ****************************************************************************/
 uint8_t * pHTTP_TX;
 uint8_t * pHTTP_RX;
 
-volatile uint32_t httpServer_tick_1s = 0;
-st_http_socket HTTPSock_Status[_WIZCHIP_SOCK_NUM_] = { {STATE_HTTP_IDLE, }, };
+volatile uint32_t httpServer_tick_1s;
+st_http_socket HTTPSock_Status[_WIZCHIP_SOCK_NUM_];
 httpServer_webContent web_content[MAX_CONTENT_CALLBACK];
 
 #ifdef	_USE_SDCARD_
@@ -97,6 +97,20 @@ static int8_t getHTTPSequenceNum(uint8_t socket)
 
 void httpServer_init(uint8_t * tx_buf, uint8_t * rx_buf, uint8_t cnt, uint8_t * socklist)
 {
+	int i;
+	
+	total_content_cnt  = 0;
+	httpServer_tick_1s = 0;
+	for (i = 0; i < _WIZCHIP_SOCK_NUM_; i++)
+	{
+		HTTPSock_Num[i] = 0;
+		
+		memset(&HTTPSock_Status[i], 0, sizeof(st_http_socket));
+		HTTPSock_Status[i].sock_status = STATE_HTTP_IDLE;
+	}
+	HTTPServer_ReStart   = default_mcu_reset;
+	HTTPServer_WDT_Reset = default_wdt_reset;
+	
 	// User's shared buffer
 	pHTTP_TX = tx_buf;
 	pHTTP_RX = rx_buf;

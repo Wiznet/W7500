@@ -131,17 +131,14 @@ int main()
   */
 void DO_IAP( uint32_t id, uint32_t dst_addr, uint8_t* src_addr, uint32_t size)
 {
-    uint32_t temp_interrupt;
-
-    // Backup Interrupt Set Pending Register
-    temp_interrupt = (NVIC->ISPR[0]);
-    (NVIC->ISPR[0]) = (uint32_t)0xFFFFFFFF;
+    // Disable interrupts before calling IAP
+    __disable_irq();
     
     // Call IAP Function
     ((void(*)(uint32_t,uint32_t,uint8_t*,uint32_t))IAP_ENTRY)( id,dst_addr,src_addr,size);
 
-    // Restore Interrupt Set Pending Register
-    (NVIC->ISPR[0]) = temp_interrupt;
+    // Enable interrupts
+    __enable_irq();
 }
 
 /**

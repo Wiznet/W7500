@@ -164,7 +164,7 @@ void parse_http_request(
     request->METHOD = METHOD_ERR;
     return;
   }
-  strcpy((char *)request->URI, nexttok);
+  strncpy((char *)request->URI, nexttok, MAX_URI_SIZE);
 }
 
 #ifdef _OLD_
