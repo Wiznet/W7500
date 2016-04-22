@@ -28,7 +28,7 @@
 #include "W7500x_i2c.h"
 #include "W7500x_gpio.h"
 
-GPIO_InitTypeDef GPIO_InitDef;
+
 
 uint32_t I2C_Init(I2C_ConfigStruct* conf)
 {
@@ -36,7 +36,9 @@ uint32_t I2C_Init(I2C_ConfigStruct* conf)
     uint32_t scl_pin_index;
     uint32_t sda_port_num;
     uint32_t sda_pin_index;
-    
+
+		GPIO_InitTypeDef GPIO_InitDef;	
+	
     scl_port_num = I2C_PORT(conf->scl);
     scl_pin_index = I2C_PIN_INDEX(conf->scl);
     
