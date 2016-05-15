@@ -254,16 +254,14 @@ void PWM_CounterModeInit(PWM_CHn_TypeDef* PWM_CHn, PWM_CounterModeInitTypeDef* P
 {
     /* Check the parameters */
     assert_param(IS_PWM_ALL_CH(PWM_CHn));
-    assert_param(IS_PWM_PR_FILTER(PWM_TimerModeInitStruct->PWM_CHn_PR));
-    assert_param(IS_PWM_MR_FILTER(PWM_CHn, PWM_TimerModeInitStruct->PWM_CHn_MR));
-    assert_param(IS_PWM_LR_FILTER(PWM_CHn, PWM_TimerModeInitStruct->PWM_CHn_LR));
-    assert_param(IS_PWM_CHn_UDMR(PWM_TimerModeInitStruct->PWM_CHn_UDMR));
-    assert_param(IS_PWM_CHn_PDMR(PWM_TimerModeInitStruct->PWM_CHn_PDMR));
-    assert_param(IS_PWM_CHn_TCMR(PWM_TimerModeInitStruct->PWM_CHn_TCMR));
-    assert_param(IS_PWM_CHn_PEEER(PWM_TimerModeInitStruct->PWM_CHn_PEEER));
+    assert_param(IS_PWM_PR_FILTER(PWM_CounterModeInitStruct->PWM_CHn_PR));
+    assert_param(IS_PWM_MR_FILTER(PWM_CHn, PWM_CounterModeInitStruct->PWM_CHn_MR));
+    assert_param(IS_PWM_LR_FILTER(PWM_CHn, PWM_CounterModeInitStruct->PWM_CHn_LR));
+    assert_param(IS_PWM_CHn_UDMR(PWM_CounterModeInitStruct->PWM_CHn_UDMR));
+    assert_param(IS_PWM_CHn_PDMR(PWM_CounterModeInitStruct->PWM_CHn_PDMR));
+    assert_param(IS_PWM_CHn_TCMR(PWM_CounterModeInitStruct->PWM_CHn_TCMR));
+    assert_param(IS_PWM_CHn_PEEER(PWM_CounterModeInitStruct->PWM_CHn_PEEER));
 
-    /* Select Timer/Counter mode as Timer mode */ 
-    PWM_CHn->TCMR = PWM_CHn_TCMR_TimerMode;    
     /* Set Match register value */
     PWM_CHn->MR = PWM_CounterModeInitStruct->PWM_CHn_MR;
     /* Set Limit register value */
