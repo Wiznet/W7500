@@ -128,7 +128,7 @@ typedef enum
 }BitAction;
 
 
-#define IS_PAD_TYPE(Px)  (((Px) == PAD_PA) || ((Px) == PAD_PB) \
+#define IS_PAD_TYPE(Px)  (((Px) == PAD_PA) || ((Px) == PAD_PB) || \
                           ((Px) == PAD_PC) || ((Px) == PAD_PD))
 
 #define IS_PA_NUM(NUM) (((NUM)>=0) && ((NUM)<16))
