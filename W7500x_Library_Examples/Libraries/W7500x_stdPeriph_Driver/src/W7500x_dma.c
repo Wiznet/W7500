@@ -128,15 +128,15 @@ void dma_memory_copy (uint32_t chnl_num, unsigned int src, unsigned int dest, un
   
     unsigned long src_end_pointer =  src + ((1<<size)*(num-1));
      unsigned long dst_end_pointer = dest;
-   unsigned long control         = (3<< 30) |  /* dst_inc */
+   unsigned long control         = (1<< 30) |  /* dst_inc */
                                   (size << 28) |  /* dst_size */
                                   (size << 26) |  /* src_inc */
                                   (size << 24) |  /* src_size */
                                   (size << 21) |  /* dst_prot_ctrl - HPROT[3:1] */
                                   (size << 18) |  /* src_prot_ctrl - HPROT[3:1] */
-                                  (4    << 14) |  /* R_power */
+                                  (0    << 14) |  /* R_power */
                                   ((num-1)<< 4) | /* n_minus_1 */
-                                  (1    <<  3) |  /* next_useburst */
+                                  (0    <<  3) |  /* next_useburst */
                                   (2   <<  0) ;  /* cycle_ctrl - auto */
                                   //(1    <<  3) |  /* next_useburst */
                                   //(7   <<  0) ;  /* cycle_ctrl - auto */
@@ -165,7 +165,7 @@ void dma_memory_copy (uint32_t chnl_num, unsigned int src, unsigned int dest, un
   printf ("DestEndPointer = %x\r\n", dma_data->Primary[chnl_num].DestEndPointer);
   #endif
 
-#if 0
+#if 1
   DMA->CHNL_ENABLE_SET = (1<<chnl_num); /* Enable channel */
   DMA->CHNL_SW_REQUEST = (1<<chnl_num); /* request channel DMA */
 #endif
