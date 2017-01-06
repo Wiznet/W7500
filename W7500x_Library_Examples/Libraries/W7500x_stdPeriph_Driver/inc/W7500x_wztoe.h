@@ -21,6 +21,8 @@
  *********************************************************************
  * @attention
  * @par Revision history
+ *    <2017/01/06> V1.0.3 by justinKim
+ *      1. DHAR register Read/Write problem bug fix
  *    <2015/05/20> V1.0.2 by justinKim
  *      1. Register & Macro name change WZTOE_xxx
  *    <2015/05/19> V1.0.1 by justinKim
@@ -951,8 +953,11 @@ uipr[3] = WIZCHIP_READ((WZTOE_UIPR));
     WIZCHIP_WRITE((WZTOE_Sn_DHAR(sn)+2), dhar[1]); \
     WIZCHIP_WRITE((WZTOE_Sn_DHAR(sn)+1), dhar[2]); \
     WIZCHIP_WRITE((WZTOE_Sn_DHAR(sn)+0), dhar[3]); \
-    WIZCHIP_WRITE((WZTOE_Sn_DHAR(sn)+7), dhar[4]); \
-    WIZCHIP_WRITE((WZTOE_Sn_DHAR(sn)+6), dhar[5]); 
+    //17.01.06 by justinkim
+    //WIZCHIP_WRITE((WZTOE_Sn_DHAR(sn)+7), dhar[4]); \
+    //WIZCHIP_WRITE((WZTOE_Sn_DHAR(sn)+6), dhar[5]); 
+    WIZCHIP_WRITE((WZTOE_Sn_DHAR(sn)+5), dhar[4]); \
+    WIZCHIP_WRITE((WZTOE_Sn_DHAR(sn)+4), dhar[5]); 
 
 /**
  * @ingroup Socket_register_access_function
