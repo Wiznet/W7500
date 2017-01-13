@@ -78,9 +78,8 @@ uint32_t UART_Init(UART_TypeDef *UARTx, UART_InitTypeDef* UART_InitStruct)
     UARTx->LCR_H |= tmpreg;
 
     tmpreg = UARTx->CR;
-    tmpreg &= ~(UART_CR_CTSEn | UART_CR_RTSEn | UART_CR_RXE | UART_CR_TXE | UART_CR_UARTEN);
-    tmpreg |= (UART_InitStruct->UART_Mode | UART_InitStruct->UART_HardwareFlowControl);
-    UARTx->CR |= tmpreg;
+    UARTx->CR &= ~(UART_CR_CTSEn | UART_CR_RTSEn | UART_CR_RXE | UART_CR_TXE | UART_CR_UARTEN);
+    UARTx->CR |= (UART_InitStruct->UART_Mode | UART_InitStruct->UART_HardwareFlowControl);
 
  ////debug
      //UARTx->LCR_H |= 0x10;
