@@ -40,7 +40,7 @@ void UART_StructInit(UART_InitTypeDef* UART_InitStruct)
 
 void UART_DeInit(UART_TypeDef *UARTx
 {
-    2222222
+
 }
 
 uint32_t UART_Init(UART_TypeDef *UARTx, UART_InitTypeDef* UART_InitStruct)
@@ -75,11 +75,12 @@ uint32_t UART_Init(UART_TypeDef *UARTx, UART_InitTypeDef* UART_InitStruct)
     tmpreg = UARTx->LCR_H;
     tmpreg &= ~(0x00EE);
     tmpreg |= (UART_InitStruct->UART_WordLength | UART_InitStruct->UART_StopBits | UART_InitStruct->UART_Parity);
-    UARTx->LCR_H |= tmpreg;
+    UARTx->LCR_H = tmpreg;
 
     tmpreg = UARTx->CR;
-    UARTx->CR &= ~(UART_CR_CTSEn | UART_CR_RTSEn | UART_CR_RXE | UART_CR_TXE | UART_CR_UARTEN);
-    UARTx->CR |= (UART_InitStruct->UART_Mode | UART_InitStruct->UART_HardwareFlowControl);
+    tmpreg &= ~(UART_CR_CTSEn | UART_CR_RTSEn | UART_CR_RXE | UART_CR_TXE | UART_CR_UARTEN);
+    tmpreg |= (UART_InitStruct->UART_Mode | UART_InitStruct->UART_HardwareFlowControl);
+    UARTx->CR = tmpreg;
 
  ////debug
      //UARTx->LCR_H |= 0x10;
