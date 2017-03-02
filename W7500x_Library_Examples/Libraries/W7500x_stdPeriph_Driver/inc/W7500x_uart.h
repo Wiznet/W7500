@@ -36,6 +36,15 @@
 #include "W7500x.h"
 
 
+/** @addtogroup W7500x_Periph_Driver
+  * @{
+  */
+
+/** @addtogroup UART
+  * @{
+  */ 
+  
+  
 /** 
   * @brief  UART Init Structure definition  
   */ 
@@ -344,3 +353,10 @@ void 		S_UART_ClearITPendingBit(uint16_t S_UART_IT);
 
 #endif // __W7500X_UART_H
 
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */

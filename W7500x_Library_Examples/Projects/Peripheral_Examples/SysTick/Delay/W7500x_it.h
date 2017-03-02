@@ -60,8 +60,6 @@ void UART0_Handler(void);
 void UART0_Handler(void);
 void UART1_Handler(void);
 void UART2_Handler(void);
-void I2C0_Handler(void);
-void I2C1_Handler(void);
 void PORT0_Handler(void);
 void PORT1_Handler(void);
 void PORT2_Handler(void);

@@ -35,6 +35,16 @@
 /* Includes ------------------------------------------------------------------*/
 #include "W7500x.h"
 
+
+/** @addtogroup W7500x_Periph_Driver
+  * @{
+  */
+
+/** @addtogroup RNG
+  * @{
+  */        
+  
+  
 typedef enum { RNG_CLK_RNGCLK = 0, RNG_CLK_APBCLK } RNG_CLK_SOURCE;
 
 #define IS_RNG_CLK_SRC(SRC)               (((SRC) == RNG_CLK_RNGCLK || (SRC) == RNG_CLK_APBCLK))
@@ -53,3 +63,10 @@ void RNG_SetPolynomial (uint32_t value);
 #endif
 
 #endif /* __W7500X_RNG_H */
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */

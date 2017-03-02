@@ -13,10 +13,10 @@
 *********************************************************************************************************************************************************/
 /**
   ******************************************************************************
-  * @file    DualTimer/TimerRun/W7500x_it.h 
+  * @file    ADC/Illumination_RGBLED/W7500x_it.h 
   * @author  IOP Team
   * @version V1.0.0
-  * @date    16-May-2015
+  * @date    01-May-2015
   * @brief   This file contains the headers of the interrupt handlers.
   ******************************************************************************
   * @attention
@@ -60,8 +60,6 @@ void UART0_Handler(void);
 void UART0_Handler(void);
 void UART1_Handler(void);
 void UART2_Handler(void);
-void I2C0_Handler(void);
-void I2C1_Handler(void);
 void PORT0_Handler(void);
 void PORT1_Handler(void);
 void PORT2_Handler(void);

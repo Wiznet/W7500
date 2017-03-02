@@ -57,7 +57,7 @@ UART_InitTypeDef UART_InitStructure;
 
 int main()
 {
-    uint32_t i;
+//    uint32_t i;
   
 
     /*System clock configuration*/

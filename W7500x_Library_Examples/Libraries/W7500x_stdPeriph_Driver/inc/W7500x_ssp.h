@@ -348,3 +348,10 @@ void SSP_ClearIT_Bit(SSP_TypeDef* SSPx, uint32_t SSP_CLEAR_IT);
 #endif
 
 #endif // __W7500X_SSP_H
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */

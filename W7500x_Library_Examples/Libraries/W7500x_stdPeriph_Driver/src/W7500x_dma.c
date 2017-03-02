@@ -127,19 +127,75 @@ void dma_memory_copy (uint32_t chnl_num, unsigned int src, unsigned int dest, un
 {
   
     unsigned long src_end_pointer =  src + ((1<<size)*(num-1));
-     unsigned long dst_end_pointer = dest;
-   unsigned long control         = (1<< 30) |  /* dst_inc */
-                                  (size << 28) |  /* dst_size */
-                                  (size << 26) |  /* src_inc */
-                                  (size << 24) |  /* src_size */
-                                  (size << 21) |  /* dst_prot_ctrl - HPROT[3:1] */
-                                  (size << 18) |  /* src_prot_ctrl - HPROT[3:1] */
-                                  (0    << 14) |  /* R_power */
-                                  ((num-1)<< 4) | /* n_minus_1 */
-                                  (0    <<  3) |  /* next_useburst */
-                                  (2   <<  0) ;  /* cycle_ctrl - auto */
-                                  //(1    <<  3) |  /* next_useburst */
-                                  //(7   <<  0) ;  /* cycle_ctrl - auto */
+    unsigned long dst_end_pointer = dest + ((1<<size)*(num-1));
+    unsigned long control         = (1<< 30) |  /* dst_inc */
+                                    (size << 28) |  /* dst_size */
+                                    (size << 26) |  /* src_inc */
+                                    (size << 24) |  /* src_size */
+                                    (size << 21) |  /* dst_prot_ctrl - HPROT[3:1] */
+                                    (size << 18) |  /* src_prot_ctrl - HPROT[3:1] */
+                                    (0    << 14) |  /* R_power */
+                                    ((num-1)<< 4) | /* n_minus_1 */
+                                    (0    <<  3) |  /* next_useburst */
+                                    (2   <<  0) ;  /* cycle_ctrl - auto */
+                                    //(1    <<  3) |  /* next_useburst */
+                                    //(7   <<  0) ;  /* cycle_ctrl - auto */
+   
+  /* By default the PL230 is little-endian; if the processor is configured
+   * big-endian then the configuration data that is written to memory must be
+   * byte-swapped before being written.  This is also true if the processor is
+   * little-endian and the PL230 is big-endian.
+   * Remove the __REV usage if the processor and PL230 are configured with the
+   * same endianness
+   * */
+ #if 0
+  dma_data->Alternate[chnl_num].SrcEndPointer  = (EXPECTED_BE) ? __REV(src_end_pointer) : (src_end_pointer);
+  dma_data->Alternate[chnl_num].DestEndPointer = (EXPECTED_BE) ? __REV(dst_end_pointer) : (dst_end_pointer);
+  dma_data->Alternate[chnl_num].Control        = (EXPECTED_BE) ? __REV(control        ) : (control        );
+  /* Debugging printfs: */
+  printf ("SrcEndPointer  = %x\r\n", dma_data->Alternate[chnl_num].SrcEndPointer);
+  printf ("DestEndPointer = %x\r\n", dma_data->Alternate[chnl_num].DestEndPointer);
+  #else
+  
+  dma_data->Primary[chnl_num].SrcEndPointer  = (EXPECTED_BE) ? __REV(src_end_pointer) : (src_end_pointer);
+  dma_data->Primary[chnl_num].DestEndPointer = (EXPECTED_BE) ? __REV(dst_end_pointer) : (dst_end_pointer);
+  dma_data->Primary[chnl_num].Control        = (EXPECTED_BE) ? __REV(control        ) : (control        );
+/* Debugging printfs: */
+  printf ("SrcEndPointer  = %x\r\n", dma_data->Primary[chnl_num].SrcEndPointer);
+  printf ("DestEndPointer = %x\r\n", dma_data->Primary[chnl_num].DestEndPointer);
+  #endif
+
+#if 1
+  DMA->CHNL_ENABLE_SET = (1<<chnl_num); /* Enable channel */
+  DMA->CHNL_SW_REQUEST = (1<<chnl_num); /* request channel DMA */
+#endif
+
+
+
+  return;
+}
+
+/* --------------------------------------------------------------- */
+/*  DMA memory to periph copy                                                */
+/* --------------------------------------------------------------- */
+void dma_m2p_copy (uint32_t chnl_num, unsigned int src, unsigned int dest, unsigned int size, unsigned int num)
+//void dma_M2P_copy (uint32_t chnl_num, unsigned int src, unsigned int dest, unsigned int size, unsigned int num)
+{
+  
+    unsigned long src_end_pointer =  src + ((1<<size)*(num-1));
+    unsigned long dst_end_pointer = dest;
+    unsigned long control         = (1<< 30) |  /* dst_inc */
+                                    (size << 28) |  /* dst_size */
+                                    (size << 26) |  /* src_inc */
+                                    (size << 24) |  /* src_size */
+                                    (size << 21) |  /* dst_prot_ctrl - HPROT[3:1] */
+                                    (size << 18) |  /* src_prot_ctrl - HPROT[3:1] */
+                                    (0    << 14) |  /* R_power */
+                                    ((num-1)<< 4) | /* n_minus_1 */
+                                    (0    <<  3) |  /* next_useburst */
+                                    (2   <<  0) ;  /* cycle_ctrl - auto */
+                                    //(1    <<  3) |  /* next_useburst */
+                                    //(7   <<  0) ;  /* cycle_ctrl - auto */
    
   /* By default the PL230 is little-endian; if the processor is configured
    * big-endian then the configuration data that is written to memory must be

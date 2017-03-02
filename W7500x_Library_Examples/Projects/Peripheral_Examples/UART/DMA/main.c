@@ -98,7 +98,7 @@ int main()
     /* UART0 DMA Channel (triggered by UART0 Tx event) Config */
     DMA ->CHNL_ENABLE_SET = (1<<DMA_UART0); // Enable DMA Channel UART0
     
-    dma_m2p_copy (DMA_UART0, (uint32_t)TxBuffer1, 0x4000C000, 0, 32);
+    dma_m2p_copy(DMA_UART0, (uint32_t)TxBuffer1, 0x4000C000, 0, 32);
     UART_DMA_Config(UART0, (UART_DMAControl_TXDMAE)); //UART DMA cmd enable signal for new channel
     do { /* Wait until PL230 DMA controller return to idle state */
         current_state = ((DMA->DMA_STATUS >> 4)  & 0xF);

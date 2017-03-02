@@ -13,11 +13,11 @@
 *********************************************************************************************************************************************************/
 /**
   ******************************************************************************
-  * @file    DualTimer/TimerRun/W7500x_it.c
+  * @file    ADC/Illumination_RGBLED/W7500x_it.c
   * @author  IOP Team
   * @version V1.0.0
   * @date    01-May-2015
-  * @brief   This file contains the headers of the interrupt handlers.
+  * @brief   This file contains the functions of the interrupt handlers.
   ******************************************************************************
   * @attention
   *
@@ -34,14 +34,14 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "W7500x_it.h"
-#include "W7500x_uart.h"
-#include "common.h"
 
-BUFFER_DECLARATION(u0rx);
-BUFFER_DECLARATION(u0tx);
-BUFFER_DECLARATION(u1rx);
-BUFFER_DECLARATION(u1tx);
 
+/* Private typedef -----------------------------------------------------------*/
+/* Private define ------------------------------------------------------------*/
+/* Private macro -------------------------------------------------------------*/
+/* Private variables ---------------------------------------------------------*/
+/* Private function prototypes -----------------------------------------------*/
+/* Private functions ---------------------------------------------------------*/
 
 /******************************************************************************/
 /*            Cortex-M0 Processor Exceptions Handlers                         */
@@ -61,8 +61,7 @@ void NMI_Handler(void)
   * @retval None
   */
 void HardFault_Handler(void)
-{
-}
+{}
 
 /**
   * @brief  This function handles SVCall exception.
@@ -117,29 +116,7 @@ void SSP1_Handler(void)
   * @retval None
   */
 void UART0_Handler(void)
-{
-    if(UART_GetITStatus(UART0,UART_IT_FLAG_RXI))
-    {
-        if( IS_BUFFER_FULL(u0rx) ){
-            BUFFER_CLEAR(u0rx);
-            UART_ReceiveData(UART0);
-        }
-        else {
-            BUFFER_IN(u0rx) = UART_ReceiveData(UART0);
-            BUFFER_IN_MOVE(u0rx, 1);
-        }
-    }
-	if(UART_GetITStatus(UART0, UART_IT_FLAG_TXI)) 
-    {
-		if(IS_BUFFER_EMPTY(u0tx)) {
-			UART_ITConfig(UART0, UART_IT_FLAG_TXI, DISABLE);
-		} else {
-			UART_SendData(UART0, BUFFER_OUT(u1tx));
-			BUFFER_OUT_MOVE(u0tx, 1);
-            UART_ClearITPendingBit(UART0,UART_IT_FLAG_TXI);
-		}
-	}
-}
+{}
 
 
 /**
@@ -147,35 +124,8 @@ void UART0_Handler(void)
   * @param  None
   * @retval None
   */
-uint32_t u1rx_cnt = 0;
 void UART1_Handler(void)
-{
-    if(UART_GetITStatus(UART1,UART_IT_FLAG_RXI))
-    {
-        if( IS_BUFFER_FULL(u1rx) ){
-            BUFFER_CLEAR(u1rx);
-            //UART_ReceiveData(UART1);
-        }
-        
-        while(UART_GetFlagStatus(UART1, UART_FLAG_RXFE) != SET)
-        {
-            BUFFER_IN(u1rx) = UART_ReceiveData(UART1);
-            BUFFER_IN_MOVE(u1rx, 1);
-            u1rx_cnt++;
-        }
-    }
-
-	if(UART_GetITStatus(UART1, UART_IT_FLAG_TXI)) 
-    {
-		if(IS_BUFFER_EMPTY(u1tx)) {
-			UART_ITConfig(UART1, UART_IT_FLAG_TXI, DISABLE);
-		} else {
-			UART_SendData(UART1, BUFFER_OUT(u1tx));
-			BUFFER_OUT_MOVE(u1tx, 1);
-            UART_ClearITPendingBit(UART1,UART_IT_FLAG_TXI);
-		}
-	}
-}
+{}
 
 
 /**
@@ -184,32 +134,6 @@ void UART1_Handler(void)
   * @retval None
   */
 void UART2_Handler(void)
-{
-    uint8_t ch;
-
-    if( S_UART_GetITStatus(S_UART_INTSTATUS_RXI) != RESET ) {
-            S_UART_ClearITPendingBit(S_UART_INTSTATUS_RXI);
-            ch = S_UartGetc();
-            S_UartPutc(ch);
-        }    
-}
-
-
-/**
-  * @brief  This function handles I2C0 Handler.
-  * @param  None
-  * @retval None
-  */
-void I2C0_Handler(void)
-{}
-
-
-/**
-  * @brief  This function handles I2C1 Handler.
-  * @param  None
-  * @retval None
-  */
-void I2C1_Handler(void)
 {}
 
 
@@ -256,6 +180,7 @@ void PORT3_Handler(void)
   */
 void DMA_Handler(void)
 {}
+
 
 /**
   * @brief  This function handles DUALTIMER0 Handler.

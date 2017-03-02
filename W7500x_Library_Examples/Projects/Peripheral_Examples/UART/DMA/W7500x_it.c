@@ -13,11 +13,11 @@
 *********************************************************************************************************************************************************/
 /**
   ******************************************************************************
-  * @file    DualTimer/TimerRun/W7500x_it.c
+  * @file    ADC/Illumination_RGBLED/W7500x_it.c
   * @author  IOP Team
   * @version V1.0.0
   * @date    01-May-2015
-  * @brief   This file contains the headers of the interrupt handlers.
+  * @brief   This file contains the functions of the interrupt handlers.
   ******************************************************************************
   * @attention
   *
@@ -34,16 +34,12 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "W7500x_it.h"
-#include "W7500x_uart.h"
+
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-uint8_t RxCounter = 0;
-extern uint8_t RxBuffer2[];
-extern uint8_t NbrOfDataToRead;
-
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 
@@ -65,8 +61,7 @@ void NMI_Handler(void)
   * @retval None
   */
 void HardFault_Handler(void)
-{
-}
+{}
 
 /**
   * @brief  This function handles SVCall exception.
@@ -121,9 +116,7 @@ void SSP1_Handler(void)
   * @retval None
   */
 void UART0_Handler(void)
-{
-    UART_ITConfig(UART0, (UART_IT_FLAG_TXI|UART_IT_FLAG_RXI), DISABLE);
-}
+{}
 
 
 /**
@@ -132,9 +125,7 @@ void UART0_Handler(void)
   * @retval None
   */
 void UART1_Handler(void)
-{
-    UART_ITConfig(UART1, (UART_IT_FLAG_TXI|UART_IT_FLAG_RXI), DISABLE);
-}
+{}
 
 
 /**
@@ -143,24 +134,6 @@ void UART1_Handler(void)
   * @retval None
   */
 void UART2_Handler(void)
-{}
-
-
-/**
-  * @brief  This function handles I2C0 Handler.
-  * @param  None
-  * @retval None
-  */
-void I2C0_Handler(void)
-{}
-
-
-/**
-  * @brief  This function handles I2C1 Handler.
-  * @param  None
-  * @retval None
-  */
-void I2C1_Handler(void)
 {}
 
 
@@ -207,6 +180,7 @@ void PORT3_Handler(void)
   */
 void DMA_Handler(void)
 {}
+
 
 /**
   * @brief  This function handles DUALTIMER0 Handler.

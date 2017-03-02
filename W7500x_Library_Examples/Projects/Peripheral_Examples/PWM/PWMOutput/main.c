@@ -64,7 +64,7 @@ int main(void)
     GPIO_Setting();
 
     /* Timer mode configuration for PWM3*/
-    PrescalerValue = (SystemCoreClock / 1000000) / 10; // Prescale is 2 for 10MHz
+    PrescalerValue = (SystemFrequency / 1000000) / 10; // Prescale is 2 for 10MHz
     TimerModeStructure.PWM_CHn_PR = PrescalerValue - 1;
     TimerModeStructure.PWM_CHn_MR = 80000;
     TimerModeStructure.PWM_CHn_LR = 100000; // 80% duty cycle

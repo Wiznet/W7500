@@ -13,7 +13,7 @@
 *********************************************************************************************************************************************************/
 /**
   ******************************************************************************
-  * @file    DMA/MemoryToMemory/W7500x_it.c 
+  * @file    ADC/Illumination_RGBLED/W7500x_it.c
   * @author  IOP Team
   * @version V1.0.0
   * @date    01-May-2015
@@ -33,22 +33,14 @@
   */ 
 
 /* Includes ------------------------------------------------------------------*/
-#include <stdio.h>
 #include "W7500x_it.h"
-#include "W7500x_dma.h"
+
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-int dma_done_irq_occurred;
-int dma_done_irq_expected;
-int dma_error_irq_occurred;
-int dma_error_irq_expected;
-
 /* Private function prototypes -----------------------------------------------*/
-extern void TimingDelay_Decrement(void);
-
 /* Private functions ---------------------------------------------------------*/
 
 /******************************************************************************/
@@ -69,10 +61,7 @@ void NMI_Handler(void)
   * @retval None
   */
 void HardFault_Handler(void)
-{
-    printf ("[Hard fault]\n");
-    while (1);
-}
+{}
 
 /**
   * @brief  This function handles SVCall exception.
@@ -96,9 +85,7 @@ void PendSV_Handler(void)
   * @retval None
   */
 void SysTick_Handler(void)
-{
-	TimingDelay_Decrement();
-}
+{}
 
 
 /******************************************************************************/
@@ -151,24 +138,6 @@ void UART2_Handler(void)
 
 
 /**
-  * @brief  This function handles I2C0 Handler.
-  * @param  None
-  * @retval None
-  */
-void I2C0_Handler(void)
-{}
-
-
-/**
-  * @brief  This function handles I2C1 Handler.
-  * @param  None
-  * @retval None
-  */
-void I2C1_Handler(void)
-{}
-
-
-/**
   * @brief  This function handles PORT0 Handler.
   * @param  None
   * @retval None
@@ -209,27 +178,9 @@ void PORT3_Handler(void)
   * @param  None
   * @retval None
   */
-
 void DMA_Handler(void)
-{
-if ((DMA->ERR_CLR & 1) != 0)  {
-  /* DMA interrupt is caused by DMA error */
-  dma_error_irq_occurred ++;
-  DMA->ERR_CLR = 1; /* Clear dma_err */
-  if (dma_error_irq_expected==0) {
-    printf ("ERROR : Unexpected DMA error interrupt occurred.\n");
-    while (1);
-    }
-  }
-else {
-  // DMA interrupt is caused by DMA done
-  dma_done_irq_occurred ++;
-  if (dma_done_irq_expected==0) {
-    printf ("ERROR : Unexpected DMA done interrupt occurred.\n");
-    while (1);
-    }
-  }
-}
+{}
+
 
 /**
   * @brief  This function handles DUALTIMER0 Handler.

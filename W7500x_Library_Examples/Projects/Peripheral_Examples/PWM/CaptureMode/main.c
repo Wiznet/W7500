@@ -69,7 +69,7 @@ int main(void)
     GPIO_Setting();
 
     /* Time base configuration */
-    PrescalerValue = (SystemCoreClock / 1000000) / 10; // Prescale is 2 for 10MHz
+    PrescalerValue = (SystemFrequency / 1000000) / 10; // Prescale is 2 for 10MHz
     CaptureModeStruct.PWM_CHn_PR = PrescalerValue - 1;
     CaptureModeStruct.PWM_CHn_MR = 600000;
     CaptureModeStruct.PWM_CHn_LR = 1200000;

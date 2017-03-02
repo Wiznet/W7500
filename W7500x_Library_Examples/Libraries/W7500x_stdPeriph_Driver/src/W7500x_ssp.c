@@ -27,13 +27,38 @@
 /* Includes ------------------------------------------------------------------*/
 #include "W7500x_ssp.h"
 
-/** @defgroup SSP_Private_Defines
- * @{
- */
+
+/** @addtogroup W7500x_Periph_Driver
+  * @{
+  */
+
+/** @defgroup SSP
+  * @brief SSP driver modules
+  * @{
+  */
+
+
+/* Private typedef -----------------------------------------------------------*/
+
+
+/* Private define ------------------------------------------------------------*/
 /* SSP SOD mask */
 #define CR1_SOD_Set         ((uint32_t)0x0004)
 #define CR1_SOD_Reset       ((uint32_t)0xFFFB)
 
+
+/* Private macro -------------------------------------------------------------*/
+/* Private variables ---------------------------------------------------------*/
+/* Private function prototypes -----------------------------------------------*/
+/* Private functions ---------------------------------------------------------*/
+
+/** @defgroup SSP_Private_Functions
+  * @{
+  */ 
+
+  
+  
+  
 /**
  * @brief  Deinitializes the SSPx peripheral registers to their default
  *         reset values (Affects also the I2Ss).
@@ -398,3 +423,16 @@ void SSP_ClearIT_Bit(SSP_TypeDef* SSPx, uint32_t SSP_CLEAR_IT)
     SSPx->ICR = SSP_CLEAR_IT;
 }
 
+/**
+  * @}
+  */
+
+
+/**
+  * @}
+  */
+
+
+/**
+  * @}
+  */

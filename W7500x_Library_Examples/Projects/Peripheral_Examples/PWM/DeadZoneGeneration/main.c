@@ -65,7 +65,7 @@ int main(void)
     GPIO_Setting();
 
     /* Timer mode configuration */
-    PrescalerValue = (SystemCoreClock / 1000000) / 10; // Prescale is 2 for 10MHz
+    PrescalerValue = (SystemFrequency / 1000000) / 10; // Prescale is 2 for 10MHz
     DeadzoneModeStructure.PWM_CHn_PR = PrescalerValue - 1;
     DeadzoneModeStructure.PWM_CHn_MR = 60000;
     DeadzoneModeStructure.PWM_CHn_LR = 120000;

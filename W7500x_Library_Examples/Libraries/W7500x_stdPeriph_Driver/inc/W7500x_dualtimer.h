@@ -41,6 +41,15 @@
 /**********************************************************************************************/
 /**********************************************************************************************/
 
+
+/** @addtogroup W7500x_Periph_Driver
+  * @{
+  */
+
+/** @addtogroup Dualtimer
+  * @{
+  */ 
+  
 typedef struct
 {
     uint32_t TimerLoad;
@@ -105,3 +114,10 @@ void DUALTIMER_SetTimerBGLoad(DUALTIMER_TypeDef* DUALTIMERn, uint32_t TimerBGLoa
 #endif
 
 #endif //__W7500X_DUALTIMER_H
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */

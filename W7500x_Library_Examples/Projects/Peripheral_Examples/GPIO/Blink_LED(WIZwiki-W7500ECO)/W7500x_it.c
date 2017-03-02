@@ -13,7 +13,7 @@
 *********************************************************************************************************************************************************/
 /**
   ******************************************************************************
-  * @file    GPIO/Blink_LED/W7500x_it.c
+  * @file    ADC/Illumination_RGBLED/W7500x_it.c
   * @author  IOP Team
   * @version V1.0.0
   * @date    01-May-2015
@@ -34,6 +34,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "W7500x_it.h"
+
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -137,24 +138,6 @@ void UART2_Handler(void)
 
 
 /**
-  * @brief  This function handles I2C0 Handler.
-  * @param  None
-  * @retval None
-  */
-void I2C0_Handler(void)
-{}
-
-
-/**
-  * @brief  This function handles I2C1 Handler.
-  * @param  None
-  * @retval None
-  */
-void I2C1_Handler(void)
-{}
-
-
-/**
   * @brief  This function handles PORT0 Handler.
   * @param  None
   * @retval None
@@ -197,6 +180,7 @@ void PORT3_Handler(void)
   */
 void DMA_Handler(void)
 {}
+
 
 /**
   * @brief  This function handles DUALTIMER0 Handler.

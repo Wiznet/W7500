@@ -35,6 +35,16 @@
 /* Includes ------------------------------------------------------------------*/
 #include "W7500x.h"
 
+
+/** @addtogroup W7500x_Periph_Driver
+  * @{
+  */
+
+/** @addtogroup EXTI
+  * @{
+  */ 
+  
+  
 /** 
   * @brief  EXTI mode enumeration  
   */
@@ -95,3 +105,10 @@ uint16_t EXTI_Px_GetEXTINTPOL(PAD_Type Px);
 
 
 #endif //__W7500X_EXTI_H
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */

@@ -13,11 +13,11 @@
 *********************************************************************************************************************************************************/
 /**
   ******************************************************************************
-  * @file    DualTimer/TimerRun/W7500x_it.c
+  * @file    ADC/Illumination_RGBLED/W7500x_it.c
   * @author  IOP Team
   * @version V1.0.0
-  * @date    16-May-2015
-  * @brief   This file contains the headers of the interrupt handlers.
+  * @date    01-May-2015
+  * @brief   This file contains the functions of the interrupt handlers.
   ******************************************************************************
   * @attention
   *
@@ -33,7 +33,7 @@
   */ 
 
 /* Includes ------------------------------------------------------------------*/
-#include "W7500x.h"
+#include "W7500x_it.h"
 
 
 /* Private typedef -----------------------------------------------------------*/
@@ -61,8 +61,7 @@ void NMI_Handler(void)
   * @retval None
   */
 void HardFault_Handler(void)
-{
-}
+{}
 
 /**
   * @brief  This function handles SVCall exception.
@@ -139,24 +138,6 @@ void UART2_Handler(void)
 
 
 /**
-  * @brief  This function handles I2C0 Handler.
-  * @param  None
-  * @retval None
-  */
-void I2C0_Handler(void)
-{}
-
-
-/**
-  * @brief  This function handles I2C1 Handler.
-  * @param  None
-  * @retval None
-  */
-void I2C1_Handler(void)
-{}
-
-
-/**
   * @brief  This function handles PORT0 Handler.
   * @param  None
   * @retval None
@@ -199,6 +180,7 @@ void PORT3_Handler(void)
   */
 void DMA_Handler(void)
 {}
+
 
 /**
   * @brief  This function handles DUALTIMER0 Handler.

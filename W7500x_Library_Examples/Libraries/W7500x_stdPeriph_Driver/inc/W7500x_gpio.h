@@ -83,6 +83,14 @@
 #define IS_GPIO_ALL_PERIPH(PERIPH)  (((PERIPH) == GPIOA) || ((PERIPH) == GPIOB) || \
                                      ((PERIPH) == GPIOC) || ((PERIPH) == GPIOD) )
 
+                                     
+/** @addtogroup W7500x_Periph_Driver
+  * @{
+  */
+
+/** @addtogroup GPIO
+  * @{
+  */                                      
 typedef enum
 {
     GPIO_Mode_IN    = 0x00, /*!< GPIO Input Mode                 */
@@ -169,3 +177,10 @@ void GPIO_INT_Configuration(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIOPol_Type
 #endif
 
 #endif //__W7500X_GPIO_H
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */

@@ -303,11 +303,13 @@ void reg_dhcp_cbfunc(void(*ip_assign)(void), void(*ip_update)(void), void(*ip_co
 /* make the common DHCP message */
 void makeDHCPMSG(void)
 {
-   uint8_t  bk_mac[6];
-   uint8_t* ptmp;
-   uint8_t  i;
-   getSHAR(bk_mac);
-	pDHCPMSG->op      = DHCP_BOOTREQUEST;
+    uint8_t  bk_mac[6];
+    uint8_t* ptmp;
+    uint8_t  i;
+    
+    getSHAR(bk_mac);
+	
+    pDHCPMSG->op      = DHCP_BOOTREQUEST;
 	pDHCPMSG->htype   = DHCP_HTYPE10MB;
 	pDHCPMSG->hlen    = DHCP_HLENETHERNET;
 	pDHCPMSG->hops    = DHCP_HOPS;

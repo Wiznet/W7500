@@ -171,24 +171,6 @@ void UART2_Handler(void)
 
 
 /**
-  * @brief  This function handles I2C0 Handler.
-  * @param  None
-  * @retval None
-  */
-void I2C0_Handler(void)
-{}
-
-
-/**
-  * @brief  This function handles I2C1 Handler.
-  * @param  None
-  * @retval None
-  */
-void I2C1_Handler(void)
-{}
-
-
-/**
   * @brief  This function handles PORT0 Handler.
   * @param  None
   * @retval None
