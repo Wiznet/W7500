@@ -13,7 +13,7 @@
 *********************************************************************************************************************************************************/
 /**
   ******************************************************************************
-  * @file    ADC/Illumination_RGBLED/W7500x_it.c
+  * @file    WZTOE/Loopback/W7500x_it.c
   * @author  IOP Team
   * @version V1.0.0
   * @date    01-May-2015
@@ -33,7 +33,7 @@
   */ 
 
 /* Includes ------------------------------------------------------------------*/
-#include "W7500x_it.h"
+#include "W7500x.h"
 
 
 /* Private typedef -----------------------------------------------------------*/
@@ -41,6 +41,7 @@
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
+extern void TimingDelay_Decrement(void);
 /* Private functions ---------------------------------------------------------*/
 
 /******************************************************************************/
@@ -85,7 +86,9 @@ void PendSV_Handler(void)
   * @retval None
   */
 void SysTick_Handler(void)
-{}
+{
+	TimingDelay_Decrement();
+}
 
 
 /******************************************************************************/
@@ -134,6 +137,24 @@ void UART1_Handler(void)
   * @retval None
   */
 void UART2_Handler(void)
+{}
+
+
+/**
+  * @brief  This function handles I2C0 Handler.
+  * @param  None
+  * @retval None
+  */
+void I2C0_Handler(void)
+{}
+
+
+/**
+  * @brief  This function handles I2C1 Handler.
+  * @param  None
+  * @retval None
+  */
+void I2C1_Handler(void)
 {}
 
 

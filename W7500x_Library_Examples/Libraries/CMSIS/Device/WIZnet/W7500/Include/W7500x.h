@@ -79,8 +79,8 @@ typedef enum IRQn
   UART0_IRQn                   = 2,        /*!< UART 0 Interrupt                                  */
   UART1_IRQn                   = 3,        /*!< UART 1 Interrupt                                  */
   UART2_IRQn                   = 4,        /*!< UART 2 Interrupt                                  */
-  /*I2C0_IRQn                    = 5,        /*!< I2C 0 Interrupt                                   */ 
-  /*I2C1_IRQn                    = 6,        /*!< I2C 1 Interrupt                                   */ 
+  I2C0_IRQn                    = 5,        /*!< I2C 0 Interrupt                                   */ 
+  I2C1_IRQn                    = 6,        /*!< I2C 1 Interrupt                                   */ 
   PORT0_IRQn                   = 7,        /*!< Port 1 combined Interrupt                         */  
   PORT1_IRQn                   = 8,        /*!< Port 2 combined Interrupt                         */  
   PORT2_IRQn                   = 9,        /*!< Port 2 combined Interrupt                         */  
@@ -536,6 +536,9 @@ typedef struct
 
 #define P_PCR_BASE              (W7500x_APB2_BASE + 0x00003000UL)
 
+#define I2C0_BASE        (W7500x_APB1_BASE + 0x8000)
+#define I2C1_BASE        (W7500x_APB1_BASE + 0x9000)
+
 #define W7500x_PWM_BASE                 (W7500x_APB1_BASE + 0x00005000UL)
 
 #define W7500x_RNG_BASE                   (W7500x_APB1_BASE + 0x00007000UL)
@@ -975,6 +978,55 @@ typedef struct
 #define Px_PCR_DS_HIGH      (0x01ul << 2)       // High Driving 
 #define Px_PCR_IE           (0x01ul << 5)       // Input Buffer Enable
 #define Px_PCR_CS_SUMMIT    (0x01ul << 6)       // Use Summit Trigger Input Buffer
+
+/******************************************************************************/
+/*                                                                            */
+/*                                   I2C                                      */
+/*                                                                            */
+/******************************************************************************/
+
+/****************   Bit definition for I2C_CTR    **************************/
+#define I2C_CTR_COREEN        (0x01ul  << 7 )   //  0x80
+#define I2C_CTR_INTEREN       (0x01ul  << 6 )   //  0x40
+#define I2C_CTR_MODE          (0x01ul  << 5 )   //  0x20
+#define I2C_CTR_ADDR10        (0x01ul  << 4 )   //  0x10
+#define I2C_CTR_CTRRWN        (0x01ul  << 3 )   //  0x08
+#define I2C_CTR_CTEN          (0x01ul  << 2 )   //  0x04
+
+/****************   Bit definition for I2C_CMDR   **************************/
+#define I2C_CMDR_STA           (0x01ul  << 7 )    //    0x80
+#define I2C_CMDR_STO           (0x01ul  << 6 )    //    0x40
+#define I2C_CMDR_ACK           (0x01ul  << 5 )    //    0x20
+#define I2C_CMDR_RESTA         (0x01ul  << 4 )    //    0x10
+
+/****************   Bit definition for I2C_ISCR   **************************/
+#define I2C_ISCR_RST          (0x01ul  << 1)    //     0x01
+
+/****************   Bit definition for I2C_SR     **************************/
+#define I2C_SR_TX             (0x01ul  << 9 )   //  0x200
+#define I2C_SR_RX             (0x01ul  << 8 )   //  0x100
+#define I2C_SR_ACKT           (0x01ul  << 7 )   //  0x080
+#define I2C_SR_BT             (0x01ul  << 6 )   //  0x040
+#define I2C_SR_SA             (0x01ul  << 5 )   //  0x020
+#define I2C_SR_SB             (0x01ul  << 4 )   //  0x010
+#define I2C_SR_AL             (0x01ul  << 3 )   //  0x008
+#define I2C_SR_TO             (0x01ul  << 2 )   //  0x004
+#define I2C_SR_SRW            (0x01ul  << 1 )   //  0x002
+#define I2C_SR_ACKR           (0x01ul  << 0 )   //  0x001
+
+/****************   Bit definition for I2C_ISR    **************************/
+#define I2C_ISR_STAE            (0x01ul  << 4 )   //  0x010
+#define I2C_ISR_STOE            (0x01ul  << 3 )   //  0x008
+#define I2C_ISR_TOE             (0x01ul  << 2 )   //  0x004
+#define I2C_ISR_ACK_RXE         (0x01ul  << 1 )   //  0x002
+#define I2C_ISR_ACK_TXE         (0x01ul  << 0 )   //  0x001
+
+/****************   Bit definition for I2C_ISMR   **************************/
+#define I2C_ISR_STAEM            (0x01ul  << 4 )   //  0x010
+#define I2C_ISR_STOEM            (0x01ul  << 3 )   //  0x008
+#define I2C_ISR_TOEM             (0x01ul  << 2 )   //  0x004
+#define I2C_ISR_ACK_RXEM         (0x01ul  << 1 )   //  0x002
+#define I2C_ISR_ACK_TXEM         (0x01ul  << 0 )   //  0x001
 
 /******************************************************************************/
 /*                                                                            */
