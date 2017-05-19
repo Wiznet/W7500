@@ -147,6 +147,18 @@ void wiz_recv_data(uint8_t sn, uint8_t *wizdata, uint16_t len)
     setSn_RX_RD(sn,ptr);
 }
 
+void wiz_recv_macraw_data(uint8_t sn, uint8_t *wizdata, uint16_t len)
+{
+    uint32_t ptr = 0;
+    uint32_t sn_rx_base = 0; 
+
+    if(len == 0) return;
+    ptr = getSn_RX_RD(sn);
+    sn_rx_base = (RXMEM_BASE) | ((sn&0x7)<<18);
+    WIZCHIP_READ_BUF(sn_rx_base, ptr, wizdata, len);
+    ptr += (len - ((len > 2) ? 2:0)); // Update Rx socket buffer ptr, excluding 2-bytes CRC length
+    setSn_RX_RD(sn,ptr);
+}
 
 void wiz_recv_ignore(uint8_t sn, uint16_t len)
 {

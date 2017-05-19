@@ -219,14 +219,14 @@ typedef struct
   * @{
   */
 
-#define SSP_BaudRatePrescaler_2         ((uint32_t)0x0000)
-#define SSP_BaudRatePrescaler_4         ((uint32_t)0x0008)
-#define SSP_BaudRatePrescaler_8         ((uint32_t)0x0010)
-#define SSP_BaudRatePrescaler_16        ((uint32_t)0x0018)
+#define SSP_BaudRatePrescaler_2         ((uint32_t)0x0002)
+#define SSP_BaudRatePrescaler_4         ((uint32_t)0x0004)
+#define SSP_BaudRatePrescaler_8         ((uint32_t)0x0008)
+#define SSP_BaudRatePrescaler_16        ((uint32_t)0x0010)
 #define SSP_BaudRatePrescaler_32        ((uint32_t)0x0020)
-#define SSP_BaudRatePrescaler_64        ((uint32_t)0x0028)
-#define SSP_BaudRatePrescaler_128       ((uint32_t)0x0030)
-#define SSP_BaudRatePrescaler_254       ((uint32_t)0x0038)
+#define SSP_BaudRatePrescaler_64        ((uint32_t)0x0040)
+#define SSP_BaudRatePrescaler_128       ((uint32_t)0x0080)
+#define SSP_BaudRatePrescaler_254       ((uint32_t)0x00FE)
 #define IS_SSP_BAUDRATE_PRESCALER(PRESCALER) (((PRESCALER) == SSP_BaudRatePrescaler_2) || \
                                               ((PRESCALER) == SSP_BaudRatePrescaler_4) || \
                                               ((PRESCALER) == SSP_BaudRatePrescaler_8) || \
