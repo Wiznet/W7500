@@ -13,14 +13,16 @@
 *********************************************************************************************************************************************************/
 /*
  *********************************************************************
- * @file    : wztoe.h
- * @version : 1.0.2
- * @author  : WIZnet
- * @data    20-May-2015
- * @brief   : WZTOE dirver for W7500
+ * @file    wztoe.h
+ * @version 1.0.4
+ * @author  WIZnet
+ * @data    20-Apr-2017
+ * @brief   WZTOE dirver for W7500
  *********************************************************************
  * @attention
  * @par Revision history
+ *    <2017/04/20> V1.0.4 by Eric Jung
+ *      1. Added wiz_recv_macraw_data() function for receiving data at MACRAW mode only
  *    <2017/01/06> V1.0.3 by justinKim
  *      1. DHAR register Read/Write problem bug fix
  *    <2015/05/20> V1.0.2 by justinKim
@@ -1208,6 +1210,23 @@ void wiz_send_data(uint8_t sn, uint8_t *wizdata, uint16_t len);
  * @sa wiz_send_data()
  */
 void wiz_recv_data(uint8_t sn, uint8_t *wizdata, uint16_t len);
+
+/**
+ * @ingroup Basic_IO_function
+ * @brief It copies data to your buffer from internal RX memory at MACRAW socket mode
+ *
+ * @details This function read the Rx read pointer register and after that,
+ * it copies the received data from internal RX memory
+ * to <i>wizdata(pointer variable)</i> of the length of <i>len(variable)</i> bytes.
+ * This function is being called by recvfrom() function at MACRAW socket mode only.
+ *
+ * @note User should read upper byte first and lower byte later to get proper value.
+ * @param (uint8_t)sn Socket number. It should be <b>0 ~ 7</b>.
+ * @param wizdata Pointer buffer to read data
+ * @param len Data length
+ * @sa wiz_send_data()
+ */
+void wiz_recv_macraw_data(uint8_t sn, uint8_t *wizdata, uint16_t len);
 
 /**
  * @ingroup Basic_IO_function
