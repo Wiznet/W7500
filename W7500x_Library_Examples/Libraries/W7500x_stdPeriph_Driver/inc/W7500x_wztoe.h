@@ -113,6 +113,8 @@
 #define WZTOE_Sn_DIPR3(ch)         (W7500x_WZTOE_BASE + (0x00010127 + ((ch)<<18)))
 
 #define WZTOE_Sn_KPALVTR(ch)      (W7500x_WZTOE_BASE + (0x00010180 + ((ch)<<18))) 
+#define WZTOE_Sn_RTR(ch)          (W7500x_WZTOE_BASE + (0x00010184 + ((ch)<<18))) 
+#define WZTOE_Sn_RCR(ch)          (W7500x_WZTOE_BASE + (0x00010188 + ((ch)<<18))) 
 #define WZTOE_Sn_TXBUF_SIZE(ch)   (W7500x_WZTOE_BASE + (0x00010200 + ((ch)<<18))) 
 #define WZTOE_Sn_TX_FSR(ch)       (W7500x_WZTOE_BASE + (0x00010204 + ((ch)<<18))) 
 #define WZTOE_Sn_TX_RD(ch)        (W7500x_WZTOE_BASE + (0x00010208 + ((ch)<<18))) 
@@ -1056,6 +1058,44 @@ uipr[3] = WIZCHIP_READ((WZTOE_UIPR));
  */
 #define setSn_TXBUF_SIZE(sn, txbufsize) \
     WIZCHIP_WRITE(WZTOE_Sn_TXBUF_SIZE(sn), txbufsize)
+
+/**
+ * @ingroup Socket_register_access_function
+ * @brief Set @ref Sn_RTR register
+ * @param (uint8_t)sn Socket number. It should be <b>0 ~ 7</b>.
+ * @param (uint16_t)sn_rtr Value to set @ref Sn_RTR register.
+ * @sa getSn_RTR()
+ */
+#define setSn_RTR(sn, sn_rtr) (*(volatile uint32_t *)(WZTOE_SN_RTR(sn)) = sn_rtr)
+
+/**
+ * @ingroup Socket_register_access_function
+ * @brief Get @ref Sn_RTR register
+ * @param (uint8_t)sn Socket number. It should be <b>0 ~ 7</b>.
+ * @return uint16_t. Value of @ref Sn_RTR register.
+ * @sa setSn_RTR()
+ */
+#define getSn_RTR(sn) ((uint16_t)(*(volatile uint32_t *)(WZTOE_SN_RTR(sn))))
+
+/**
+ * @ingroup Socket_register_access_function
+ * @brief Set @ref Sn_RCR register
+ * @param (uint8_t)sn Socket number. It should be <b>0 ~ 7</b>.
+ * @param (uint8_t)sn_rcr Value to set @ref Sn_RCR register.
+ * @sa getSn_RCR()
+ */
+#define setSn_RCR(sn, sn_rcr) \
+    WIZCHIP_WRITE(WZTOE_SN_RCR(sn), sn_rcr)
+
+/**
+ * @ingroup Socket_register_access_function
+ * @brief Get @ref Sn_RCR register
+ * @param (uint8_t)sn Socket number. It should be <b>0 ~ 7</b>.
+ * @return uint8_t. Value of @ref Sn_RCR register.
+ * @sa setSn_RCR()
+ */
+#define getSn_RCR(sn) \
+    WIZCHIP_READ(WZTOE_SN_RCR(sn))
 
 /**
  * @ingroup Socket_register_access_function
