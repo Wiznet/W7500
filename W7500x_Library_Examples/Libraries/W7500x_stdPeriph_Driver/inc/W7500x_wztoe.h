@@ -1066,7 +1066,7 @@ uipr[3] = WIZCHIP_READ((WZTOE_UIPR));
  * @param (uint16_t)sn_rtr Value to set @ref Sn_RTR register.
  * @sa getSn_RTR()
  */
-#define setSn_RTR(sn, sn_rtr) (*(volatile uint32_t *)(WZTOE_SN_RTR(sn)) = sn_rtr)
+#define setSn_RTR(sn, sn_rtr) (*(volatile uint32_t *)(WZTOE_Sn_RTR(sn)) = sn_rtr)
 
 /**
  * @ingroup Socket_register_access_function
@@ -1075,7 +1075,7 @@ uipr[3] = WIZCHIP_READ((WZTOE_UIPR));
  * @return uint16_t. Value of @ref Sn_RTR register.
  * @sa setSn_RTR()
  */
-#define getSn_RTR(sn) ((uint16_t)(*(volatile uint32_t *)(WZTOE_SN_RTR(sn))))
+#define getSn_RTR(sn) ((uint16_t)(*(volatile uint32_t *)(WZTOE_Sn_RTR(sn))))
 
 /**
  * @ingroup Socket_register_access_function
