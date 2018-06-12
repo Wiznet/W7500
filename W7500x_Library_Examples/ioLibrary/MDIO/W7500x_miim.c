@@ -139,6 +139,7 @@ uint32_t mdio_read(GPIO_TypeDef* GPIOx, uint32_t PhyRegAddr)
     //printf("mdio read - read the data value \r\n");
     val = input_MDIO(GPIOx );
     //printf("mdio read - val : %X\r\n", val );
+		printf("mdio read - val : %x, PHY_ADDR : %x, PhyRegAddr : %x, GPIOx : %x \r\n", val, PHY_ADDR, PhyRegAddr, GPIOx);
 
     /* turnaround MDO is tristated */
     //printf("mdio read - idle \r\n");
@@ -178,4 +179,20 @@ void mdio_write(GPIO_TypeDef* GPIOx, uint32_t PhyRegAddr, uint32_t val)
     idle_MDIO(GPIOx);
 
 }
+
+void PHY_Init(void)
+{   
+#ifdef __DEF_USED_IC101AG__ // For using W7500 + (IC+101AG PHY)
+    *(volatile uint32_t *)(0x41003068) = 0x64; //TXD0 - set PAD strengh and pull-up
+    *(volatile uint32_t *)(0x4100306C) = 0x64; //TXD1 - set PAD strengh and pull-up
+    *(volatile uint32_t *)(0x41003070) = 0x64; //TXD2 - set PAD strengh and pull-up
+    *(volatile uint32_t *)(0x41003074) = 0x64; //TXD3 - set PAD strengh and pull-up
+    *(volatile uint32_t *)(0x41003050) = 0x64; //TXE  - set PAD strengh and pull-up
+#endif
+#ifdef __DEF_USED_MDIO__     
+    mdio_init(GPIOB, W7500x_MDC, W7500x_MDIO);                // MDIO Init
+    mdio_write(GPIOB, PHYREG_CONTROL, CNTL_RESET);   // PHY Reset
+#endif
+}
+
 
