@@ -102,17 +102,9 @@ int main()
     printf(" val: %X, getTIC100US: %X, (%X) \r\n", GetSystemClock(), getTIC100US(), *(uint32_t *)WZTOE_TIC100US);        
 
 
-#ifdef __DEF_USED_IC101AG__ //For using IC+101AG
-    *(volatile uint32_t *)(0x41003068) = 0x64; //TXD0 - set PAD strengh and pull-up
-    *(volatile uint32_t *)(0x4100306C) = 0x64; //TXD1 - set PAD strengh and pull-up
-    *(volatile uint32_t *)(0x41003070) = 0x64; //TXD2 - set PAD strengh and pull-up
-    *(volatile uint32_t *)(0x41003074) = 0x64; //TXD3 - set PAD strengh and pull-up
-    *(volatile uint32_t *)(0x41003050) = 0x64; //TXE  - set PAD strengh and pull-up
-#endif	
-    printf("PHY is linked. \r\n"); 
 #ifdef __DEF_USED_MDIO__ 
-    /* mdio Init */
-    mdio_init(GPIOB, MDC, MDIO );
+    /* PHY Initialization */
+    PHY_Init();
     /* PHY Link Check via gpio mdio */
     while( link() == 0x0 )
     {
@@ -124,6 +116,7 @@ int main()
     delay(1000);
     delay(1000);
 #endif
+    
     
     GPIO_InitDef.GPIO_Pin = (GPIO_Pin_1 | GPIO_Pin_2);
     GPIO_InitDef.GPIO_Mode = GPIO_Mode_OUT;
