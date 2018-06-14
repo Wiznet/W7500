@@ -54,7 +54,6 @@ UART_InitTypeDef UART_InitStructure;
 void delay(__IO uint32_t milliseconds); //Notice: used ioLibray
 void TimingDelay_Decrement(void);
 
-void PHY_Init(void)
 
 /* Private variables ---------------------------------------------------------*/
 static __IO uint32_t TimingDelay;
