@@ -14,10 +14,7 @@
 #include <stdio.h>
 #include "W7500x_miim.h"
 
-#define __DEF_DBG_LEVEL1__
 
-#define MDIO    GPIO_Pin_14
-#define MDC     GPIO_Pin_15
 
 
 extern void delay(__IO uint32_t nCount);
@@ -190,7 +187,7 @@ void PHY_Init(void)
     *(volatile uint32_t *)(0x41003050) = 0x64; //TXE  - set PAD strengh and pull-up
 #endif
 #ifdef __DEF_USED_MDIO__     
-    mdio_init(GPIOB, W7500x_MDC, W7500x_MDIO);                // MDIO Init
+    mdio_init(GPIOB, MDC, MDIO);                // MDIO Init
     mdio_write(GPIOB, PHYREG_CONTROL, CNTL_RESET);   // PHY Reset
 #endif
 }
