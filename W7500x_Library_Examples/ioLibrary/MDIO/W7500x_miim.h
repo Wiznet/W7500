@@ -15,17 +15,16 @@
 #define __MIIM_H__
 #include "W7500x_gpio.h"
 
-#define MDIO    GPIO_Pin_15
-#define MDC     GPIO_Pin_14
+#define MDIO    GPIO_Pin_14
+#define MDC     GPIO_Pin_15
 
+#define __DEF_DBG_LEVEL1__
 #define __DEF_USED_MDIO__ 
-#define __W7500P__ // for W7500P
-
+#define __DEF_USED_IC101AG__ //for W7500 Test main Board V001
 
 //#define PHY_ADDR_RLT8201 0x1F //AD[4:0] <= 0x1F (0x1F)
-//#define PHY_ADDR_IP101G (phy_id())
-//#define PHY_ADDR PHY_ADDR_IP101G
-
+#define PHY_ADDR_IP101G 0x07 // //AD[3:0] <= 0x0F (0x07)
+#define PHY_ADDR PHY_ADDR_IP101G
 
 #define SVAL 0x2 //right shift val = 2 
 #define PHYREG_CONTROL  0x0//Control Register address (Contorl basic register)
@@ -34,6 +33,7 @@
 #define CNTL_AUTONEGO   (0x01ul<<12)
 #define CNTL_SPEED      (0x01ul<<13)
 #define CNTL_RESET      (0x01ul<<15)
+
 typedef enum
 {
     HalfDuplex10 = 0x0000,
@@ -47,9 +47,7 @@ typedef enum
                                ((Mode)==HalfDuplex100) || ((Mode)==FullDuplex100))
 
 void PHY_Init(void);
-int32_t phy_id(void);
 void mdio_init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin_MDC, uint16_t GPIO_Pin_MDIO);
-//void mdio_error_check(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin_MDC, uint16_t GPIO_Pin_MDIO); //need verify...
 void mdio_write(GPIO_TypeDef* GPIOx, uint32_t PhyRegAddr, uint32_t val);
 uint32_t mdio_read(GPIO_TypeDef* GPIOx, uint32_t PhyRegAddr);
 uint32_t link(void);
