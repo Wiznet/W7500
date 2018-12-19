@@ -8,7 +8,7 @@ Only source files are provided for each example and user can tailor the provided
 
   - Directory Structure
   
-![Fig.directory_structure](http://wizwiki.net/wiki/lib/exe/fetch.php?media=products:w7500:iolib_directory.png)
+![Fig.directory_structure](http://wizwiki.net/wiki/lib/exe/fetch.php?media=products:w7500:libsturcture.png)
 
   - ioLibrary
     - Application
