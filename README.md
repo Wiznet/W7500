@@ -1,6 +1,8 @@
-#Library and Peripheral Example
+# This repository is no longer supported. Please refer to the following repository:[W7500x_StdPeriph_Lib](https://github.com/Wiznet/W7500x_StdPeriph_Lib)
 
-##Overview
+# Library and Peripheral Example
+
+## Overview
 The W7500 provides the CMSIS, driver and Peripheral Example.
 The W7500 Standard Peripherals library provides a rich set of examples covering the main features of each peripheral. 
 All the examples are independent from the WIZwiki-W7500 platform. 
@@ -34,5 +36,5 @@ Only source files are provided for each example and user can tailor the provided
     - w7500_flash_algo_mdk
       - The W7500 standard library provides W7500 128KB flash algorithm project to debug WIZwiki-W7500 with using ULINK debugger and CMSIS-DAP debugger. 
 
-##Peripheral description and examples
+## Peripheral description and examples
 - [Peripherals](http://wizwiki.net/wiki/doku.php?id=products:w7500:peripherals)
